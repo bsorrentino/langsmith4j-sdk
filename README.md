@@ -1,7 +1,8 @@
 # langsmith4j
 
-Java version of [LangSmith] API designed for [Langchain4j] integration
+Java version of [langsmith] API designed for [langchain4j] integration.
 
 
-[Langchain4j]: https://github.com/langchain/langchain4j
-[Langsmith]: https://docs.smith.langchain.com
+
+[langchain4j]: https://github.com/langchain/langchain4j
+[langsmith]: https://docs.smith.langchain.com
