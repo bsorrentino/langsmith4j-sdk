@@ -90,7 +90,7 @@ public class Inputs {
 
   public static final String SERIALIZED_NAME_PROMPT = "prompt";
   @SerializedName(SERIALIZED_NAME_PROMPT)
-  private Prompt prompt;
+  private String prompt;
 
   public static final String SERIALIZED_NAME_SUFFIX = "suffix";
   @SerializedName(SERIALIZED_NAME_SUFFIX)
@@ -403,8 +403,7 @@ public class Inputs {
   }
 
 
-  public Inputs prompt(Prompt prompt) {
-    
+  public Inputs prompt(String prompt) {
     this.prompt = prompt;
     return this;
   }
@@ -414,13 +413,12 @@ public class Inputs {
    * @return prompt
   **/
   @javax.annotation.Nonnull
-
-  public Prompt getPrompt() {
+  public String getPrompt() {
     return prompt;
   }
 
 
-  public void setPrompt(Prompt prompt) {
+  public void setPrompt(String prompt) {
     this.prompt = prompt;
   }
 

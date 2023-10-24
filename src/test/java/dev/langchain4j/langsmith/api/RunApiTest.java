@@ -1,12 +1,14 @@
 package dev.langchain4j.langsmith.api;
 
 import dev.langchain4j.langsmith.ApiClient;
-import dev.langchain4j.langsmith.model.HTTPValidationError;
-import dev.langchain4j.langsmith.model.RunCreateSchemaExtended;
-import dev.langchain4j.langsmith.model.RunUpdateSchemaExtended;
+import dev.langchain4j.langsmith.model.*;
+
 import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * API tests for RunApi
@@ -24,7 +27,7 @@ public class RunApiTest {
 
     @Before
     public void setup() {
-        api = new ApiClient().createService(RunApi.class);
+        api = ApiClient.builder().build().createService(RunApi.class);
     }
 
     /**
@@ -51,5 +54,41 @@ public class RunApiTest {
         // Object response = api.updateRunRunsRunIdPatch(runId, runUpdateSchemaExtended);
 
         // TODO: test validations
+    }
+
+    public static void main( String [] args ) throws Exception {
+
+        final ApiClient client = ApiClient.builder()
+                .baseUrl( System.getenv("LANGCHAIN_ENDPOINT") )
+                .apiKey( System.getenv("LANGCHAIN_API_KEY") )
+                .build()
+                ;
+
+        final RunApiAsync apiInstance = RunApiAsync.of(client.createService(RunApi.class));
+
+        final RunCreateSchemaExtended schema = new RunCreateSchemaExtended(); // RunCreateSchemaExtended |
+
+        Inputs inputs = new Inputs();
+        inputs.prompt( "Foo");
+
+        UUID runId = UUID.randomUUID();
+
+        schema.id( runId )
+                .sessionName( System.getenv("LANGCHAIN_PROJECT") )
+                .name( "MyFirstRun" )
+                .runType( RunTypeEnum.CHAIN )
+                .startTime( OffsetDateTime.now() )
+                .inputs( inputs )
+                ;
+
+        final CompletableFuture<Response<Object>> call = apiInstance.createRunRunsPost(schema);
+
+        final Response<Object> result = call.join();
+
+        System.out.println( result );
+        System.out.println( result.body() );
+        System.out.println( result.headers() );
+
+        System.exit(0);
     }
 }
