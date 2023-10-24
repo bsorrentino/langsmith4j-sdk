@@ -1,0 +1,748 @@
+openapi: 3.0.2
+info:
+  title: LangSmith
+  version: 0.1.0
+servers:
+- url: /
+paths:
+  /runs/{run_id}:
+    patch:
+      description: Update a run.
+      operationId: update_run_runs__run_id__patch
+      parameters:
+      - explode: false
+        in: path
+        name: run_id
+        required: true
+        schema:
+          format: uuid
+          title: Run Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunUpdateSchemaExtended'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Run
+      tags:
+      - run
+      x-content-type: application/json
+      x-accepts: application/json
+  /runs:
+    post:
+      description: Create a new run.
+      operationId: create_run_runs_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunCreateSchemaExtended'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Run
+      tags:
+      - run
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    RunUpdateSchemaExtended:
+      example:
+        outputs: null
+        inputs: null
+        end_time: 2000-01-23T04:56:07.000+00:00
+        error: error
+        events:
+        - "{}"
+        - "{}"
+      properties:
+        end_time:
+          format: date-time
+          title: End Time
+          type: string
+        error:
+          title: Error
+          type: string
+        inputs:
+          $ref: '#/components/schemas/Inputs'
+        outputs:
+          $ref: '#/components/schemas/Outputs'
+        events:
+          items:
+            type: object
+          title: Events
+          type: array
+      title: RunUpdateSchemaExtended
+      type: object
+    CreateChatCompletionRequest:
+      properties:
+        model:
+          default: ""
+          title: Model
+          type: string
+        messages:
+          default: []
+          items:
+            $ref: '#/components/schemas/ChatCompletionRequestMessage'
+          title: Messages
+          type: array
+        functions:
+          default: []
+          items:
+            $ref: '#/components/schemas/ChatCompletionFunctions'
+          title: Functions
+          type: array
+        temperature:
+          title: Temperature
+          type: number
+        top_p:
+          title: Top P
+          type: number
+        "n":
+          title: "N"
+          type: integer
+        stream:
+          title: Stream
+          type: boolean
+        stop:
+          $ref: '#/components/schemas/Stop'
+        max_tokens:
+          title: Max Tokens
+          type: integer
+        presence_penalty:
+          title: Presence Penalty
+          type: number
+        frequency_penalty:
+          title: Frequency Penalty
+          type: number
+        logit_bias:
+          additionalProperties:
+            type: integer
+          title: Logit Bias
+          type: object
+      title: CreateChatCompletionRequest
+      type: object
+    ChatCompletionRequestMessage:
+      properties:
+        role:
+          default: ""
+          title: Role
+          type: string
+        content:
+          title: Content
+          type: string
+        name:
+          title: Name
+          type: string
+        function_call:
+          $ref: '#/components/schemas/ChatCompletionFunctionCall'
+      title: ChatCompletionRequestMessage
+      type: object
+    ChatCompletionFunctionCall:
+      properties:
+        name:
+          default: ""
+          title: Name
+          type: string
+        arguments:
+          default: ""
+          title: Arguments
+          type: string
+      title: ChatCompletionFunctionCall
+      type: object
+    ChatCompletionFunctions:
+      properties:
+        name:
+          default: ""
+          title: Name
+          type: string
+        description:
+          default: ""
+          title: Description
+          type: string
+        parameters:
+          $ref: '#/components/schemas/ChatCompletionFunctionParameters'
+      title: ChatCompletionFunctions
+      type: object
+    ChatCompletionFunctionParameters:
+      properties:
+        type:
+          default: ""
+          title: Type
+          type: string
+        properties:
+          default: {}
+          title: Properties
+          type: object
+      title: ChatCompletionFunctionParameters
+      type: object
+    CreateCompletionRequest:
+      properties:
+        model:
+          $ref: '#/components/schemas/Model'
+        prompt:
+          $ref: '#/components/schemas/Prompt'
+        suffix:
+          title: Suffix
+          type: string
+        max_tokens:
+          title: Max Tokens
+          type: integer
+        temperature:
+          title: Temperature
+          type: number
+        top_p:
+          title: Top P
+          type: number
+        "n":
+          title: "N"
+          type: integer
+        stream:
+          title: Stream
+          type: boolean
+        logprobs:
+          title: Logprobs
+          type: integer
+        echo:
+          title: Echo
+          type: boolean
+        stop:
+          $ref: '#/components/schemas/Stop'
+        presence_penalty:
+          title: Presence Penalty
+          type: number
+        frequency_penalty:
+          title: Frequency Penalty
+          type: number
+        best_of:
+          title: Best Of
+          type: integer
+        logit_bias:
+          additionalProperties:
+            type: integer
+          title: Logit Bias
+          type: object
+        user:
+          title: User
+          type: string
+      required:
+      - model
+      - prompt
+      title: CreateCompletionRequest
+      type: object
+    CreateChatCompletionResponse:
+      properties:
+        id:
+          default: ""
+          title: Id
+          type: string
+        object:
+          default: ""
+          title: Object
+          type: string
+        created:
+          default: 0
+          title: Created
+          type: integer
+        model:
+          default: ""
+          title: Model
+          type: string
+        choices:
+          default: []
+          items:
+            $ref: '#/components/schemas/ChatCompletionChoice'
+          title: Choices
+          type: array
+        usage:
+          $ref: '#/components/schemas/CompletionUsage'
+      title: CreateChatCompletionResponse
+      type: object
+    ChatCompletionChoice:
+      properties:
+        index:
+          default: 0
+          title: Index
+          type: integer
+        message:
+          $ref: '#/components/schemas/ChatCompletionResponseMessage'
+        finish_reason:
+          default: ""
+          title: Finish Reason
+          type: string
+      title: ChatCompletionChoice
+      type: object
+    ChatCompletionResponseMessage:
+      properties:
+        role:
+          default: ""
+          title: Role
+          type: string
+        content:
+          title: Content
+          type: string
+        function_call:
+          $ref: '#/components/schemas/ChatCompletionFunctionCall'
+      title: ChatCompletionResponseMessage
+      type: object
+    CompletionUsage:
+      properties:
+        prompt_tokens:
+          default: 0
+          title: Prompt Tokens
+          type: integer
+        completion_tokens:
+          default: 0
+          title: Completion Tokens
+          type: integer
+        total_tokens:
+          default: 0
+          title: Total Tokens
+          type: integer
+      title: CompletionUsage
+      type: object
+    CreateCompletionResponse:
+      properties:
+        id:
+          title: Id
+          type: string
+        object:
+          title: Object
+          type: string
+        created:
+          title: Created
+          type: string
+        model:
+          title: Model
+          type: string
+        choices:
+          default: []
+          items:
+            $ref: '#/components/schemas/Choice'
+          title: Choices
+          type: array
+        usage:
+          $ref: '#/components/schemas/CompletionUsage'
+      title: CreateCompletionResponse
+      type: object
+    Choice:
+      properties:
+        text:
+          default: ""
+          title: Text
+          type: string
+        index:
+          default: 0
+          title: Index
+          type: integer
+        logprobs:
+          $ref: '#/components/schemas/Logprobs'
+        finish_reason:
+          default: ""
+          title: Finish Reason
+          type: string
+      title: Choice
+      type: object
+    Logprobs:
+      properties:
+        tokens:
+          default: []
+          items:
+            type: string
+          title: Tokens
+          type: array
+        token_logprobs:
+          default: []
+          items:
+            type: number
+          title: Token Logprobs
+          type: array
+        top_logprobs:
+          default: []
+          items:
+            additionalProperties:
+              type: integer
+            type: object
+          title: Top Logprobs
+          type: array
+        text_offset:
+          default: []
+          items:
+            type: integer
+          title: Text Offset
+          type: array
+      title: Logprobs
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            $ref: '#/components/schemas/Location_inner'
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    RunCreateSchemaExtended:
+      description: "Create class for a run object, with additional typehints."
+      example:
+        outputs: null
+        session_name: session_name
+        parent_run_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        inputs: null
+        end_time: 2000-01-23T04:56:07.000+00:00
+        session_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        run_type: null
+        error: error
+        reference_example_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        child_runs:
+        - outputs: "{}"
+          session_name: session_name
+          parent_run_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          inputs: "{}"
+          end_time: 2000-01-23T04:56:07.000+00:00
+          session_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          run_type: null
+          error: error
+          reference_example_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          child_runs:
+          - null
+          - null
+          execution_order: 1
+          tags:
+          - tags
+          - tags
+          start_time: 2000-01-23T04:56:07.000+00:00
+          extra: "{}"
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          manifest_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          events:
+          - "{}"
+          - "{}"
+          serialized: "{}"
+        - outputs: "{}"
+          session_name: session_name
+          parent_run_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          inputs: "{}"
+          end_time: 2000-01-23T04:56:07.000+00:00
+          session_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          run_type: null
+          error: error
+          reference_example_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          child_runs:
+          - null
+          - null
+          execution_order: 1
+          tags:
+          - tags
+          - tags
+          start_time: 2000-01-23T04:56:07.000+00:00
+          extra: "{}"
+          name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          manifest_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          events:
+          - "{}"
+          - "{}"
+          serialized: "{}"
+        execution_order: 1
+        tags:
+        - tags
+        - tags
+        start_time: 2000-01-23T04:56:07.000+00:00
+        extra: "{}"
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        manifest_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        events:
+        - "{}"
+        - "{}"
+        serialized: "{}"
+      properties:
+        name:
+          title: Name
+          type: string
+        inputs:
+          $ref: '#/components/schemas/Inputs'
+        run_type:
+          $ref: '#/components/schemas/RunTypeEnum'
+        start_time:
+          format: date-time
+          title: Start Time
+          type: string
+        end_time:
+          format: date-time
+          title: End Time
+          type: string
+        extra:
+          title: Extra
+          type: object
+        error:
+          title: Error
+          type: string
+        execution_order:
+          default: 1
+          minimum: 1.0
+          title: Execution Order
+          type: integer
+        serialized:
+          title: Serialized
+          type: object
+        outputs:
+          $ref: '#/components/schemas/Outputs'
+        parent_run_id:
+          format: uuid
+          title: Parent Run Id
+          type: string
+        manifest_id:
+          format: uuid
+          title: Manifest Id
+          type: string
+        events:
+          items:
+            type: object
+          title: Events
+          type: array
+        tags:
+          items:
+            type: string
+          title: Tags
+          type: array
+        id:
+          format: uuid
+          title: Id
+          type: string
+        session_id:
+          format: uuid
+          title: Session Id
+          type: string
+        session_name:
+          title: Session Name
+          type: string
+        child_runs:
+          items:
+            $ref: '#/components/schemas/RunCreateSchema'
+          title: Child Runs
+          type: array
+        reference_example_id:
+          format: uuid
+          title: Reference Example Id
+          type: string
+      required:
+      - name
+      - run_type
+      title: RunCreateSchemaExtended
+      type: object
+    RunTypeEnum:
+      description: Enum for run types.
+      enum:
+      - tool
+      - chain
+      - llm
+      - retriever
+      - embedding
+      - prompt
+      - parser
+      title: RunTypeEnum
+      type: string
+    RunCreateSchema:
+      description: Create class for a Run object.
+      example:
+        outputs: "{}"
+        session_name: session_name
+        parent_run_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        inputs: "{}"
+        end_time: 2000-01-23T04:56:07.000+00:00
+        session_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        run_type: null
+        error: error
+        reference_example_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        child_runs:
+        - null
+        - null
+        execution_order: 1
+        tags:
+        - tags
+        - tags
+        start_time: 2000-01-23T04:56:07.000+00:00
+        extra: "{}"
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        manifest_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        events:
+        - "{}"
+        - "{}"
+        serialized: "{}"
+      properties:
+        name:
+          title: Name
+          type: string
+        inputs:
+          title: Inputs
+          type: object
+        run_type:
+          $ref: '#/components/schemas/RunTypeEnum'
+        start_time:
+          format: date-time
+          title: Start Time
+          type: string
+        end_time:
+          format: date-time
+          title: End Time
+          type: string
+        extra:
+          title: Extra
+          type: object
+        error:
+          title: Error
+          type: string
+        execution_order:
+          default: 1
+          minimum: 1.0
+          title: Execution Order
+          type: integer
+        serialized:
+          title: Serialized
+          type: object
+        outputs:
+          title: Outputs
+          type: object
+        parent_run_id:
+          format: uuid
+          title: Parent Run Id
+          type: string
+        manifest_id:
+          format: uuid
+          title: Manifest Id
+          type: string
+        events:
+          items:
+            type: object
+          title: Events
+          type: array
+        tags:
+          items:
+            type: string
+          title: Tags
+          type: array
+        id:
+          format: uuid
+          title: Id
+          type: string
+        session_id:
+          format: uuid
+          title: Session Id
+          type: string
+        session_name:
+          title: Session Name
+          type: string
+        child_runs:
+          items:
+            $ref: '#/components/schemas/RunCreateSchema'
+          title: Child Runs
+          type: array
+        reference_example_id:
+          format: uuid
+          title: Reference Example Id
+          type: string
+      required:
+      - name
+      - run_type
+      title: RunCreateSchema
+      type: object
+    Inputs:
+      anyOf:
+      - type: object
+      - $ref: '#/components/schemas/CreateChatCompletionRequest'
+      - $ref: '#/components/schemas/CreateCompletionRequest'
+      title: Inputs
+    Outputs:
+      anyOf:
+      - type: object
+      - $ref: '#/components/schemas/CreateChatCompletionResponse'
+      - $ref: '#/components/schemas/CreateCompletionResponse'
+      title: Outputs
+    Stop:
+      anyOf:
+      - type: string
+      - items:
+          type: string
+        type: array
+      title: Stop
+    Model_anyOf_value:
+      anyOf:
+      - type: string
+      - items:
+          type: string
+        type: array
+    Model:
+      anyOf:
+      - type: string
+      - additionalProperties:
+          $ref: '#/components/schemas/Model_anyOf_value'
+        type: object
+      title: Model
+    Prompt:
+      anyOf:
+      - type: string
+      - items:
+          type: string
+        type: array
+      - items:
+          type: integer
+        type: array
+      - items:
+          items:
+            type: integer
+          type: array
+        type: array
+      title: Prompt
+    Location_inner:
+      anyOf:
+      - type: string
+      - type: integer
+
