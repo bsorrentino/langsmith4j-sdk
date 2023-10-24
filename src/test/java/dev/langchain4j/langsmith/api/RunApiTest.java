@@ -27,7 +27,11 @@ public class RunApiTest {
 
     @Before
     public void setup() {
-        api = ApiClient.builder().build().createService(RunApi.class);
+
+        api = ApiClient.builder()
+                .baseUrl("http://localhost")
+                .build()
+                .createService(RunApi.class);
     }
 
     /**
