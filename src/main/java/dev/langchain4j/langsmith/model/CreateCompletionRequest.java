@@ -13,20 +13,13 @@
 
 package dev.langchain4j.langsmith.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.model.Model;
-import dev.langchain4j.langsmith.model.Prompt;
-import dev.langchain4j.langsmith.model.Stop;
-import java.io.IOException;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * CreateCompletionRequest
@@ -39,7 +32,7 @@ public class CreateCompletionRequest {
 
   public static final String SERIALIZED_NAME_PROMPT = "prompt";
   @SerializedName(SERIALIZED_NAME_PROMPT)
-  private Prompt prompt;
+  private String prompt;
 
   public static final String SERIALIZED_NAME_SUFFIX = "suffix";
   @SerializedName(SERIALIZED_NAME_SUFFIX)
@@ -75,7 +68,7 @@ public class CreateCompletionRequest {
 
   public static final String SERIALIZED_NAME_STOP = "stop";
   @SerializedName(SERIALIZED_NAME_STOP)
-  private Stop stop;
+  private List<String> stop;
 
   public static final String SERIALIZED_NAME_PRESENCE_PENALTY = "presence_penalty";
   @SerializedName(SERIALIZED_NAME_PRESENCE_PENALTY)
@@ -122,7 +115,7 @@ public class CreateCompletionRequest {
   }
 
 
-  public CreateCompletionRequest prompt(Prompt prompt) {
+  public CreateCompletionRequest prompt(String prompt) {
     
     this.prompt = prompt;
     return this;
@@ -134,12 +127,12 @@ public class CreateCompletionRequest {
   **/
   @javax.annotation.Nonnull
 
-  public Prompt getPrompt() {
+  public String getPrompt() {
     return prompt;
   }
 
 
-  public void setPrompt(Prompt prompt) {
+  public void setPrompt(String prompt) {
     this.prompt = prompt;
   }
 
@@ -320,7 +313,7 @@ public class CreateCompletionRequest {
   }
 
 
-  public CreateCompletionRequest stop(Stop stop) {
+  public CreateCompletionRequest stop(List<String> stop) {
     
     this.stop = stop;
     return this;
@@ -332,12 +325,12 @@ public class CreateCompletionRequest {
   **/
   @javax.annotation.Nullable
 
-  public Stop getStop() {
+  public List<String> getStop() {
     return stop;
   }
 
 
-  public void setStop(Stop stop) {
+  public void setStop(List<String> stop) {
     this.stop = stop;
   }
 

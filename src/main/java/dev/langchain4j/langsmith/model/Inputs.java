@@ -13,9 +13,9 @@
 
 package dev.langchain4j.langsmith.model;
 
-import java.util.Objects;
-
 import com.google.gson.annotations.SerializedName;
+import lombok.Builder;
+import lombok.Value;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,514 +26,80 @@ import java.util.Map;
 /**
  * Inputs
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-24T16:07:41.765433+02:00[Europe/Rome]")
+@Value
+@Builder
 public class Inputs {
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
-  private Model model;
+  Model model;
 
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @SerializedName(SERIALIZED_NAME_MESSAGES)
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  List<ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FUNCTIONS = "functions";
   @SerializedName(SERIALIZED_NAME_FUNCTIONS)
-  private List<ChatCompletionFunctions> functions = new ArrayList<>();
+  List<ChatCompletionFunctions> functions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TEMPERATURE = "temperature";
   @SerializedName(SERIALIZED_NAME_TEMPERATURE)
-  private BigDecimal temperature;
+  Float temperature;
 
   public static final String SERIALIZED_NAME_TOP_P = "top_p";
   @SerializedName(SERIALIZED_NAME_TOP_P)
-  private BigDecimal topP;
+  Float topP;
 
   public static final String SERIALIZED_NAME_N = "n";
   @SerializedName(SERIALIZED_NAME_N)
-  private Integer n;
+  Integer n;
 
   public static final String SERIALIZED_NAME_STREAM = "stream";
   @SerializedName(SERIALIZED_NAME_STREAM)
-  private Boolean stream;
+  Boolean stream;
 
   public static final String SERIALIZED_NAME_STOP = "stop";
   @SerializedName(SERIALIZED_NAME_STOP)
-  private Stop stop;
+  List<String> stop;
 
   public static final String SERIALIZED_NAME_MAX_TOKENS = "max_tokens";
   @SerializedName(SERIALIZED_NAME_MAX_TOKENS)
-  private Integer maxTokens;
+  Integer maxTokens;
 
   public static final String SERIALIZED_NAME_PRESENCE_PENALTY = "presence_penalty";
   @SerializedName(SERIALIZED_NAME_PRESENCE_PENALTY)
-  private BigDecimal presencePenalty;
+  Float presencePenalty;
 
   public static final String SERIALIZED_NAME_FREQUENCY_PENALTY = "frequency_penalty";
   @SerializedName(SERIALIZED_NAME_FREQUENCY_PENALTY)
-  private BigDecimal frequencyPenalty;
+  Float frequencyPenalty;
 
   public static final String SERIALIZED_NAME_LOGIT_BIAS = "logit_bias";
   @SerializedName(SERIALIZED_NAME_LOGIT_BIAS)
-  private Map<String, Integer> logitBias = new HashMap<>();
+  Map<String, Integer> logitBias = new HashMap<>();
 
   public static final String SERIALIZED_NAME_PROMPT = "prompt";
   @SerializedName(SERIALIZED_NAME_PROMPT)
-  private String prompt;
+  String prompt;
 
   public static final String SERIALIZED_NAME_SUFFIX = "suffix";
   @SerializedName(SERIALIZED_NAME_SUFFIX)
-  private String suffix;
+  String suffix;
 
   public static final String SERIALIZED_NAME_LOGPROBS = "logprobs";
   @SerializedName(SERIALIZED_NAME_LOGPROBS)
-  private Integer logprobs;
+  Integer logprobs;
 
   public static final String SERIALIZED_NAME_ECHO = "echo";
   @SerializedName(SERIALIZED_NAME_ECHO)
-  private Boolean echo;
+  Boolean echo;
 
   public static final String SERIALIZED_NAME_BEST_OF = "best_of";
   @SerializedName(SERIALIZED_NAME_BEST_OF)
-  private Integer bestOf;
+  Integer bestOf;
 
   public static final String SERIALIZED_NAME_USER = "user";
   @SerializedName(SERIALIZED_NAME_USER)
-  private String user;
-
-  public Inputs() {
-  }
-
-  public Inputs model(Model model) {
-    this.model = model;
-    return this;
-  }
-
-   /**
-   * Get model
-   * @return model
-  **/
-  @javax.annotation.Nonnull
-  public Model getModel() {
-    return model;
-  }
-
-  public void setModel(Model model) {
-    this.model = model;
-  }
-
-  public Inputs messages(List<ChatCompletionRequestMessage> messages) {
-    
-    this.messages = messages;
-    return this;
-  }
-
-  public Inputs addMessagesItem(ChatCompletionRequestMessage messagesItem) {
-    if (this.messages == null) {
-      this.messages = new ArrayList<>();
-    }
-    this.messages.add(messagesItem);
-    return this;
-  }
-
-   /**
-   * Get messages
-   * @return messages
-  **/
-  @javax.annotation.Nullable
-  public List<ChatCompletionRequestMessage> getMessages() {
-    return messages;
-  }
-
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
-    this.messages = messages;
-  }
-
-  public Inputs functions(List<ChatCompletionFunctions> functions) {
-    
-    this.functions = functions;
-    return this;
-  }
-
-  public Inputs addFunctionsItem(ChatCompletionFunctions functionsItem) {
-    if (this.functions == null) {
-      this.functions = new ArrayList<>();
-    }
-    this.functions.add(functionsItem);
-    return this;
-  }
-
-   /**
-   * Get functions
-   * @return functions
-  **/
-  @javax.annotation.Nullable
-  public List<ChatCompletionFunctions> getFunctions() {
-    return functions;
-  }
-
-  public void setFunctions(List<ChatCompletionFunctions> functions) {
-    this.functions = functions;
-  }
-
-  public Inputs temperature(BigDecimal temperature) {
-    this.temperature = temperature;
-    return this;
-  }
-
-   /**
-   * Get temperature
-   * @return temperature
-  **/
-  @javax.annotation.Nullable
-  public BigDecimal getTemperature() {
-    return temperature;
-  }
-
-  public void setTemperature(BigDecimal temperature) {
-    this.temperature = temperature;
-  }
-
-  public Inputs topP(BigDecimal topP) {
-    this.topP = topP;
-    return this;
-  }
-
-   /**
-   * Get topP
-   * @return topP
-  **/
-  @javax.annotation.Nullable
-  public BigDecimal getTopP() {
-    return topP;
-  }
-
-  public void setTopP(BigDecimal topP) {
-    this.topP = topP;
-  }
-
-  public Inputs n(Integer n) {
-    this.n = n;
-    return this;
-  }
-
-   /**
-   * Get n
-   * @return n
-  **/
-  @javax.annotation.Nullable
-  public Integer getN() {
-    return n;
-  }
-
-  public void setN(Integer n) {
-    this.n = n;
-  }
-
-  public Inputs stream(Boolean stream) {
-    
-    this.stream = stream;
-    return this;
-  }
-
-   /**
-   * Get stream
-   * @return stream
-  **/
-  @javax.annotation.Nullable
-  public Boolean isStream() {
-    return stream;
-  }
-
-  public void setStream(Boolean stream) {
-    this.stream = stream;
-  }
-
-  public Inputs stop(Stop stop) {
-    this.stop = stop;
-    return this;
-  }
-
-   /**
-   * Get stop
-   * @return stop
-  **/
-  @javax.annotation.Nullable
-  public Stop getStop() {
-    return stop;
-  }
-
-  public void setStop(Stop stop) {
-    this.stop = stop;
-  }
-
-  public Inputs maxTokens(Integer maxTokens) {
-    this.maxTokens = maxTokens;
-    return this;
-  }
-
-   /**
-   * Get maxTokens
-   * @return maxTokens
-  **/
-  @javax.annotation.Nullable
-  public Integer getMaxTokens() {
-    return maxTokens;
-  }
-
-  public void setMaxTokens(Integer maxTokens) {
-    this.maxTokens = maxTokens;
-  }
-
-  public Inputs presencePenalty(BigDecimal presencePenalty) {
-    
-    this.presencePenalty = presencePenalty;
-    return this;
-  }
-
-   /**
-   * Get presencePenalty
-   * @return presencePenalty
-  **/
-  @javax.annotation.Nullable
-  public BigDecimal getPresencePenalty() {
-    return presencePenalty;
-  }
-
-  public void setPresencePenalty(BigDecimal presencePenalty) {
-    this.presencePenalty = presencePenalty;
-  }
-
-  public Inputs frequencyPenalty(BigDecimal frequencyPenalty) {
-    this.frequencyPenalty = frequencyPenalty;
-    return this;
-  }
-
-   /**
-   * Get frequencyPenalty
-   * @return frequencyPenalty
-  **/
-  @javax.annotation.Nullable
-  public BigDecimal getFrequencyPenalty() {
-    return frequencyPenalty;
-  }
-
-  public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
-    this.frequencyPenalty = frequencyPenalty;
-  }
-
-  public Inputs logitBias(Map<String, Integer> logitBias) {
-    this.logitBias = logitBias;
-    return this;
-  }
-
-  public Inputs putLogitBiasItem(String key, Integer logitBiasItem) {
-    if (this.logitBias == null) {
-      this.logitBias = new HashMap<>();
-    }
-    this.logitBias.put(key, logitBiasItem);
-    return this;
-  }
-
-   /**
-   * Get logitBias
-   * @return logitBias
-  **/
-  @javax.annotation.Nullable
-
-  public Map<String, Integer> getLogitBias() {
-    return logitBias;
-  }
-
-
-  public void setLogitBias(Map<String, Integer> logitBias) {
-    this.logitBias = logitBias;
-  }
-
-
-  public Inputs prompt(String prompt) {
-    this.prompt = prompt;
-    return this;
-  }
-
-   /**
-   * Get prompt
-   * @return prompt
-  **/
-  @javax.annotation.Nonnull
-  public String getPrompt() {
-    return prompt;
-  }
-
-
-  public void setPrompt(String prompt) {
-    this.prompt = prompt;
-  }
-
-
-  public Inputs suffix(String suffix) {
-    
-    this.suffix = suffix;
-    return this;
-  }
-
-   /**
-   * Get suffix
-   * @return suffix
-  **/
-  @javax.annotation.Nullable
-  public String getSuffix() {
-    return suffix;
-  }
-
-  public void setSuffix(String suffix) {
-    this.suffix = suffix;
-  }
-
-  public Inputs logprobs(Integer logprobs) {
-    
-    this.logprobs = logprobs;
-    return this;
-  }
-
-   /**
-   * Get logprobs
-   * @return logprobs
-  **/
-  @javax.annotation.Nullable
-  public Integer getLogprobs() {
-    return logprobs;
-  }
-
-  public void setLogprobs(Integer logprobs) {
-    this.logprobs = logprobs;
-  }
-
-  public Inputs echo(Boolean echo) {
-    
-    this.echo = echo;
-    return this;
-  }
-
-   /**
-   * Get echo
-   * @return echo
-  **/
-  @javax.annotation.Nullable
-  public Boolean getEcho() {
-    return echo;
-  }
-
-  public void setEcho(Boolean echo) {
-    this.echo = echo;
-  }
-
-  public Inputs bestOf(Integer bestOf) {
-    
-    this.bestOf = bestOf;
-    return this;
-  }
-
-   /**
-   * Get bestOf
-   * @return bestOf
-  **/
-  @javax.annotation.Nullable
-  public Integer getBestOf() {
-    return bestOf;
-  }
-
-  public void setBestOf(Integer bestOf) {
-    this.bestOf = bestOf;
-  }
-
-  public Inputs user(String user) {
-    this.user = user;
-    return this;
-  }
-
-   /**
-   * Get user
-   * @return user
-  **/
-  @javax.annotation.Nullable
-  public String getUser() {
-    return user;
-  }
-
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Inputs inputs = (Inputs) o;
-    return Objects.equals(this.model, inputs.model) &&
-        Objects.equals(this.messages, inputs.messages) &&
-        Objects.equals(this.functions, inputs.functions) &&
-        Objects.equals(this.temperature, inputs.temperature) &&
-        Objects.equals(this.topP, inputs.topP) &&
-        Objects.equals(this.n, inputs.n) &&
-        Objects.equals(this.stream, inputs.stream) &&
-        Objects.equals(this.stop, inputs.stop) &&
-        Objects.equals(this.maxTokens, inputs.maxTokens) &&
-        Objects.equals(this.presencePenalty, inputs.presencePenalty) &&
-        Objects.equals(this.frequencyPenalty, inputs.frequencyPenalty) &&
-        Objects.equals(this.logitBias, inputs.logitBias) &&
-        Objects.equals(this.prompt, inputs.prompt) &&
-        Objects.equals(this.suffix, inputs.suffix) &&
-        Objects.equals(this.logprobs, inputs.logprobs) &&
-        Objects.equals(this.echo, inputs.echo) &&
-        Objects.equals(this.bestOf, inputs.bestOf) &&
-        Objects.equals(this.user, inputs.user);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(model, messages, functions, temperature, topP, n, stream, stop, maxTokens, presencePenalty, frequencyPenalty, logitBias, prompt, suffix, logprobs, echo, bestOf, user);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Inputs {\n");
-    sb.append("    model: ").append(toIndentedString(model)).append("\n");
-    sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
-    sb.append("    functions: ").append(toIndentedString(functions)).append("\n");
-    sb.append("    temperature: ").append(toIndentedString(temperature)).append("\n");
-    sb.append("    topP: ").append(toIndentedString(topP)).append("\n");
-    sb.append("    n: ").append(toIndentedString(n)).append("\n");
-    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
-    sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
-    sb.append("    maxTokens: ").append(toIndentedString(maxTokens)).append("\n");
-    sb.append("    presencePenalty: ").append(toIndentedString(presencePenalty)).append("\n");
-    sb.append("    frequencyPenalty: ").append(toIndentedString(frequencyPenalty)).append("\n");
-    sb.append("    logitBias: ").append(toIndentedString(logitBias)).append("\n");
-    sb.append("    prompt: ").append(toIndentedString(prompt)).append("\n");
-    sb.append("    suffix: ").append(toIndentedString(suffix)).append("\n");
-    sb.append("    logprobs: ").append(toIndentedString(logprobs)).append("\n");
-    sb.append("    echo: ").append(toIndentedString(echo)).append("\n");
-    sb.append("    bestOf: ").append(toIndentedString(bestOf)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+  String user;
 
 }
 

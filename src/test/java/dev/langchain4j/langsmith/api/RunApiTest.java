@@ -49,7 +49,7 @@ public class RunApiTest {
     @Test
     public void updateRunRunsRunIdPatchTest() {
         UUID runId = null;
-        RunUpdateSchemaExtended runUpdateSchemaExtended = null;
+        RunUpdateSchema runUpdateSchemaExtended = null;
         // Object response = api.updateRunRunsRunIdPatch(runId, runUpdateSchemaExtended);
 
         // TODO: test validations
@@ -66,8 +66,10 @@ public class RunApiTest {
         final RunApiAsync apiInstance = client.createServiceAsync();
 
         var runId = UUID.randomUUID();
-        var inputs = new Inputs();
-        inputs.prompt( "Foo");
+        var inputs = Inputs.builder()
+                        .prompt( "Foo")
+                        .build()
+                        ;
 
         final RunCreateSchema schema =
                 RunCreateSchema.builder()

@@ -1,7 +1,7 @@
 package dev.langchain4j.langsmith.api;
 
 import dev.langchain4j.langsmith.model.RunCreateSchema;
-import dev.langchain4j.langsmith.model.RunUpdateSchemaExtended;
+import dev.langchain4j.langsmith.model.RunUpdateSchema;
 import retrofit2.Call;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
@@ -38,7 +38,7 @@ public interface RunApi {
     })
     @PATCH("runs/{run_id}")
     Call<Object> updateRunRunsRunIdPatch(
-            @retrofit2.http.Path("run_id") UUID runId, @retrofit2.http.Body RunUpdateSchemaExtended runUpdateSchemaExtended
+            @retrofit2.http.Path("run_id") UUID runId, @retrofit2.http.Body RunUpdateSchema runUpdateSchemaExtended
     );
 
 }

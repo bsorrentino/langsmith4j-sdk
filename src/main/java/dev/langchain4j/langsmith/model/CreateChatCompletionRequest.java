@@ -13,23 +13,10 @@
 
 package dev.langchain4j.langsmith.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.model.ChatCompletionFunctions;
-import dev.langchain4j.langsmith.model.ChatCompletionRequestMessage;
-import dev.langchain4j.langsmith.model.Stop;
-import java.io.IOException;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * CreateChatCompletionRequest
@@ -66,7 +53,7 @@ public class CreateChatCompletionRequest {
 
   public static final String SERIALIZED_NAME_STOP = "stop";
   @SerializedName(SERIALIZED_NAME_STOP)
-  private Stop stop;
+  private List<String> stop;
 
   public static final String SERIALIZED_NAME_MAX_TOKENS = "max_tokens";
   @SerializedName(SERIALIZED_NAME_MAX_TOKENS)
@@ -257,7 +244,7 @@ public class CreateChatCompletionRequest {
   }
 
 
-  public CreateChatCompletionRequest stop(Stop stop) {
+  public CreateChatCompletionRequest stop(List<String> stop) {
     
     this.stop = stop;
     return this;
@@ -269,12 +256,12 @@ public class CreateChatCompletionRequest {
   **/
   @javax.annotation.Nullable
 
-  public Stop getStop() {
+  public List<String> getStop() {
     return stop;
   }
 
 
-  public void setStop(Stop stop) {
+  public void setStop(List<String> stop) {
     this.stop = stop;
   }
 

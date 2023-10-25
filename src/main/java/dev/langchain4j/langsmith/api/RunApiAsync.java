@@ -1,7 +1,7 @@
 package dev.langchain4j.langsmith.api;
 
 import dev.langchain4j.langsmith.model.RunCreateSchema;
-import dev.langchain4j.langsmith.model.RunUpdateSchemaExtended;
+import dev.langchain4j.langsmith.model.RunUpdateSchema;
 import retrofit2.Response;
 
 import java.util.UUID;
@@ -13,5 +13,5 @@ public interface RunApiAsync {
 
     <T> CompletableFuture<Response<T>> createRunRunsPost(RunCreateSchema runCreateSchemaExtended);
 
-    <T> CompletableFuture<Response<T>> updateRunRunsRunIdPatch(UUID runId, RunUpdateSchemaExtended runUpdateSchemaExtended);
+    <T> CompletableFuture<Response<T>> updateRunRunsRunIdPatch(UUID runId, RunUpdateSchema runUpdateSchemaExtended);
 }

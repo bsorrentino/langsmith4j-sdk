@@ -1,7 +1,7 @@
 package dev.langchain4j.langsmith.api;
 
 import dev.langchain4j.langsmith.model.RunCreateSchema;
-import dev.langchain4j.langsmith.model.RunUpdateSchemaExtended;
+import dev.langchain4j.langsmith.model.RunUpdateSchema;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +48,7 @@ public final class RunApiAsyncAdapter implements RunApiAsync {
         return result;
     }
     @Override
-    public <T> CompletableFuture<Response<T>> updateRunRunsRunIdPatch(UUID runId, RunUpdateSchemaExtended runUpdateSchemaExtended) {
+    public <T> CompletableFuture<Response<T>> updateRunRunsRunIdPatch(UUID runId, RunUpdateSchema runUpdateSchemaExtended) {
 
         final Call<Object> call = api.updateRunRunsRunIdPatch( runId, runUpdateSchemaExtended );
 

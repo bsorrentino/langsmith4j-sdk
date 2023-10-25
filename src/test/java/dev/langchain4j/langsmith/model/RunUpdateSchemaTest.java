@@ -13,27 +13,13 @@
 
 package dev.langchain4j.langsmith.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.model.Inputs;
-import dev.langchain4j.langsmith.model.Outputs;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * Model tests for RunUpdateSchemaExtended
  */
-public class RunUpdateSchemaExtendedTest {
-    private final RunUpdateSchemaExtended model = new RunUpdateSchemaExtended();
+public class RunUpdateSchemaTest {
+    private final RunUpdateSchema model = RunUpdateSchema.builder().build();
 
     /**
      * Model tests for RunUpdateSchemaExtended
