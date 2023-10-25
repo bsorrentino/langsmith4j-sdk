@@ -14,23 +14,11 @@
 package dev.langchain4j.langsmith.model;
 
 import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.model.ChatCompletionFunctions;
-import dev.langchain4j.langsmith.model.ChatCompletionRequestMessage;
-import dev.langchain4j.langsmith.model.CreateChatCompletionRequest;
-import dev.langchain4j.langsmith.model.CreateCompletionRequest;
-import dev.langchain4j.langsmith.model.Model;
-import dev.langchain4j.langsmith.model.Prompt;
-import dev.langchain4j.langsmith.model.Stop;
-import java.io.IOException;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -116,7 +104,6 @@ public class Inputs {
   }
 
   public Inputs model(Model model) {
-    
     this.model = model;
     return this;
   }
@@ -126,16 +113,13 @@ public class Inputs {
    * @return model
   **/
   @javax.annotation.Nonnull
-
   public Model getModel() {
     return model;
   }
 
-
   public void setModel(Model model) {
     this.model = model;
   }
-
 
   public Inputs messages(List<ChatCompletionRequestMessage> messages) {
     
@@ -156,16 +140,13 @@ public class Inputs {
    * @return messages
   **/
   @javax.annotation.Nullable
-
   public List<ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
 
-
   public void setMessages(List<ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
-
 
   public Inputs functions(List<ChatCompletionFunctions> functions) {
     
@@ -186,19 +167,15 @@ public class Inputs {
    * @return functions
   **/
   @javax.annotation.Nullable
-
   public List<ChatCompletionFunctions> getFunctions() {
     return functions;
   }
-
 
   public void setFunctions(List<ChatCompletionFunctions> functions) {
     this.functions = functions;
   }
 
-
   public Inputs temperature(BigDecimal temperature) {
-    
     this.temperature = temperature;
     return this;
   }
@@ -208,19 +185,15 @@ public class Inputs {
    * @return temperature
   **/
   @javax.annotation.Nullable
-
   public BigDecimal getTemperature() {
     return temperature;
   }
-
 
   public void setTemperature(BigDecimal temperature) {
     this.temperature = temperature;
   }
 
-
   public Inputs topP(BigDecimal topP) {
-    
     this.topP = topP;
     return this;
   }
@@ -230,19 +203,15 @@ public class Inputs {
    * @return topP
   **/
   @javax.annotation.Nullable
-
   public BigDecimal getTopP() {
     return topP;
   }
-
 
   public void setTopP(BigDecimal topP) {
     this.topP = topP;
   }
 
-
   public Inputs n(Integer n) {
-    
     this.n = n;
     return this;
   }
@@ -252,16 +221,13 @@ public class Inputs {
    * @return n
   **/
   @javax.annotation.Nullable
-
   public Integer getN() {
     return n;
   }
 
-
   public void setN(Integer n) {
     this.n = n;
   }
-
 
   public Inputs stream(Boolean stream) {
     
@@ -274,19 +240,15 @@ public class Inputs {
    * @return stream
   **/
   @javax.annotation.Nullable
-
-  public Boolean getStream() {
+  public Boolean isStream() {
     return stream;
   }
-
 
   public void setStream(Boolean stream) {
     this.stream = stream;
   }
 
-
   public Inputs stop(Stop stop) {
-    
     this.stop = stop;
     return this;
   }
@@ -296,19 +258,15 @@ public class Inputs {
    * @return stop
   **/
   @javax.annotation.Nullable
-
   public Stop getStop() {
     return stop;
   }
-
 
   public void setStop(Stop stop) {
     this.stop = stop;
   }
 
-
   public Inputs maxTokens(Integer maxTokens) {
-    
     this.maxTokens = maxTokens;
     return this;
   }
@@ -318,16 +276,13 @@ public class Inputs {
    * @return maxTokens
   **/
   @javax.annotation.Nullable
-
   public Integer getMaxTokens() {
     return maxTokens;
   }
 
-
   public void setMaxTokens(Integer maxTokens) {
     this.maxTokens = maxTokens;
   }
-
 
   public Inputs presencePenalty(BigDecimal presencePenalty) {
     
@@ -340,19 +295,15 @@ public class Inputs {
    * @return presencePenalty
   **/
   @javax.annotation.Nullable
-
   public BigDecimal getPresencePenalty() {
     return presencePenalty;
   }
-
 
   public void setPresencePenalty(BigDecimal presencePenalty) {
     this.presencePenalty = presencePenalty;
   }
 
-
   public Inputs frequencyPenalty(BigDecimal frequencyPenalty) {
-    
     this.frequencyPenalty = frequencyPenalty;
     return this;
   }
@@ -362,19 +313,15 @@ public class Inputs {
    * @return frequencyPenalty
   **/
   @javax.annotation.Nullable
-
   public BigDecimal getFrequencyPenalty() {
     return frequencyPenalty;
   }
-
 
   public void setFrequencyPenalty(BigDecimal frequencyPenalty) {
     this.frequencyPenalty = frequencyPenalty;
   }
 
-
   public Inputs logitBias(Map<String, Integer> logitBias) {
-    
     this.logitBias = logitBias;
     return this;
   }
@@ -434,16 +381,13 @@ public class Inputs {
    * @return suffix
   **/
   @javax.annotation.Nullable
-
   public String getSuffix() {
     return suffix;
   }
 
-
   public void setSuffix(String suffix) {
     this.suffix = suffix;
   }
-
 
   public Inputs logprobs(Integer logprobs) {
     
@@ -456,16 +400,13 @@ public class Inputs {
    * @return logprobs
   **/
   @javax.annotation.Nullable
-
   public Integer getLogprobs() {
     return logprobs;
   }
 
-
   public void setLogprobs(Integer logprobs) {
     this.logprobs = logprobs;
   }
-
 
   public Inputs echo(Boolean echo) {
     
@@ -478,16 +419,13 @@ public class Inputs {
    * @return echo
   **/
   @javax.annotation.Nullable
-
   public Boolean getEcho() {
     return echo;
   }
 
-
   public void setEcho(Boolean echo) {
     this.echo = echo;
   }
-
 
   public Inputs bestOf(Integer bestOf) {
     
@@ -500,19 +438,15 @@ public class Inputs {
    * @return bestOf
   **/
   @javax.annotation.Nullable
-
   public Integer getBestOf() {
     return bestOf;
   }
-
 
   public void setBestOf(Integer bestOf) {
     this.bestOf = bestOf;
   }
 
-
   public Inputs user(String user) {
-    
     this.user = user;
     return this;
   }
@@ -522,11 +456,9 @@ public class Inputs {
    * @return user
   **/
   @javax.annotation.Nullable
-
   public String getUser() {
     return user;
   }
-
 
   public void setUser(String user) {
     this.user = user;

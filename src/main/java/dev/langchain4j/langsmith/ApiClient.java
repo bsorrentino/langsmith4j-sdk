@@ -2,6 +2,9 @@ package dev.langchain4j.langsmith;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import dev.langchain4j.langsmith.api.RunApi;
+import dev.langchain4j.langsmith.api.RunApiAsync;
+import dev.langchain4j.langsmith.api.RunApiAsyncAdapter;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -65,8 +68,12 @@ public class ApiClient {
     }
 
 
-    public <S> S createService(Class<S> serviceClass) {
-        return adapter.create(serviceClass);
+    public final RunApi createService() {
+        return adapter.create(RunApi.class);
+    }
+
+    public final RunApiAsync createServiceAsync() {
+        return RunApiAsyncAdapter.of(createService());
     }
 
 }

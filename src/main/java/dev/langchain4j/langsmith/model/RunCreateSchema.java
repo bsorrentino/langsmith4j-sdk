@@ -13,8 +13,8 @@
 
 package dev.langchain4j.langsmith.model;
 
-import java.util.Objects;
-import java.util.Arrays;
+import java.util.*;
+
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -23,10 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import dev.langchain4j.langsmith.model.RunTypeEnum;
 import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 
 /**
  * Create class for a Run object.
@@ -39,7 +36,7 @@ public class RunCreateSchema {
 
   public static final String SERIALIZED_NAME_INPUTS = "inputs";
   @SerializedName(SERIALIZED_NAME_INPUTS)
-  private Object inputs;
+  private Inputs inputs;
 
   public static final String SERIALIZED_NAME_RUN_TYPE = "run_type";
   @SerializedName(SERIALIZED_NAME_RUN_TYPE)
@@ -55,7 +52,7 @@ public class RunCreateSchema {
 
   public static final String SERIALIZED_NAME_EXTRA = "extra";
   @SerializedName(SERIALIZED_NAME_EXTRA)
-  private Object extra;
+  private Map<String,Object> extra;
 
   public static final String SERIALIZED_NAME_ERROR = "error";
   @SerializedName(SERIALIZED_NAME_ERROR)
@@ -113,7 +110,6 @@ public class RunCreateSchema {
   }
 
   public RunCreateSchema name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -123,18 +119,15 @@ public class RunCreateSchema {
    * @return name
   **/
   @javax.annotation.Nonnull
-
   public String getName() {
     return name;
   }
-
 
   public void setName(String name) {
     this.name = name;
   }
 
-
-  public RunCreateSchema inputs(Object inputs) {
+  public RunCreateSchema inputs(Inputs inputs) {
     
     this.inputs = inputs;
     return this;
@@ -150,14 +143,11 @@ public class RunCreateSchema {
     return inputs;
   }
 
-
-  public void setInputs(Object inputs) {
+  public void setInputs(Inputs inputs) {
     this.inputs = inputs;
   }
 
-
   public RunCreateSchema runType(RunTypeEnum runType) {
-    
     this.runType = runType;
     return this;
   }
@@ -167,16 +157,13 @@ public class RunCreateSchema {
    * @return runType
   **/
   @javax.annotation.Nonnull
-
   public RunTypeEnum getRunType() {
     return runType;
   }
 
-
   public void setRunType(RunTypeEnum runType) {
     this.runType = runType;
   }
-
 
   public RunCreateSchema startTime(OffsetDateTime startTime) {
     
@@ -189,19 +176,15 @@ public class RunCreateSchema {
    * @return startTime
   **/
   @javax.annotation.Nullable
-
   public OffsetDateTime getStartTime() {
     return startTime;
   }
-
 
   public void setStartTime(OffsetDateTime startTime) {
     this.startTime = startTime;
   }
 
-
   public RunCreateSchema endTime(OffsetDateTime endTime) {
-    
     this.endTime = endTime;
     return this;
   }
@@ -211,18 +194,15 @@ public class RunCreateSchema {
    * @return endTime
   **/
   @javax.annotation.Nullable
-
   public OffsetDateTime getEndTime() {
     return endTime;
   }
-
 
   public void setEndTime(OffsetDateTime endTime) {
     this.endTime = endTime;
   }
 
-
-  public RunCreateSchema extra(Object extra) {
+  public RunCreateSchema extra(Map<String,Object> extra) {
     
     this.extra = extra;
     return this;
@@ -233,16 +213,13 @@ public class RunCreateSchema {
    * @return extra
   **/
   @javax.annotation.Nullable
-
   public Object getExtra() {
     return extra;
   }
 
-
-  public void setExtra(Object extra) {
+  public void setExtra(Map<String,Object> extra) {
     this.extra = extra;
   }
-
 
   public RunCreateSchema error(String error) {
     
@@ -255,16 +232,13 @@ public class RunCreateSchema {
    * @return error
   **/
   @javax.annotation.Nullable
-
   public String getError() {
     return error;
   }
 
-
   public void setError(String error) {
     this.error = error;
   }
-
 
   public RunCreateSchema executionOrder(Integer executionOrder) {
     
@@ -278,7 +252,6 @@ public class RunCreateSchema {
    * @return executionOrder
   **/
   @javax.annotation.Nullable
-
   public Integer getExecutionOrder() {
     return executionOrder;
   }
@@ -300,7 +273,6 @@ public class RunCreateSchema {
    * @return serialized
   **/
   @javax.annotation.Nullable
-
   public Object getSerialized() {
     return serialized;
   }
@@ -322,7 +294,6 @@ public class RunCreateSchema {
    * @return outputs
   **/
   @javax.annotation.Nullable
-
   public Object getOutputs() {
     return outputs;
   }
@@ -344,7 +315,6 @@ public class RunCreateSchema {
    * @return parentRunId
   **/
   @javax.annotation.Nullable
-
   public UUID getParentRunId() {
     return parentRunId;
   }
@@ -366,7 +336,6 @@ public class RunCreateSchema {
    * @return manifestId
   **/
   @javax.annotation.Nullable
-
   public UUID getManifestId() {
     return manifestId;
   }
@@ -396,7 +365,6 @@ public class RunCreateSchema {
    * @return events
   **/
   @javax.annotation.Nullable
-
   public List<Object> getEvents() {
     return events;
   }
@@ -426,7 +394,6 @@ public class RunCreateSchema {
    * @return tags
   **/
   @javax.annotation.Nullable
-
   public List<String> getTags() {
     return tags;
   }
@@ -448,7 +415,6 @@ public class RunCreateSchema {
    * @return id
   **/
   @javax.annotation.Nullable
-
   public UUID getId() {
     return id;
   }
@@ -470,7 +436,6 @@ public class RunCreateSchema {
    * @return sessionId
   **/
   @javax.annotation.Nullable
-
   public UUID getSessionId() {
     return sessionId;
   }
@@ -492,7 +457,6 @@ public class RunCreateSchema {
    * @return sessionName
   **/
   @javax.annotation.Nullable
-
   public String getSessionName() {
     return sessionName;
   }
@@ -522,7 +486,6 @@ public class RunCreateSchema {
    * @return childRuns
   **/
   @javax.annotation.Nullable
-
   public List<RunCreateSchema> getChildRuns() {
     return childRuns;
   }
@@ -544,7 +507,6 @@ public class RunCreateSchema {
    * @return referenceExampleId
   **/
   @javax.annotation.Nullable
-
   public UUID getReferenceExampleId() {
     return referenceExampleId;
   }

@@ -6,16 +6,9 @@ import dev.langchain4j.langsmith.model.*;
 import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -31,7 +24,7 @@ public class RunApiTest {
         api = ApiClient.builder()
                 .baseUrl("http://localhost")
                 .build()
-                .createService(RunApi.class);
+                .createService();
     }
 
     /**
@@ -68,7 +61,7 @@ public class RunApiTest {
                 .build()
                 ;
 
-        final RunApiAsync apiInstance = RunApiAsync.of(client.createService(RunApi.class));
+        final RunApiAsync apiInstance = client.createServiceAsync();
 
         final RunCreateSchemaExtended schema = new RunCreateSchemaExtended(); // RunCreateSchemaExtended |
 
