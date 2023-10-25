@@ -1,23 +1,20 @@
 package dev.langchain4j.langsmith.api;
 
-import dev.langchain4j.langsmith.model.RunCreateSchemaExtended;
+import dev.langchain4j.langsmith.model.RunCreateSchema;
 import dev.langchain4j.langsmith.model.RunUpdateSchemaExtended;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public interface RunApi {
     /**
      * Create Run
      * Create a new run.
      *
-     * @param runCreateSchemaExtended (required)
+     * @param runCreateSchema (required)
      * @return Call&lt;Object&gt;
      */
     @Headers({
@@ -25,7 +22,7 @@ public interface RunApi {
     })
     @POST("runs")
     Call<Object> createRunRunsPost(
-            @retrofit2.http.Body RunCreateSchemaExtended runCreateSchemaExtended
+            @retrofit2.http.Body RunCreateSchema runCreateSchema
     );
 
     /**

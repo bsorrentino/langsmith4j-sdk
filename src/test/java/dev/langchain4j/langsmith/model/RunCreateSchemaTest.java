@@ -33,7 +33,7 @@ import org.junit.Test;
  * Model tests for RunCreateSchema
  */
 public class RunCreateSchemaTest {
-    private final RunCreateSchema model = new RunCreateSchema();
+    private final RunCreateSchema model = RunCreateSchema.builder().build();
 
     /**
      * Model tests for RunCreateSchema

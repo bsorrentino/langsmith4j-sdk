@@ -4,6 +4,8 @@ import dev.langchain4j.langsmith.ApiClient;
 import dev.langchain4j.langsmith.model.*;
 
 import java.util.UUID;
+
+import lombok.var;
 import org.junit.Before;
 import org.junit.Test;
 import retrofit2.Response;
@@ -34,7 +36,7 @@ public class RunApiTest {
      */
     @Test
     public void createRunRunsPostTest() {
-        RunCreateSchemaExtended runCreateSchemaExtended = null;
+        RunCreateSchema runCreateSchema = null;
         // Object response = api.createRunRunsPost(runCreateSchemaExtended);
 
         // TODO: test validations
@@ -63,20 +65,20 @@ public class RunApiTest {
 
         final RunApiAsync apiInstance = client.createServiceAsync();
 
-        final RunCreateSchemaExtended schema = new RunCreateSchemaExtended(); // RunCreateSchemaExtended |
-
-        Inputs inputs = new Inputs();
+        var runId = UUID.randomUUID();
+        var inputs = new Inputs();
         inputs.prompt( "Foo");
 
-        UUID runId = UUID.randomUUID();
-
-        schema.id( runId )
-                .sessionName( System.getenv("LANGCHAIN_PROJECT") )
-                .name( "MyFirstRun" )
-                .runType( RunTypeEnum.CHAIN )
-                .startTime( OffsetDateTime.now() )
-                .inputs( inputs )
-                ;
+        final RunCreateSchema schema =
+                RunCreateSchema.builder()
+                        .id( runId )
+                        .sessionName( System.getenv("LANGCHAIN_PROJECT") )
+                        .name( "MyFirstRun" )
+                        .runType( RunTypeEnum.CHAIN )
+                        .startTime( OffsetDateTime.now() )
+                        .inputs( inputs )
+                        .build()
+                        ;
 
         final CompletableFuture<Response<Object>> call = apiInstance.createRunRunsPost(schema);
 

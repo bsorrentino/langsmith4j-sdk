@@ -1,6 +1,6 @@
 package dev.langchain4j.langsmith.api;
 
-import dev.langchain4j.langsmith.model.RunCreateSchemaExtended;
+import dev.langchain4j.langsmith.model.RunCreateSchema;
 import dev.langchain4j.langsmith.model.RunUpdateSchemaExtended;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,9 +29,9 @@ public final class RunApiAsyncAdapter implements RunApiAsync {
     }
 
     @Override
-    public <T> CompletableFuture<Response<T>> createRunRunsPost(RunCreateSchemaExtended runCreateSchemaExtended) {
+    public <T> CompletableFuture<Response<T>> createRunRunsPost(RunCreateSchema runCreateSchema) {
 
-        final Call<Object> call = api.createRunRunsPost(runCreateSchemaExtended);
+        final Call<Object> call = api.createRunRunsPost(runCreateSchema);
 
         final CompletableFuture<Response<T>> result = new CompletableFuture<>();
         call.enqueue(new Callback<Object>() {
