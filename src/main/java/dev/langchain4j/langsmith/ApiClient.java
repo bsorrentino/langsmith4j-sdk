@@ -5,10 +5,10 @@ import com.google.gson.JsonParseException;
 import dev.langchain4j.langsmith.api.RunApi;
 import dev.langchain4j.langsmith.api.RunApiAsync;
 import dev.langchain4j.langsmith.api.RunApiAsyncAdapter;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
+import lombok.extern.java.Log;
+import lombok.val;
+import okhttp3.*;
+import okio.BufferedSource;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,9 +17,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
 
+import static java.lang.String.format;
+
+@Log
 public class ApiClient {
 
 
@@ -52,6 +56,38 @@ public class ApiClient {
       }
 
       public ApiClient build() {
+
+          okBuilder.addInterceptor(new Interceptor() {
+
+              String getRequestBody( Request request ) throws IOException {
+                  if (request.body() != null) {
+                      val buffer = new okio.Buffer();
+                      request.body().writeTo(buffer);
+                      return buffer.readUtf8();
+                  }
+                  return null;
+              }
+              String getResponseBody( Response response ) throws IOException {
+
+                  if (response.body() != null) {
+                      return response.peekBody(Long.MAX_VALUE).string();
+                  }
+                  return null;
+              }
+              @Override
+              public Response intercept(Chain chain) throws IOException {
+
+                  final Request request = chain.request();
+                  log.info( format("req.method: '%s' url: '%s'' ", request.method(), request.url()));
+
+                  log.info( request.headers().toString() );
+                  log.info( getRequestBody(request) );
+                  final Response response = chain.proceed(request);
+                  log.info( getResponseBody(response) );
+
+                  return response;
+              }
+          });
         final OkHttpClient okHttpClient = okBuilder.build();
 
         return new ApiClient(adapterBuilder.client(okHttpClient).build());

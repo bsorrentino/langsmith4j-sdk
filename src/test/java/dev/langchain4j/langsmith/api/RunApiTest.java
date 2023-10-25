@@ -113,8 +113,6 @@ public class RunApiTest {
         val parentRun = new RunTree(parentRunConfig);
 
         val res1 = parentRun.postRun(true).get( 2, TimeUnit.MINUTES);
-        System.out.println( "res1" );
-        System.out.println( res1 );
 
         val childLlmRunConfig = RunTree.getDefaultConfig()
                 .name("My Proprietary LLM")
@@ -130,9 +128,6 @@ public class RunApiTest {
 
         val res2 = childLlmRun.postRun(true).get( 2, TimeUnit.MINUTES);
 
-        System.out.println( "res2" );
-        System.out.println( res2 );
-
         childLlmRun.end(
                 Outputs.builder().generation( singletonList(
                     "I should use the transcript_loader tool" +
@@ -140,8 +135,6 @@ public class RunApiTest {
                         .build());
 
         val res3 = childLlmRun.patchRun().get( 2, TimeUnit.MINUTES);
-        System.out.println( "res3" );
-        System.out.println( res3 );
 
         System.exit(0);
     }
