@@ -30,7 +30,7 @@ public interface RunApi {
      * Update a run.
      *
      * @param runId                   (required)
-     * @param runUpdateSchemaExtended (required)
+     * @param runUpdateSchema (required)
      * @return Call&lt;Object&gt;
      */
     @Headers({
@@ -38,7 +38,7 @@ public interface RunApi {
     })
     @PATCH("runs/{run_id}")
     Call<Object> updateRunRunsRunIdPatch(
-            @retrofit2.http.Path("run_id") UUID runId, @retrofit2.http.Body RunUpdateSchema runUpdateSchemaExtended
+            @retrofit2.http.Path("run_id") UUID runId, @retrofit2.http.Body RunUpdateSchema runUpdateSchema
     );
 
 }

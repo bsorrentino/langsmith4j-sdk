@@ -19,6 +19,8 @@ import lombok.Value;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * RunUpdateSchemaExtended
@@ -26,6 +28,11 @@ import java.util.List;
 @Value
 @Builder
 public class RunUpdateSchema {
+
+  public static final String SERIALIZED_NAME_EXTRA = "extra";
+  @SerializedName(SERIALIZED_NAME_EXTRA)
+  Map<String,Object> extra;
+
   public static final String SERIALIZED_NAME_END_TIME = "end_time";
   @SerializedName(SERIALIZED_NAME_END_TIME)
   OffsetDateTime endTime;
@@ -41,6 +48,14 @@ public class RunUpdateSchema {
   public static final String SERIALIZED_NAME_OUTPUTS = "outputs";
   @SerializedName(SERIALIZED_NAME_OUTPUTS)
   Outputs outputs;
+
+  public static final String SERIALIZED_NAME_PARENT_RUN_ID = "parent_run_id";
+  @SerializedName(SERIALIZED_NAME_PARENT_RUN_ID)
+  UUID parentRunId;
+
+  public static final String SERIALIZED_NAME_REFERENCE_EXAMPLE_ID = "reference_example_id";
+  @SerializedName(SERIALIZED_NAME_REFERENCE_EXAMPLE_ID)
+  UUID referenceExampleId;
 
   public static final String SERIALIZED_NAME_EVENTS = "events";
   @SerializedName(SERIALIZED_NAME_EVENTS)

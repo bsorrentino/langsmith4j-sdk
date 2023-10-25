@@ -13,21 +13,15 @@
 
 package dev.langchain4j.langsmith.model;
 
-import java.util.*;
-
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.model.RunTypeEnum;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 
-import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Create class for a Run object.
@@ -66,7 +60,7 @@ public class RunCreateSchema {
 
   public static final String SERIALIZED_NAME_EXECUTION_ORDER = "execution_order";
   @SerializedName(SERIALIZED_NAME_EXECUTION_ORDER)
-  Integer executionOrder = 1;
+  Integer executionOrder;
 
   public static final String SERIALIZED_NAME_SERIALIZED = "serialized";
   @SerializedName(SERIALIZED_NAME_SERIALIZED)

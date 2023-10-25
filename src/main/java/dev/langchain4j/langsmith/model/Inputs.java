@@ -77,9 +77,13 @@ public class Inputs {
   @SerializedName(SERIALIZED_NAME_LOGIT_BIAS)
   Map<String, Integer> logitBias = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_PROMPT = "prompt";
-  @SerializedName(SERIALIZED_NAME_PROMPT)
-  String prompt;
+  public static final String SERIALIZED_NAME_TEXT = "text";
+  @SerializedName(SERIALIZED_NAME_TEXT)
+  String text;
+
+  public static final String SERIALIZED_NAME_PROMPTS = "prompts";
+  @SerializedName(SERIALIZED_NAME_PROMPTS)
+  List<String> prompts;
 
   public static final String SERIALIZED_NAME_SUFFIX = "suffix";
   @SerializedName(SERIALIZED_NAME_SUFFIX)
