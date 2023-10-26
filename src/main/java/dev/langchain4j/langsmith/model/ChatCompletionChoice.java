@@ -13,141 +13,28 @@
 
 package dev.langchain4j.langsmith.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.model.ChatCompletionResponseMessage;
-import java.io.IOException;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * ChatCompletionChoice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-24T16:07:41.765433+02:00[Europe/Rome]")
+@Value
+@Builder
 public class ChatCompletionChoice {
   public static final String SERIALIZED_NAME_INDEX = "index";
   @SerializedName(SERIALIZED_NAME_INDEX)
-  private Integer index = 0;
+  Integer index = 0;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private ChatCompletionResponseMessage message;
+  ChatCompletionResponseMessage message;
 
   public static final String SERIALIZED_NAME_FINISH_REASON = "finish_reason";
   @SerializedName(SERIALIZED_NAME_FINISH_REASON)
-  private String finishReason = "";
+  String finishReason = "";
 
-  public ChatCompletionChoice() {
-  }
-
-  public ChatCompletionChoice index(Integer index) {
-    
-    this.index = index;
-    return this;
-  }
-
-   /**
-   * Get index
-   * @return index
-  **/
-  @javax.annotation.Nullable
-
-  public Integer getIndex() {
-    return index;
-  }
-
-
-  public void setIndex(Integer index) {
-    this.index = index;
-  }
-
-
-  public ChatCompletionChoice message(ChatCompletionResponseMessage message) {
-    
-    this.message = message;
-    return this;
-  }
-
-   /**
-   * Get message
-   * @return message
-  **/
-  @javax.annotation.Nullable
-
-  public ChatCompletionResponseMessage getMessage() {
-    return message;
-  }
-
-
-  public void setMessage(ChatCompletionResponseMessage message) {
-    this.message = message;
-  }
-
-
-  public ChatCompletionChoice finishReason(String finishReason) {
-    
-    this.finishReason = finishReason;
-    return this;
-  }
-
-   /**
-   * Get finishReason
-   * @return finishReason
-  **/
-  @javax.annotation.Nullable
-
-  public String getFinishReason() {
-    return finishReason;
-  }
-
-
-  public void setFinishReason(String finishReason) {
-    this.finishReason = finishReason;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ChatCompletionChoice chatCompletionChoice = (ChatCompletionChoice) o;
-    return Objects.equals(this.index, chatCompletionChoice.index) &&
-        Objects.equals(this.message, chatCompletionChoice.message) &&
-        Objects.equals(this.finishReason, chatCompletionChoice.finishReason);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(index, message, finishReason);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ChatCompletionChoice {\n");
-    sb.append("    index: ").append(toIndentedString(index)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    finishReason: ").append(toIndentedString(finishReason)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
 
 }
 

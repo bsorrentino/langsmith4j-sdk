@@ -13,169 +13,31 @@
 
 package dev.langchain4j.langsmith.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.model.ChatCompletionFunctionCall;
-import java.io.IOException;
+import lombok.Builder;
+import lombok.Value;
 
 /**
  * ChatCompletionRequestMessage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-10-24T16:07:41.765433+02:00[Europe/Rome]")
+@Value
+@Builder
 public class ChatCompletionRequestMessage {
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)
-  private String role = "";
+  String role = "";
 
   public static final String SERIALIZED_NAME_CONTENT = "content";
   @SerializedName(SERIALIZED_NAME_CONTENT)
-  private String content;
+  String content;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  String name;
 
   public static final String SERIALIZED_NAME_FUNCTION_CALL = "function_call";
   @SerializedName(SERIALIZED_NAME_FUNCTION_CALL)
-  private ChatCompletionFunctionCall functionCall;
-
-  public ChatCompletionRequestMessage() {
-  }
-
-  public ChatCompletionRequestMessage role(String role) {
-    
-    this.role = role;
-    return this;
-  }
-
-   /**
-   * Get role
-   * @return role
-  **/
-  @javax.annotation.Nullable
-
-  public String getRole() {
-    return role;
-  }
-
-
-  public void setRole(String role) {
-    this.role = role;
-  }
-
-
-  public ChatCompletionRequestMessage content(String content) {
-    
-    this.content = content;
-    return this;
-  }
-
-   /**
-   * Get content
-   * @return content
-  **/
-  @javax.annotation.Nullable
-
-  public String getContent() {
-    return content;
-  }
-
-
-  public void setContent(String content) {
-    this.content = content;
-  }
-
-
-  public ChatCompletionRequestMessage name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ChatCompletionRequestMessage functionCall(ChatCompletionFunctionCall functionCall) {
-    
-    this.functionCall = functionCall;
-    return this;
-  }
-
-   /**
-   * Get functionCall
-   * @return functionCall
-  **/
-  @javax.annotation.Nullable
-
-  public ChatCompletionFunctionCall getFunctionCall() {
-    return functionCall;
-  }
-
-
-  public void setFunctionCall(ChatCompletionFunctionCall functionCall) {
-    this.functionCall = functionCall;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ChatCompletionRequestMessage chatCompletionRequestMessage = (ChatCompletionRequestMessage) o;
-    return Objects.equals(this.role, chatCompletionRequestMessage.role) &&
-        Objects.equals(this.content, chatCompletionRequestMessage.content) &&
-        Objects.equals(this.name, chatCompletionRequestMessage.name) &&
-        Objects.equals(this.functionCall, chatCompletionRequestMessage.functionCall);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(role, content, name, functionCall);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ChatCompletionRequestMessage {\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    functionCall: ").append(toIndentedString(functionCall)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+  ChatCompletionFunctionCall functionCall;
 
 }
 

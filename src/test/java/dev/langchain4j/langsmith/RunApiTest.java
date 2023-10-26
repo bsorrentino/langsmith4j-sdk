@@ -1,6 +1,7 @@
-package dev.langchain4j.langsmith.api;
+package dev.langchain4j.langsmith;
 
-import dev.langchain4j.langsmith.ApiClient;
+import dev.langchain4j.langsmith.api.RunApi;
+import dev.langchain4j.langsmith.api.RunApiAsync;
 import dev.langchain4j.langsmith.model.Inputs;
 import dev.langchain4j.langsmith.model.RunCreateSchema;
 import dev.langchain4j.langsmith.model.RunTypeEnum;
