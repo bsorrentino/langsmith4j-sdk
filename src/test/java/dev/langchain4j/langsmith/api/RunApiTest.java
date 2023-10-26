@@ -70,7 +70,7 @@ public class RunApiTest {
 
         var runId = UUID.randomUUID();
         var inputs = Inputs.builder()
-                        .text( "Foo")
+                        .data( "text", "Foo")
                         .build()
                         ;
 

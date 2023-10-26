@@ -13,21 +13,24 @@
 
 package dev.langchain4j.langsmith.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.JsonAdapter;
+import dev.langchain4j.langsmith.OutputsDataTypeAdapter;
 import lombok.Builder;
+import lombok.Singular;
 import lombok.Value;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * Outputs
  */
 @Value
 @Builder
+@JsonAdapter(OutputsDataTypeAdapter.class)
 public class Outputs {
-  public static final String SERIALIZED_NAME_GENERATION = "generation";
-  @SerializedName(SERIALIZED_NAME_GENERATION)
-  private List<String> generation;
+
+  @Singular("data")
+  Map<String,Object> data;
 
 }
 

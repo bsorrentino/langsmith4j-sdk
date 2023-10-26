@@ -13,13 +13,13 @@
 
 package dev.langchain4j.langsmith.model;
 
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import dev.langchain4j.langsmith.InputsDataTypeAdapter;
 import lombok.Builder;
+import lombok.Singular;
 import lombok.Value;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,10 +28,11 @@ import java.util.Map;
  */
 @Value
 @Builder
+@JsonAdapter(InputsDataTypeAdapter.class)
 public class Inputs {
-  public static final String SERIALIZED_NAME_MODEL = "model";
-  @SerializedName(SERIALIZED_NAME_MODEL)
-  String model;
+
+  // dynamic Data
+  @Singular("data") Map<String,Object> data;
 
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @SerializedName(SERIALIZED_NAME_MESSAGES)
@@ -40,6 +41,10 @@ public class Inputs {
   public static final String SERIALIZED_NAME_FUNCTIONS = "functions";
   @SerializedName(SERIALIZED_NAME_FUNCTIONS)
   List<ChatCompletionFunctions> functions;
+
+  public static final String SERIALIZED_NAME_MODEL = "model";
+  @SerializedName(SERIALIZED_NAME_MODEL)
+  String model;
 
   public static final String SERIALIZED_NAME_TEMPERATURE = "temperature";
   @SerializedName(SERIALIZED_NAME_TEMPERATURE)
@@ -76,14 +81,6 @@ public class Inputs {
   public static final String SERIALIZED_NAME_LOGIT_BIAS = "logit_bias";
   @SerializedName(SERIALIZED_NAME_LOGIT_BIAS)
   Map<String, Integer> logitBias;
-
-  public static final String SERIALIZED_NAME_TEXT = "text";
-  @SerializedName(SERIALIZED_NAME_TEXT)
-  String text;
-
-  public static final String SERIALIZED_NAME_PROMPTS = "prompts";
-  @SerializedName(SERIALIZED_NAME_PROMPTS)
-  List<String> prompts;
 
   public static final String SERIALIZED_NAME_SUFFIX = "suffix";
   @SerializedName(SERIALIZED_NAME_SUFFIX)

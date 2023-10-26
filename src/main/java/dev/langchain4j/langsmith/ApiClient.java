@@ -1,7 +1,6 @@
 package dev.langchain4j.langsmith;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
 import dev.langchain4j.langsmith.api.RunApi;
 import dev.langchain4j.langsmith.api.RunApiAsync;
 import dev.langchain4j.langsmith.api.RunApiAsyncAdapter;
@@ -16,6 +15,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 import static java.lang.String.format;
@@ -27,14 +27,22 @@ public class ApiClient {
     private final Retrofit adapter;
 
     public static class Builder {
-      private final JSON json = new JSON();
+
       private final OkHttpClient.Builder okBuilder = new OkHttpClient.Builder();
 
       private final Retrofit.Builder adapterBuilder = new Retrofit.Builder();
       private Builder() {
-        adapterBuilder
+
+          JsonSerializer<OffsetDateTime> serializer =
+                  ( date, type, context ) -> context.serialize( date.toInstant().toEpochMilli() );
+
+          val json = new GsonBuilder()
+                            .registerTypeAdapter( OffsetDateTime.class, serializer )
+                            .create();
+
+          adapterBuilder
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonCustomConverterFactory.create(json.getGson()));
+            .addConverterFactory(GsonCustomConverterFactory.create(json));
       }
 
       public Builder apiKey(String apiKey) {
@@ -67,7 +75,8 @@ public class ApiClient {
     }
 
     private ApiClient( Retrofit adapter ) {
-      this.adapter = adapter;
+
+        this.adapter = adapter;
     }
 
 
