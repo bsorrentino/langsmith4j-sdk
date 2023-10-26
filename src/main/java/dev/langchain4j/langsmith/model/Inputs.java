@@ -31,7 +31,7 @@ import java.util.Map;
 public class Inputs {
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
-  Model model;
+  String model;
 
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @SerializedName(SERIALIZED_NAME_MESSAGES)

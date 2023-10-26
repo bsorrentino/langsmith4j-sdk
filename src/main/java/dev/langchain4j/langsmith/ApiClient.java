@@ -8,7 +8,6 @@ import dev.langchain4j.langsmith.api.RunApiAsyncAdapter;
 import lombok.extern.java.Log;
 import lombok.val;
 import okhttp3.*;
-import okio.BufferedSource;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,9 +16,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import static java.lang.String.format;
@@ -169,3 +165,5 @@ class GsonCustomConverterFactory extends Converter.Factory {
         return gsonConverterFactory.requestBodyConverter(type, parameterAnnotations, methodAnnotations, retrofit);
     }
 }
+
+

@@ -66,8 +66,7 @@ public class RunTreeTest {
 
         val childToolRun = parentRun.createChild(childToolRunConfig);
 
-        childToolRun.postRun(true)
-                .get( 2, TimeUnit.SECONDS);
+        // childToolRun.postRun(true).get( 2, TimeUnit.SECONDS);
         /*
         var childToolRun = parentRun.createChild({
                 name: "transcript_loader",

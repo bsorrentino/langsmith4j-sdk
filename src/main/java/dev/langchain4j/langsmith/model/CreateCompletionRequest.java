@@ -28,7 +28,7 @@ import java.util.Objects;
 public class CreateCompletionRequest {
   public static final String SERIALIZED_NAME_MODEL = "model";
   @SerializedName(SERIALIZED_NAME_MODEL)
-  private Model model;
+  private String model;
 
   public static final String SERIALIZED_NAME_PROMPT = "prompt";
   @SerializedName(SERIALIZED_NAME_PROMPT)
@@ -93,7 +93,7 @@ public class CreateCompletionRequest {
   public CreateCompletionRequest() {
   }
 
-  public CreateCompletionRequest model(Model model) {
+  public CreateCompletionRequest model(String model) {
     
     this.model = model;
     return this;
@@ -105,12 +105,12 @@ public class CreateCompletionRequest {
   **/
   @javax.annotation.Nonnull
 
-  public Model getModel() {
+  public String getModel() {
     return model;
   }
 
 
-  public void setModel(Model model) {
+  public void setModel(String model) {
     this.model = model;
   }
 
