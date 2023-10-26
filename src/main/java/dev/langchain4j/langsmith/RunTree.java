@@ -12,7 +12,6 @@ import java.time.OffsetDateTime;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.Optional.ofNullable;
 
@@ -67,20 +66,20 @@ public class RunTree {
     }
 
     public RunTree() {
-        this(getDefaultApiClient(), getDefaultConfig());
+        this(getDefaultApiClient(), getDefaultConfig().build());
     }
 
     public RunTree(RunApiAsync client) {
-        this(client, getDefaultConfig());
+        this(client, getDefaultConfig().build());
     }
 
-    public RunTree(Config.ConfigBuilder config) {
+    public RunTree(Config config) {
         this(getDefaultApiClient(), config);
     }
 
-    public RunTree(RunApiAsync client, Config.ConfigBuilder config) {
+    public RunTree(RunApiAsync client, Config config) {
         this.client = ofNullable(client).orElse(getDefaultApiClient());
-        this.config = ofNullable(config).orElse(getDefaultConfig()).build();
+        this.config = ofNullable(config).orElse(getDefaultConfig().build());
     }
 
     public RunTree createChild(Config childConfig) {
@@ -91,7 +90,8 @@ public class RunTree {
                 .parentRun(this)
                 .sessionName(this.config.getSessionName())
                 .executionOrder(this.config.getChildExecutionOrder() + 1)
-                .childExecutionOrder(this.config.getChildExecutionOrder() + 1);
+                .childExecutionOrder(this.config.getChildExecutionOrder() + 1)
+                .build();
 
         val child = new RunTree(this.client, processedChildConfig);
 
@@ -101,19 +101,19 @@ public class RunTree {
         return child;
     }
 
-    public void end() {
-        end(null, null, null);
+    public RunTree end() {
+        return end(null, null, null);
     }
 
-    public void end(Outputs outputs) {
-        end(outputs, null, null);
+    public RunTree end(Outputs outputs) {
+        return end(outputs, null, null);
     }
 
-    public void end(Outputs outputs, String error) {
-        end(outputs, error, null);
+    public RunTree end(Outputs outputs, String error) {
+        return end(outputs, error, null);
     }
 
-    public void end(Outputs outputs, String error, OffsetDateTime endTime) {
+    public RunTree end(Outputs outputs, String error, OffsetDateTime endTime) {
         this.config.setOutputs(outputs);
         this.config.setError(error);
         this.config.setEndTime(ofNullable(endTime).orElse(OffsetDateTime.now()));
@@ -124,6 +124,7 @@ public class RunTree {
                     this.config.getChildExecutionOrder()
             ));
         }
+        return this;
     }
 
     private RunCreateSchema convertToCreate(RunTree run, boolean excludeChildRuns) {

@@ -23,6 +23,7 @@ public class RunTreeTest {
                         .data("text", "Summarize this morning's meetings.")
                         .build() )
                 .serialized( new Object() )
+                .build()
                 ;
 
         val parentRun = new RunTree(parentRunConfig);
