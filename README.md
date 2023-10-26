@@ -1,4 +1,4 @@
-# langsmith4j
+# langsmith4j-sdk
 
 Java version of [langsmith] API designed for [langchain4j] integration.
 
@@ -13,6 +13,7 @@ val parentRunConfig = RunTree.getDefaultConfig()
     .data("text", "Summarize this morning's meetings.")
     .build() )
     .serialized( new Object() )
+    .build()
     ;
 
 val parentRun = new RunTree(parentRunConfig);
