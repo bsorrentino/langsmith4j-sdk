@@ -177,21 +177,22 @@ public class RunTree {
         return persistedRun.build();
 
     }
-    public  CompletableFuture<Object> postRun(boolean excludeChildRuns) {
+    public  CompletableFuture<Void> postRun(boolean excludeChildRuns) {
         var runCreate = convertToCreate(this, true );
 
-        return this.client.createRunRunsPost(runCreate).thenApply( res -> {
+        return this.client.createRunRunsPost(runCreate).thenCompose( res -> {
 
             if( res.isSuccessful() && !excludeChildRuns) {
 
-                ofNullable(this.config.getChildRuns()).
-                        orElse(Collections.emptyList())
-                        .stream()
-                        .map( run -> postRun(false))
-                        .forEach(CompletableFuture::join);
+                val childRuns = this.config.getChildRuns();
+                if( childRuns != null ) {
+                    val runs = childRuns.stream()
+                            .map(run -> postRun(false))
+                            .toArray(CompletableFuture[]::new);
+                    return CompletableFuture.allOf(runs);
+                }
             }
-            return res;
-            // return CompletableFuture.completedFuture(res);
+            return CompletableFuture.completedFuture(null);
         });
 
     }

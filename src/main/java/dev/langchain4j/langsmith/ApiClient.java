@@ -20,6 +20,7 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import static java.lang.String.format;
 
@@ -150,8 +151,7 @@ class GsonCustomConverterFactory extends Converter.Factory {
     }
 
     private GsonCustomConverterFactory(Gson gson) {
-        if (gson == null)
-            throw new NullPointerException("gson == null");
+        Objects.requireNonNull( gson, "gson is null!");
         this.gson = gson;
         this.gsonConverterFactory = GsonConverterFactory.create(gson);
     }
@@ -159,7 +159,7 @@ class GsonCustomConverterFactory extends Converter.Factory {
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         if (type.equals(String.class))
-            return new GsonResponseBodyConverterToString<Object>(gson, type);
+            return new GsonResponseBodyConverterToString<>(gson, type);
         else
             return gsonConverterFactory.responseBodyConverter(type, annotations, retrofit);
     }

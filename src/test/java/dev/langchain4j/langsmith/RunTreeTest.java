@@ -27,7 +27,7 @@ public class RunTreeTest {
         val parentRun = new RunTree(parentRunConfig);
 
 
-        val res1 = parentRun.postRun(true).get( 2, TimeUnit.SECONDS);
+        parentRun.postRun(true).get( 2, TimeUnit.SECONDS);
 
         val childLlmRunConfig = RunTree.getDefaultConfig()
                 .name("My Proprietary LLM")
@@ -53,8 +53,23 @@ public class RunTreeTest {
 
         childLlmRun.patchRun().get( 2, TimeUnit.SECONDS);
 
+        val childToolRunConfig = RunTree.getDefaultConfig()
+                .name("transcript_loader")
+                .runType( RunTypeEnum.TOOL )
+                .inputs( Inputs.builder()
+                        .prompts(singletonList("You are an AI Assistant. The time is XYZ." +
+                                " Summarize this morning's meetings."))
+                        .build() )
+                .serialized( new Object() )
+                .build()
+                ;
+
+        val childToolRun = parentRun.createChild(childToolRunConfig);
+
+        childToolRun.postRun(true)
+                .get( 2, TimeUnit.SECONDS);
         /*
-        const childToolRun = await parentRun.createChild({
+        var childToolRun = parentRun.createChild({
                 name: "transcript_loader",
                 run_type: "tool",
                 inputs: {
@@ -62,8 +77,9 @@ public class RunTreeTest {
                     content_type: "meeting_transcripts",
         },
 });
-        await childToolRun.postRun();
-        */
+
+         */
+
         System.exit(0);
     }
 
