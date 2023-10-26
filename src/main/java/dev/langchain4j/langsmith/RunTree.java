@@ -119,17 +119,16 @@ public class RunTree {
             ));
         }
     }
-    private RunCreateSchema convertToCreate( RunTree run ) {
+    private RunCreateSchema convertToCreate( RunTree run, boolean excludeChildRuns ) {
 
         var runExtra = run.config.getExtra();
         if( runExtra == null ) {
             runExtra = Collections.emptyMap();
         }
         // Runtime environment
-//        const runExtra = run.extra ?? {};
-//        if (!runExtra.runtime) {
-//            runExtra.runtime = {};
-//        }
+        if(! runExtra.containsKey("runtime") ) {
+            runExtra = Collections.singletonMap( "runtime", new Object() );
+        }
 //        const runtimeEnv = await getRuntimeEnvironment();
 //        for (const [k, v] of Object.entries(runtimeEnv)) {
 //            if (!runExtra.runtime[k]) {
@@ -138,14 +137,24 @@ public class RunTree {
 //        }
 
         UUID parentRunId = null; // run.config.getParentRunId();
+        List<RunCreateSchema> childRuns = Collections.emptyList();
 
-        var childRuns = ofNullable(run.config.getChildRuns())
-                    .map(_runs ->
-                            _runs.stream()
-                                    .map(this::convertToCreate)
-                                    .collect(Collectors.toList()))
-                    .orElse(Collections.emptyList())
-                    ;
+        if (!excludeChildRuns) {
+
+            var runChildRuns = run.config.getChildRuns();
+            if( runChildRuns != null ) {
+                childRuns = runChildRuns.stream()
+                                        .map( r -> convertToCreate( r, true ))
+                                        .collect(Collectors.toList());
+
+            }
+        }
+        else {
+
+            if( run.config.parentRun!= null ) {
+                parentRunId = run.config.parentRun.config.getId();
+            }
+        }
 
         val persistedRun = RunCreateSchema.builder()
                 .id( run.config.getId() )
@@ -169,7 +178,7 @@ public class RunTree {
 
     }
     public  CompletableFuture<Object> postRun(boolean excludeChildRuns) {
-        var runCreate = convertToCreate(this );
+        var runCreate = convertToCreate(this, true );
 
         return this.client.createRunRunsPost(runCreate).thenApply( res -> {
 

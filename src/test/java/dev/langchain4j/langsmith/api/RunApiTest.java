@@ -1,28 +1,24 @@
 package dev.langchain4j.langsmith.api;
 
 import dev.langchain4j.langsmith.ApiClient;
-import dev.langchain4j.langsmith.RunTree;
-import dev.langchain4j.langsmith.model.*;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.UUID;
-
-import lombok.val;
+import dev.langchain4j.langsmith.model.Inputs;
+import dev.langchain4j.langsmith.model.RunCreateSchema;
+import dev.langchain4j.langsmith.model.RunTypeEnum;
+import dev.langchain4j.langsmith.model.RunUpdateSchema;
+import lombok.extern.java.Log;
 import lombok.var;
 import org.junit.Before;
 import org.junit.Test;
 import retrofit2.Response;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-
-import static java.util.Collections.*;
 
 /**
  * API tests for RunApi
  */
+@Log
 public class RunApiTest {
 
     private RunApi api;
@@ -62,7 +58,7 @@ public class RunApiTest {
         // TODO: test validations
     }
 
-    public static void main01( String [] args ) throws Exception {
+    public static void main( String [] args ) throws Exception {
 
         final ApiClient client = ApiClient.builder()
                 .baseUrl( System.getenv("LANGCHAIN_ENDPOINT") )
@@ -93,48 +89,9 @@ public class RunApiTest {
 
         final Response<Object> result = call.join();
 
-        System.out.println( result );
-        System.out.println( result.body() );
-        System.out.println( result.headers() );
-
-        System.exit(0);
-    }
-    public static void main( String [] args ) throws Exception {
-
-        val parentRunConfig = RunTree.getDefaultConfig()
-                .name("My Chat Bot")
-                .runType( RunTypeEnum.CHAIN )
-                .inputs( Inputs.builder()
-                        .text("Summarize this morning's meetings.")
-                        .build() )
-                .serialized( new Object() )
-                ;
-
-        val parentRun = new RunTree(parentRunConfig);
-
-        val res1 = parentRun.postRun(true).get( 2, TimeUnit.MINUTES);
-
-        val childLlmRunConfig = RunTree.getDefaultConfig()
-                .name("My Proprietary LLM")
-                .runType( RunTypeEnum.LLM )
-                .inputs( Inputs.builder()
-                        .prompts(singletonList("You are an AI Assistant. The time is XYZ." +
-                                " Summarize this morning's meetings."))
-                        .build() )
-                .serialized( new Object() )
-                .build()
-                ;
-        val childLlmRun = parentRun.createChild( childLlmRunConfig );
-
-        val res2 = childLlmRun.postRun(true).get( 2, TimeUnit.MINUTES);
-
-        childLlmRun.end(
-                Outputs.builder().generation( singletonList(
-                    "I should use the transcript_loader tool" +
-                    " to fetch meeting_transcripts from XYZ" ))
-                        .build());
-
-        val res3 = childLlmRun.patchRun().get( 2, TimeUnit.MINUTES);
+        log.info( result.toString() );
+        log.info( result.body().toString() );
+        log.info( result.headers().toString() );
 
         System.exit(0);
     }

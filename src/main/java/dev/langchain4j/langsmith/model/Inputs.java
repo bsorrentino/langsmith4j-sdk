@@ -35,11 +35,11 @@ public class Inputs {
 
   public static final String SERIALIZED_NAME_MESSAGES = "messages";
   @SerializedName(SERIALIZED_NAME_MESSAGES)
-  List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  List<ChatCompletionRequestMessage> messages;
 
   public static final String SERIALIZED_NAME_FUNCTIONS = "functions";
   @SerializedName(SERIALIZED_NAME_FUNCTIONS)
-  List<ChatCompletionFunctions> functions = new ArrayList<>();
+  List<ChatCompletionFunctions> functions;
 
   public static final String SERIALIZED_NAME_TEMPERATURE = "temperature";
   @SerializedName(SERIALIZED_NAME_TEMPERATURE)
@@ -75,7 +75,7 @@ public class Inputs {
 
   public static final String SERIALIZED_NAME_LOGIT_BIAS = "logit_bias";
   @SerializedName(SERIALIZED_NAME_LOGIT_BIAS)
-  Map<String, Integer> logitBias = new HashMap<>();
+  Map<String, Integer> logitBias;
 
   public static final String SERIALIZED_NAME_TEXT = "text";
   @SerializedName(SERIALIZED_NAME_TEXT)
