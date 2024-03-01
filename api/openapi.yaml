@@ -73,8 +73,8 @@ components:
   schemas:
     RunUpdateSchemaExtended:
       example:
-        outputs: null
-        inputs: null
+        outputs: "{}"
+        inputs: "{}"
         end_time: 2000-01-23T04:56:07.000+00:00
         error: error
         events:
@@ -399,6 +399,18 @@ components:
       title: Logprobs
       type: object
     HTTPValidationError:
+      example:
+        detail:
+        - msg: msg
+          loc:
+          - Location_inner
+          - Location_inner
+          type: type
+        - msg: msg
+          loc:
+          - Location_inner
+          - Location_inner
+          type: type
       properties:
         detail:
           items:
@@ -408,6 +420,12 @@ components:
       title: HTTPValidationError
       type: object
     ValidationError:
+      example:
+        msg: msg
+        loc:
+        - Location_inner
+        - Location_inner
+        type: type
       properties:
         loc:
           items:
@@ -429,10 +447,10 @@ components:
     RunCreateSchemaExtended:
       description: "Create class for a run object, with additional typehints."
       example:
-        outputs: null
+        outputs: "{}"
         session_name: session_name
         parent_run_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        inputs: null
+        inputs: "{}"
         end_time: 2000-01-23T04:56:07.000+00:00
         session_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         run_type: null

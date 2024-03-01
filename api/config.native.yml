@@ -1,0 +1,31 @@
+generatorName: java
+library: native
+inputSpec: api/openapi.yaml
+groupId: dev.langchain4j
+artifactId: langchain4j-langsmith
+artifactVersion: 1.0.0-SNAPSHOT
+artifactUrl: 
+artifactDescription: Langsmith integration for Langchain4j.
+
+# Select the complementary documentation annotation library. (Default: none)
+#     none - Do not annotate Model and Api with complementary annotations.
+#     swagger1 - Annotate Model and Api using the Swagger Annotations 1.x library.
+#     swagger2 - Annotate Model and Api using the Swagger Annotations 2.x library.
+annotationLibrary: none
+
+apiPackage: dev.langchain4j.langsmith.api
+modelPackage: dev.langchain4j.langsmith.model
+
+# Option. Date library to use (Default: java8)
+#     joda - Joda (for legacy app only)
+#     legacy - Legacy java.util.Date
+#     java8-localdatetime - Java 8 using LocalDateTime (for legacy app only)
+#     java8 - Java 8 native JSR310 (preferred for jdk 1.8+)
+dateLibrary: java8
+
+# Enable OpenAPI Jackson Nullable library (Default: true)
+openApiNullable: false
+
+# If true, async handlers will be used, instead of the sync version (Default: false)
+asyncNative: true
+

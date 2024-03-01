@@ -1,11 +1,38 @@
 generatorName: java
 library: retrofit2
-inputSpec: openapi.yaml
+inputSpec: api/openapi.yaml
 groupId: dev.langchain4j
 artifactId: langchain4j-langsmith
 artifactVersion: 1.0.0-SNAPSHOT
-artifactUrl: 
+artifactUrl: https://github.com/bsorrentino/langsmith4j-sdk
 artifactDescription: Langsmith integration for Langchain4j.
+
+# SCM connection in generated pom.xml (Default: scm:git:git@github.com:openapitools/openapi-generator.git)
+scmConnection: scm:git:git@github.com/bsorrentino/langsmith4j-sdk.git
+
+scmDeveloperConnection: scm:git:git@github.com/bsorrentino/langsmith4j-sdk.git
+# SCM developer connection in generated pom.xml (Default: scm:git:git@github.com:openapitools/openapi-generator.git)
+
+scmUrl: https://github.com/bsorrentino/langsmith4j-sdk.git
+# SCM URL in generated pom.xml (Default: https://github.com/openapitools/openapi-generator)
+
+# The name of the license (Default: Unlicense)
+licenseName: MIT
+
+# The URL of the license (Default: http://unlicense.org)
+licenseUrl: https://opensource.org/license/mit
+
+developerEmail: bartolomeo.sorrentino@gmail.com
+#developer email in generated pom.xml (Default: team@openapitools.org)
+
+developerName: bsorrentino
+#developer name in generated pom.xml (Default: OpenAPI-Generator Contributors)
+
+developerOrganization:
+#developer organization in generated pom.xml (Default: OpenAPITools.org)
+  
+developerOrganizationUrl:
+#developer organization URL in generated pom.xml (Default: http://openapitools.org)
 
 # Select the complementary documentation annotation library. (Default: none)
 #     none - Do not annotate Model and Api with complementary annotations.
@@ -25,3 +52,6 @@ dateLibrary: java8
 
 # Enable OpenAPI Jackson Nullable library (Default: true)
 openApiNullable: false
+
+# If true, async handlers will be used, instead of the sync version (Default: false)
+# asyncNative: true
