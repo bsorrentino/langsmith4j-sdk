@@ -29,3 +29,6 @@ build
 
 # openapi generator
 .openapi-generator
+
+#jenv
+/.java-version
