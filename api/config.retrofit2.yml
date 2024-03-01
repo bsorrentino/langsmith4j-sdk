@@ -40,8 +40,8 @@ developerOrganizationUrl:
 #     swagger2 - Annotate Model and Api using the Swagger Annotations 2.x library.
 annotationLibrary: none
 
-apiPackage: dev.langchain4j.langsmith.api
-modelPackage: dev.langchain4j.langsmith.model
+apiPackage: dev.langchain4j.langsmith.gen.api
+modelPackage: dev.langchain4j.langsmith.gen.model
 
 # Option. Date library to use (Default: java8)
 #     joda - Joda (for legacy app only)
