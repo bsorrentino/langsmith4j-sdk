@@ -21,11 +21,11 @@ Create a new run.
 
 ```java
 // Import classes:
-import dev.langchain4j.langsmith.ApiClient;
-import dev.langchain4j.langsmith.ApiException;
-import dev.langchain4j.langsmith.Configuration;
-import dev.langchain4j.langsmith.models.*;
-import dev.langchain4j.langsmith.api.RunApi;
+import dev.langchain4j.langsmith.gen.ApiClient;
+import dev.langchain4j.langsmith.gen.ApiException;
+import dev.langchain4j.langsmith.gen.Configuration;
+import dev.langchain4j.langsmith.gen.models.*;
+import dev.langchain4j.langsmith.gen.api.RunApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -88,11 +88,11 @@ Update a run.
 
 ```java
 // Import classes:
-import dev.langchain4j.langsmith.ApiClient;
-import dev.langchain4j.langsmith.ApiException;
-import dev.langchain4j.langsmith.Configuration;
-import dev.langchain4j.langsmith.models.*;
-import dev.langchain4j.langsmith.api.RunApi;
+import dev.langchain4j.langsmith.gen.ApiClient;
+import dev.langchain4j.langsmith.gen.ApiException;
+import dev.langchain4j.langsmith.gen.Configuration;
+import dev.langchain4j.langsmith.gen.models.*;
+import dev.langchain4j.langsmith.gen.api.RunApi;
 
 public class Example {
     public static void main(String[] args) {

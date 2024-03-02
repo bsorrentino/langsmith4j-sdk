@@ -6,11 +6,10 @@
 name: Java CI with Maven
 
 on:
-  workflow_dispatch:
-#  push:
-#    branches: [ main, master ]
-#  pull_request:
-#    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   build:
@@ -18,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '8', '11', '17' ]
+        java: [ '8' ]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK

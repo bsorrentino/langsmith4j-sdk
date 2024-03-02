@@ -1,10 +1,3 @@
-# macosx
-.DS_Store
-
-# IntelliJ
-.idea/
-
-# Java
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -26,9 +19,3 @@ hs_err_pid*
 target
 .gradle
 build
-
-# openapi generator
-.openapi-generator
-
-#jenv
-/.java-version

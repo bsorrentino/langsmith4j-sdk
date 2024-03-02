@@ -5,7 +5,7 @@
   "private": true,
 
   "scripts": {
-    "gen:retrofit2": "openapi-generator generate -o . -c api/config.retrofit2.yml"
+    "gen:retrofit2": "openapi-generator generate -o tmp -c api/config.retrofit2.yml"
   },
   "keywords": [],
   "author": "bsorrentino <bartolomeo.sorrentino@gmail.com> (http://soulsoftware-bsc.blogspot.it/)",
