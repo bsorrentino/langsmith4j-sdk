@@ -13,24 +13,11 @@
 
 package dev.langchain4j.langsmith.gen.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import dev.langchain4j.langsmith.gen.model.Inputs;
-import dev.langchain4j.langsmith.gen.model.Outputs;
-import dev.langchain4j.langsmith.gen.model.RunCreateSchema;
-import dev.langchain4j.langsmith.gen.model.RunTypeEnum;
 import lombok.Builder;
 import lombok.Value;
 
-import java.io.IOException;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -111,7 +98,7 @@ public class RunCreateSchemaExtended {
 
   public static final String SERIALIZED_NAME_CHILD_RUNS = "child_runs";
   @SerializedName(SERIALIZED_NAME_CHILD_RUNS)
-  List<RunCreateSchema> childRuns;
+  List<RunCreateSchemaExtended> childRuns;
 
   public static final String SERIALIZED_NAME_REFERENCE_EXAMPLE_ID = "reference_example_id";
   @SerializedName(SERIALIZED_NAME_REFERENCE_EXAMPLE_ID)
