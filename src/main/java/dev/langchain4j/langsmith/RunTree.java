@@ -1,11 +1,9 @@
 package dev.langchain4j.langsmith;
 
 import dev.langchain4j.langsmith.api.RunApiAsync;
-import dev.langchain4j.langsmith.model.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.val;
-import lombok.var;
+import dev.langchain4j.langsmith.gen.model.*;
+import lombok.*;
+import lombok.extern.java.Log;
 import retrofit2.Response;
 
 import java.time.OffsetDateTime;
@@ -15,85 +13,104 @@ import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
 
+@Log
 public class RunTree {
+
     @Data
     @Builder(toBuilder = true)
     public static class Config {
         String name;
         RunTypeEnum runType;
         UUID id;
-        String sessionName;
-        Integer executionOrder;
-        Integer childExecutionOrder;
+        String projectName;
         RunTree parentRun;
+        String parentRunId;
         List<RunTree> childRuns;
         OffsetDateTime startTime;
         OffsetDateTime endTime;
-        Map<String, Object> extra;
+        Map<String,Object> extra;
+        List<String>  tags;
         String error;
         Object serialized;
         Inputs inputs;
         Outputs outputs;
-        UUID referenceExampleId;
-        UUID parentRunId;
-        List<Object> events;
+        String referenceExampleId;
+        String apiUrl;
+        String apiKey;
+        RunApiAsync client ;
 
+        public final UUID getReferenceExampleUUID() {
+            return Optional.ofNullable(referenceExampleId).map( UUID::fromString ).orElse( null );
+        }
     }
 
-    final RunApiAsync client;
-    public final Config config;
+    private final Config config;
 
-    Object callerOptions;
+    @Getter @Setter private UUID traceId;
+
+    UUID getId() { return config.getId(); }
+
+    RunTree getParentRun() { return config.getParentRun(); }
+
+    RunApiAsync getClient() { return config.getClient(); }
+
+    void setClient(RunApiAsync client) { config.setClient(client); }
 
     public static Config.ConfigBuilder getDefaultConfig() {
 
         return Config.builder()
                 .id(UUID.randomUUID())
-                .sessionName(ofNullable(System.getenv("LANGCHAIN_PROJECT")).orElse("default"))
+                .runType(RunTypeEnum.CHAIN)
+                .projectName(ofNullable(System.getenv("LANGCHAIN_PROJECT")).orElse("default"))
                 .childRuns(new ArrayList<>(10))
-                .executionOrder(1)
-                .childExecutionOrder(1)
+                .apiUrl(ofNullable(System.getenv("LANGCHAIN_ENDPOINT")).orElse("http://localhost:1984"))
+                .apiKey( System.getenv("LANGCHAIN_API_KEY") )
                 .startTime(OffsetDateTime.now())
                 ;
     }
 
-    private static RunApiAsync getDefaultApiClient() {
-        return ApiClient.builder()
-                .baseUrl(ofNullable(System.getenv("LANGCHAIN_ENDPOINT")).orElse("http://localhost:1984"))
-                .apiKey(Optional.of(System.getenv("LANGCHAIN_API_KEY")).get())
-                .build()
-                .createServiceAsync();
-    }
-
     public RunTree() {
-        this(getDefaultApiClient(), getDefaultConfig().build());
-    }
-
-    public RunTree(RunApiAsync client) {
-        this(client, getDefaultConfig().build());
+        this(getDefaultConfig().build());
     }
 
     public RunTree(Config config) {
-        this(getDefaultApiClient(), config);
-    }
+        Objects.requireNonNull( config, "config is null!");
+        this.config = config;
 
-    public RunTree(RunApiAsync client, Config config) {
-        this.client = ofNullable(client).orElse(getDefaultApiClient());
-        this.config = ofNullable(config).orElse(getDefaultConfig().build());
+        if( getClient() == null ) {
+
+            val apiClient = ApiClientAsyncAdapter.builder()
+                    .baseUrl(config.getApiUrl())
+                    .apiKey(Optional.of(System.getenv("LANGCHAIN_API_KEY")).get())
+                    .build();
+
+            setClient(apiClient.createServiceAsync());
+        }
+
+        if (this.getTraceId() == null ) {
+            if (this.getParentRun() != null) {
+
+                val parentTraceId = this.getParentRun().getTraceId();
+                val parentId = this.getParentRun().getId();
+
+                this.setTraceId( parentTraceId != null ? parentTraceId : parentId );
+            } else {
+                this.setTraceId(this.getId());
+            }
+        }
     }
 
     public RunTree createChild(Config childConfig) {
-        Objects.requireNonNull(this.config.getExecutionOrder(), "execution order is null!");
-        Objects.requireNonNull(this.config.getChildExecutionOrder(), "child execution order is null!");
+        // Objects.requireNonNull(this.config.getExecutionOrder(), "execution order is null!");
+        // Objects.requireNonNull(this.config.getChildExecutionOrder(), "child execution order is null!");
 
         val processedChildConfig = childConfig.toBuilder()
                 .parentRun(this)
-                .sessionName(this.config.getSessionName())
-                .executionOrder(this.config.getChildExecutionOrder() + 1)
-                .childExecutionOrder(this.config.getChildExecutionOrder() + 1)
+                .projectName(this.config.getProjectName())
+                .client( this.getClient() )
                 .build();
 
-        val child = new RunTree(this.client, processedChildConfig);
+        val child = new RunTree(processedChildConfig);
 
         Objects.requireNonNull(this.config.getChildRuns(), "child runs is null!");
         this.config.getChildRuns().add(child);
@@ -118,16 +135,10 @@ public class RunTree {
         this.config.setError(error);
         this.config.setEndTime(ofNullable(endTime).orElse(OffsetDateTime.now()));
 
-        if (this.config.getParentRun() != null) {
-            this.config.getParentRun().config.setChildExecutionOrder(Math.max(
-                    this.config.getParentRun().config.getChildExecutionOrder(),
-                    this.config.getChildExecutionOrder()
-            ));
-        }
         return this;
     }
 
-    private RunCreateSchema convertToCreate(RunTree run, boolean excludeChildRuns) {
+    private RunCreateSchemaExtended convertToCreate(RunTree run, boolean excludeChildRuns) {
 
         var runExtra = run.config.getExtra();
         if (runExtra == null) {
@@ -145,7 +156,7 @@ public class RunTree {
 //        }
 
         UUID parentRunId = null; // run.config.getParentRunId();
-        List<RunCreateSchema> childRuns = Collections.emptyList();
+        List<RunCreateSchemaExtended> childRuns = Collections.emptyList();
 
         if (!excludeChildRuns) {
 
@@ -163,24 +174,25 @@ public class RunTree {
             }
         }
 
-        val persistedRun = RunCreateSchema.builder()
+        return RunCreateSchemaExtended.builder()
                 .id(run.config.getId())
                 .name(run.config.getName())
                 .startTime(run.config.getStartTime())
                 .endTime(run.config.getEndTime())
                 .runType(run.config.getRunType())
-                .referenceExampleId(run.config.getReferenceExampleId())
+                .referenceExampleId( config.getReferenceExampleUUID() )
                 .extra(runExtra)
-                .executionOrder(run.config.getExecutionOrder())
                 .serialized(run.config.getSerialized())
                 .error(run.config.getError())
                 .inputs(run.config.getInputs())
                 .outputs(run.config.getOutputs())
-                .sessionName(run.config.getSessionName())
+                .sessionName(run.config.getProjectName())
                 .childRuns(childRuns)
-                .parentRunId(parentRunId);
-
-        return persistedRun.build();
+                .parentRunId(parentRunId)
+                //.traceId(run.getTraceId())
+                //.dottedOrder(run.config.getDottedOrder())
+                .tags(run.config.getTags())
+                .build();
 
     }
 
@@ -192,10 +204,18 @@ public class RunTree {
 
         var runCreate = convertToCreate(this, true);
 
-        return this.client.createRunRunsPost(runCreate).thenCompose(res -> {
+        return this.getClient().createRunRunsPost(runCreate).thenCompose(res -> {
 
-            if (res.isSuccessful() && !excludeChildRuns) {
+            if( !res.isSuccessful() ) {
 
+                //val message = format( "ERROR: code=[%d], url=[%s]", res.code(), res.res.message() );
+                throw new RuntimeException(res.toString());
+
+            }
+
+            if (!excludeChildRuns) {
+
+                log.warning("Posting with excludeChildRuns=false is deprecated and will be removed in a future version.");
                 val childRuns = this.config.getChildRuns();
                 if (childRuns != null) {
                     val runs = childRuns.stream()
@@ -204,6 +224,7 @@ public class RunTree {
                     return CompletableFuture.allOf(runs);
                 }
             }
+
             return CompletableFuture.completedFuture(null);
         });
 
@@ -211,16 +232,19 @@ public class RunTree {
 
     public CompletableFuture<Response<Object>> patchRun() {
 
-        var runUpdate = RunUpdateSchema.builder()
+        var runUpdate = RunUpdateSchemaExtended.builder()
                 .endTime(this.config.getEndTime())
                 .error(this.config.getError())
                 .outputs(this.config.getOutputs())
-                .parentRunId(this.config.getParentRunId())
-                .referenceExampleId(this.config.getReferenceExampleId())
-                .extra(this.config.getExtra())
-                .events(this.config.getEvents())
+                //.parentRunId(this.config.getParentRunId())
+                //.referenceExampleId(this.config.getReferenceExampleId())
+                //.extra(this.config.getExtra())
+                //.events(this.config.getEvents())
+                //.dottedOrder( this.config.getDottedOrder())
+                //.traceId( this.getTraceId() )
+                //.tags( this.config.getTags() )
                 .build();
 
-        return this.client.updateRunRunsRunIdPatch(this.config.getId(), runUpdate);
+        return this.getClient().updateRunRunsRunIdPatch(this.config.getId(), runUpdate);
     }
 }

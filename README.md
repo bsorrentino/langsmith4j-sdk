@@ -1,98 +1,38 @@
-# langsmith4j-sdk
+# langchain4j-langsmith
 
-Java version of [langsmith] API designed for [langchain4j] integration.
+## Requirements
 
-## Log traces using a RunTree.
+Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
 
-The example below is a replica of the official [langchain-sdk javascript sample][langsmith-trace-sample]
-```java
-val parentRunConfig = RunTree.getDefaultConfig()
-    .name("My Chat Bot")
-    .runType( RunTypeEnum.CHAIN )
-    .inputs( Inputs.builder()
-    .data("text", "Summarize this morning's meetings.")
-    .build() )
-    .serialized( new Object() )
-    .build()
-    ;
+## Installation & Usage
 
-val parentRun = new RunTree(parentRunConfig);
+To install the API client library to your local Maven repository, simply execute:
 
-parentRun.postRun().get( 2, TimeUnit.SECONDS);
-
-val childLlmRunConfig = RunTree.getDefaultConfig()
-        .name("My Proprietary LLM")
-        .runType( RunTypeEnum.LLM )
-        .inputs( Inputs.builder()
-                .data( "prompts", singletonList("You are an AI Assistant. The time is XYZ." +
-                        " Summarize this morning's meetings.") )
-                .build() )
-        .serialized( new Object() )
-        .build()
-        ;
-val childLlmRun = parentRun.createChild( childLlmRunConfig );
-
-childLlmRun.postRun()
-                .get( 2, TimeUnit.SECONDS);
-
-childLlmRun.end(
-        Outputs.builder().data( "generation", singletonList(
-                        "I should use the transcript_loader tool" +
-                                " to fetch meeting_transcripts from XYZ" ))
-                .build());
-
-
-childLlmRun.patchRun().get( 2, TimeUnit.SECONDS);
-
-val childToolRunConfig = RunTree.getDefaultConfig()
-        .name("transcript_loader")
-        .runType( RunTypeEnum.TOOL )
-        .inputs( Inputs.builder()
-                .data( "date", "XYZ")
-                .data( "content_type", "meeting_transcripts")
-                .build() )
-        .build()
-        ;
-
-val childToolRun = parentRun.createChild(childToolRunConfig);
-
-childToolRun.postRun().get( 2, TimeUnit.SECONDS);
-
-childToolRun.end(
-        Outputs.builder()
-                .data( "meetings", Collections.singletonList("Meeting1 notes.."))
-                .build() );
-
-childToolRun.patchRun().get( 2, TimeUnit.SECONDS);
-
-val childChainRunConfig = RunTree.getDefaultConfig()
-        .name("Unreliable Component")
-        .runType( RunTypeEnum.TOOL )
-        .inputs( Inputs.builder()
-                .data( "input", "Summarize these notes...")
-                .build())
-        .build();
-
-val childChainRun = parentRun.createChild(childChainRunConfig);
-
-childChainRun.postRun().get( 2, TimeUnit.SECONDS);
-
-childChainRun.end(
-        Outputs.builder()
-                .data( "error", "error executed tool!" )
-                .build());
-
-childChainRun.patchRun().get( 2, TimeUnit.SECONDS);
-
-parentRun.end(
-        Outputs.builder()
-                .data( "output", Collections.singletonList("The meeting notes are as follows:...") )
-                .build());
-
-
-parentRun.patchRun().get( 2, TimeUnit.SECONDS);
+```shell
+mvn install
 ```
 
-[langchain4j]: https://github.com/langchain/langchain4j
-[langsmith]: https://docs.smith.langchain.com
-[langsmith-trace-sample]: https://github.com/langchain-ai/langsmith-sdk/blob/main/js/README.md#logging-traces-outside-langchain
+To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
+
+```shell
+mvn deploy
+```
+
+Refer to the [official documentation](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html) for more information.
+
+After the client library is installed/deployed, you can use it in your Maven project by adding the following to your *pom.xml*:
+
+```xml
+<dependency>
+    <groupId>dev.langchain4j</groupId>
+    <artifactId>langchain4j-langsmith</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <scope>compile</scope>
+</dependency>
+
+```
+
+## Author
+
+
+

@@ -1,11 +1,12 @@
 package dev.langchain4j.langsmith;
 
-import dev.langchain4j.langsmith.api.RunApi;
+import dev.langchain4j.langsmith.gen.api.RunApi;
 import dev.langchain4j.langsmith.api.RunApiAsync;
-import dev.langchain4j.langsmith.model.Inputs;
-import dev.langchain4j.langsmith.model.RunCreateSchema;
-import dev.langchain4j.langsmith.model.RunTypeEnum;
-import dev.langchain4j.langsmith.model.RunUpdateSchema;
+import dev.langchain4j.langsmith.gen.model.RunCreateSchemaExtended;
+import dev.langchain4j.langsmith.gen.model.RunUpdateSchemaExtended;
+import dev.langchain4j.langsmith.gen.model.Inputs;
+import dev.langchain4j.langsmith.gen.model.RunCreateSchema;
+import dev.langchain4j.langsmith.gen.model.RunTypeEnum;
 import lombok.extern.java.Log;
 import lombok.var;
 import org.junit.Before;
@@ -27,8 +28,9 @@ public class RunApiTest {
     @Before
     public void setup() {
 
-        api = ApiClient.builder()
+        api = ApiClientAsyncAdapter.builder()
                 .baseUrl("http://localhost")
+                .apiKey( "xxxxxxxxxxxx" )
                 .build()
                 .createService();
     }
@@ -53,7 +55,7 @@ public class RunApiTest {
     @Test
     public void updateRunRunsRunIdPatchTest() {
         UUID runId = null;
-        RunUpdateSchema runUpdateSchemaExtended = null;
+        RunUpdateSchemaExtended runUpdateSchemaExtended = null;
         // Object response = api.updateRunRunsRunIdPatch(runId, runUpdateSchemaExtended);
 
         // TODO: test validations
@@ -61,7 +63,7 @@ public class RunApiTest {
 
     public static void main( String [] args ) throws Exception {
 
-        final ApiClient client = ApiClient.builder()
+        final ApiClientAsyncAdapter client = ApiClientAsyncAdapter.builder()
                 .baseUrl( System.getenv("LANGCHAIN_ENDPOINT") )
                 .apiKey( System.getenv("LANGCHAIN_API_KEY") )
                 .build()
@@ -71,12 +73,12 @@ public class RunApiTest {
 
         var runId = UUID.randomUUID();
         var inputs = Inputs.builder()
-                        .data( "text", "Foo")
+                        .prompt( "Foo")
                         .build()
                         ;
 
-        final RunCreateSchema schema =
-                RunCreateSchema.builder()
+        final RunCreateSchemaExtended schema =
+                RunCreateSchemaExtended.builder()
                         .id( runId )
                         .sessionName( System.getenv("LANGCHAIN_PROJECT") )
                         .name( "MyFirstRun" )

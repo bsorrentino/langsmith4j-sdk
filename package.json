@@ -1,0 +1,13 @@
+{
+  "name": "langsmith4j",
+  "version": "1.0.0",
+  "description": "Java version of [langsmith] API designed for [langchain4j] integration.",
+  "private": true,
+
+  "scripts": {
+    "gen:retrofit2": "openapi-generator generate -o tmp -c api/config.retrofit2.yml"
+  },
+  "keywords": [],
+  "author": "bsorrentino <bartolomeo.sorrentino@gmail.com> (http://soulsoftware-bsc.blogspot.it/)",
+  "license": "MIT"
+}
