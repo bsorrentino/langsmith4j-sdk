@@ -5,7 +5,7 @@
     <artifactId>langchain4j-langsmith</artifactId>
     <packaging>jar</packaging>
     <name>langchain4j-langsmith</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-20240303</version>
     <url>https://github.com/bsorrentino/langsmith4j-sdk</url>
     <description>Langsmith integration for Langchain4j.</description>
     <scm>
