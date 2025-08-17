@@ -5,7 +5,9 @@
   "private": true,
 
   "scripts": {
-    "gen:retrofit2": "openapi-generator generate -o tmp -c api/config.retrofit2.yml"
+    "gen:retrofit2": "openapi-generator generate -o target -c api/config.retrofit2.yml --dry-run --enable-post-process-file",
+    "gen:native": "openapi-generator generate -o target -c api/config.native.yml --enable-post-process-file",
+    "dowload-openapi": "download-openapi.sh"
   },
   "keywords": [],
   "author": "bsorrentino <bartolomeo.sorrentino@gmail.com> (http://soulsoftware-bsc.blogspot.it/)",

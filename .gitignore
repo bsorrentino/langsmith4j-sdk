@@ -8,3 +8,6 @@
 target/
 
 .openapi-generator/
+
+node_modules/
+package-lock.json
