@@ -14,9 +14,23 @@
 package org.bsc.langgraph4j.langsmith.gen.api;
 
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
+import org.bsc.langgraph4j.langsmith.gen.model.BodyDeleteRunsApiV1RunsDeletePost;
+import org.bsc.langgraph4j.langsmith.gen.model.BodyParamsForRunSchema;
 import org.bsc.langgraph4j.langsmith.gen.model.HTTPValidationError;
+import org.bsc.langgraph4j.langsmith.gen.model.ListRunsResponse;
 import java.time.OffsetDateTime;
+import org.bsc.langgraph4j.langsmith.gen.model.RequestBodyForRunsGenerateQuery;
+import org.bsc.langgraph4j.langsmith.gen.model.ResponseBodyForRunsGenerateQuery;
+import org.bsc.langgraph4j.langsmith.gen.model.ResponseStatsRunsApiV1RunsStatsPost;
+import org.bsc.langgraph4j.langsmith.gen.model.RuleLogSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunGroupRequest;
+import org.bsc.langgraph4j.langsmith.gen.model.RunGroupStats;
+import org.bsc.langgraph4j.langsmith.gen.model.RunRulesCreateSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunRulesSchema;
 import org.bsc.langgraph4j.langsmith.gen.model.RunSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunShareSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunStatsQueryParams;
+import org.bsc.langgraph4j.langsmith.gen.model.TriggerRulesRequest;
 import java.util.UUID;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -39,6 +53,168 @@ public class RunApiTest {
 
     
     /**
+     * Create Rule
+     *
+     * Create a new run rule.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createRuleApiV1RunsRulesPostTest() throws ApiException {
+        RunRulesCreateSchema runRulesCreateSchema = null;
+        CompletableFuture<RunRulesSchema> response = 
+        api.createRuleApiV1RunsRulesPost(runRulesCreateSchema);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete Rule
+     *
+     * Delete a run rule.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteRuleApiV1RunsRulesRuleIdDeleteTest() throws ApiException {
+        UUID ruleId = null;
+        CompletableFuture<Object> response = 
+        api.deleteRuleApiV1RunsRulesRuleIdDelete(ruleId);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete Runs
+     *
+     * Delete specific runs by trace IDs or metadata key-value pairs.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void deleteRunsApiV1RunsDeletePostTest() throws ApiException {
+        BodyDeleteRunsApiV1RunsDeletePost bodyDeleteRunsApiV1RunsDeletePost = null;
+        CompletableFuture<Object> response = 
+        api.deleteRunsApiV1RunsDeletePost(bodyDeleteRunsApiV1RunsDeletePost);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Generate Query For Runs
+     *
+     * Get runs filter expression query for a given natural language query.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void generateQueryForRunsApiV1RunsGenerateQueryPostTest() throws ApiException {
+        RequestBodyForRunsGenerateQuery requestBodyForRunsGenerateQuery = null;
+        CompletableFuture<ResponseBodyForRunsGenerateQuery> response = 
+        api.generateQueryForRunsApiV1RunsGenerateQueryPost(requestBodyForRunsGenerateQuery);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Get Last Applied Rule
+     *
+     * Get the last applied rule.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGetTest() throws ApiException {
+        UUID ruleId = null;
+        CompletableFuture<RuleLogSchema> response = 
+        api.getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGet(ruleId);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Group Runs
+     *
+     * Get runs grouped by an expression
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void groupRunsApiV1RunsGroupPostTest() throws ApiException {
+        RunGroupRequest runGroupRequest = null;
+        String accept = null;
+        CompletableFuture<Object> response = 
+        api.groupRunsApiV1RunsGroupPost(runGroupRequest, accept);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * List Rule Logs
+     *
+     * List logs for a particular rule
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void listRuleLogsApiV1RunsRulesRuleIdLogsGetTest() throws ApiException {
+        UUID ruleId = null;
+        Integer limit = null;
+        Integer offset = null;
+        OffsetDateTime startTime = null;
+        OffsetDateTime endTime = null;
+        CompletableFuture<List<RuleLogSchema>> response = 
+        api.listRuleLogsApiV1RunsRulesRuleIdLogsGet(ruleId, limit, offset, startTime, endTime);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * List Rules
+     *
+     * List all run rules.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void listRulesApiV1RunsRulesGetTest() throws ApiException {
+        UUID datasetId = null;
+        UUID sessionId = null;
+        String type = null;
+        String nameContains = null;
+        List<UUID> id = null;
+        CompletableFuture<List<RunRulesSchema>> response = 
+        api.listRulesApiV1RunsRulesGet(datasetId, sessionId, type, nameContains, id);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Query Runs
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void queryRunsApiV1RunsQueryPostTest() throws ApiException {
+        BodyParamsForRunSchema bodyParamsForRunSchema = null;
+        CompletableFuture<ListRunsResponse> response = 
+        api.queryRunsApiV1RunsQueryPost(bodyParamsForRunSchema);
+        
+        // TODO: test validations
+    }
+    
+    /**
      * Read Run
      *
      * Get a specific run.
@@ -55,6 +231,143 @@ public class RunApiTest {
         Boolean excludeSerialized = null;
         CompletableFuture<RunSchema> response = 
         api.readRunApiV1RunsRunIdGet(runId, sessionId, startTime, excludeS3StoredAttributes, excludeSerialized);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Read Run Share State
+     *
+     * Get the state of sharing of a run.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void readRunShareStateApiV1RunsRunIdShareGetTest() throws ApiException {
+        UUID runId = null;
+        CompletableFuture<RunShareSchema> response = 
+        api.readRunShareStateApiV1RunsRunIdShareGet(runId);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Share Run
+     *
+     * Share a run.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void shareRunApiV1RunsRunIdSharePutTest() throws ApiException {
+        UUID runId = null;
+        CompletableFuture<RunShareSchema> response = 
+        api.shareRunApiV1RunsRunIdSharePut(runId);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Stats Group Runs
+     *
+     * Get stats for the grouped runs.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void statsGroupRunsApiV1RunsGroupStatsPostTest() throws ApiException {
+        RunGroupRequest runGroupRequest = null;
+        CompletableFuture<RunGroupStats> response = 
+        api.statsGroupRunsApiV1RunsGroupStatsPost(runGroupRequest);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Stats Runs
+     *
+     * Get all runs by query in body payload.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void statsRunsApiV1RunsStatsPostTest() throws ApiException {
+        RunStatsQueryParams runStatsQueryParams = null;
+        CompletableFuture<ResponseStatsRunsApiV1RunsStatsPost> response = 
+        api.statsRunsApiV1RunsStatsPost(runStatsQueryParams);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Trigger Rule
+     *
+     * Trigger a run rule manually.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void triggerRuleApiV1RunsRulesRuleIdTriggerPostTest() throws ApiException {
+        UUID ruleId = null;
+        CompletableFuture<RunRulesSchema> response = 
+        api.triggerRuleApiV1RunsRulesRuleIdTriggerPost(ruleId);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Trigger Rules
+     *
+     * Trigger an array of run rules manually.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void triggerRulesApiV1RunsRulesTriggerPostTest() throws ApiException {
+        TriggerRulesRequest triggerRulesRequest = null;
+        CompletableFuture<Object> response = 
+        api.triggerRulesApiV1RunsRulesTriggerPost(triggerRulesRequest);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Unshare Run
+     *
+     * Unshare a run.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void unshareRunApiV1RunsRunIdShareDeleteTest() throws ApiException {
+        UUID runId = null;
+        CompletableFuture<Object> response = 
+        api.unshareRunApiV1RunsRunIdShareDelete(runId);
+        
+        // TODO: test validations
+    }
+    
+    /**
+     * Update Rule
+     *
+     * Update a run rule.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateRuleApiV1RunsRulesRuleIdPatchTest() throws ApiException {
+        UUID ruleId = null;
+        RunRulesCreateSchema runRulesCreateSchema = null;
+        CompletableFuture<RunRulesSchema> response = 
+        api.updateRuleApiV1RunsRulesRuleIdPatch(ruleId, runRulesCreateSchema);
         
         // TODO: test validations
     }

@@ -98,7 +98,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
   RunSchema.JSON_PROPERTY_REFERENCE_DATASET_ID,
   RunSchema.JSON_PROPERTY_THREAD_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T18:06:49.500560+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class RunSchema {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -2439,5 +2439,466 @@ public class RunSchema {
 
     return joiner.toString();
   }
+
+    public static class Builder {
+
+    private RunSchema instance;
+
+    public Builder() {
+      this(new RunSchema());
+    }
+
+    protected Builder(RunSchema instance) {
+      this.instance = instance;
+    }
+
+    public RunSchema.Builder name(String name) {
+      this.instance.name = name;
+      return this;
+    }
+    public RunSchema.Builder inputs(Object inputs) {
+      this.instance.inputs = JsonNullable.<Object>of(inputs);
+      return this;
+    }
+    public RunSchema.Builder inputs(JsonNullable<Object> inputs) {
+      this.instance.inputs = inputs;
+      return this;
+    }
+    public RunSchema.Builder inputsPreview(String inputsPreview) {
+      this.instance.inputsPreview = JsonNullable.<String>of(inputsPreview);
+      return this;
+    }
+    public RunSchema.Builder inputsPreview(JsonNullable<String> inputsPreview) {
+      this.instance.inputsPreview = inputsPreview;
+      return this;
+    }
+    public RunSchema.Builder runType(RunTypeEnum runType) {
+      this.instance.runType = runType;
+      return this;
+    }
+    public RunSchema.Builder startTime(OffsetDateTime startTime) {
+      this.instance.startTime = startTime;
+      return this;
+    }
+    public RunSchema.Builder endTime(OffsetDateTime endTime) {
+      this.instance.endTime = JsonNullable.<OffsetDateTime>of(endTime);
+      return this;
+    }
+    public RunSchema.Builder endTime(JsonNullable<OffsetDateTime> endTime) {
+      this.instance.endTime = endTime;
+      return this;
+    }
+    public RunSchema.Builder extra(Object extra) {
+      this.instance.extra = JsonNullable.<Object>of(extra);
+      return this;
+    }
+    public RunSchema.Builder extra(JsonNullable<Object> extra) {
+      this.instance.extra = extra;
+      return this;
+    }
+    public RunSchema.Builder error(String error) {
+      this.instance.error = JsonNullable.<String>of(error);
+      return this;
+    }
+    public RunSchema.Builder error(JsonNullable<String> error) {
+      this.instance.error = error;
+      return this;
+    }
+    public RunSchema.Builder executionOrder(Integer executionOrder) {
+      this.instance.executionOrder = executionOrder;
+      return this;
+    }
+    public RunSchema.Builder serialized(Object serialized) {
+      this.instance.serialized = JsonNullable.<Object>of(serialized);
+      return this;
+    }
+    public RunSchema.Builder serialized(JsonNullable<Object> serialized) {
+      this.instance.serialized = serialized;
+      return this;
+    }
+    public RunSchema.Builder outputs(Object outputs) {
+      this.instance.outputs = JsonNullable.<Object>of(outputs);
+      return this;
+    }
+    public RunSchema.Builder outputs(JsonNullable<Object> outputs) {
+      this.instance.outputs = outputs;
+      return this;
+    }
+    public RunSchema.Builder outputsPreview(String outputsPreview) {
+      this.instance.outputsPreview = JsonNullable.<String>of(outputsPreview);
+      return this;
+    }
+    public RunSchema.Builder outputsPreview(JsonNullable<String> outputsPreview) {
+      this.instance.outputsPreview = outputsPreview;
+      return this;
+    }
+    public RunSchema.Builder parentRunId(UUID parentRunId) {
+      this.instance.parentRunId = JsonNullable.<UUID>of(parentRunId);
+      return this;
+    }
+    public RunSchema.Builder parentRunId(JsonNullable<UUID> parentRunId) {
+      this.instance.parentRunId = parentRunId;
+      return this;
+    }
+    public RunSchema.Builder manifestId(UUID manifestId) {
+      this.instance.manifestId = JsonNullable.<UUID>of(manifestId);
+      return this;
+    }
+    public RunSchema.Builder manifestId(JsonNullable<UUID> manifestId) {
+      this.instance.manifestId = manifestId;
+      return this;
+    }
+    public RunSchema.Builder manifestS3Id(UUID manifestS3Id) {
+      this.instance.manifestS3Id = JsonNullable.<UUID>of(manifestS3Id);
+      return this;
+    }
+    public RunSchema.Builder manifestS3Id(JsonNullable<UUID> manifestS3Id) {
+      this.instance.manifestS3Id = manifestS3Id;
+      return this;
+    }
+    public RunSchema.Builder events(List<Object> events) {
+      this.instance.events = JsonNullable.<List<Object>>of(events);
+      return this;
+    }
+    public RunSchema.Builder events(JsonNullable<List<Object>> events) {
+      this.instance.events = events;
+      return this;
+    }
+    public RunSchema.Builder tags(List<String> tags) {
+      this.instance.tags = JsonNullable.<List<String>>of(tags);
+      return this;
+    }
+    public RunSchema.Builder tags(JsonNullable<List<String>> tags) {
+      this.instance.tags = tags;
+      return this;
+    }
+    public RunSchema.Builder inputsS3Urls(Object inputsS3Urls) {
+      this.instance.inputsS3Urls = JsonNullable.<Object>of(inputsS3Urls);
+      return this;
+    }
+    public RunSchema.Builder inputsS3Urls(JsonNullable<Object> inputsS3Urls) {
+      this.instance.inputsS3Urls = inputsS3Urls;
+      return this;
+    }
+    public RunSchema.Builder outputsS3Urls(Object outputsS3Urls) {
+      this.instance.outputsS3Urls = JsonNullable.<Object>of(outputsS3Urls);
+      return this;
+    }
+    public RunSchema.Builder outputsS3Urls(JsonNullable<Object> outputsS3Urls) {
+      this.instance.outputsS3Urls = outputsS3Urls;
+      return this;
+    }
+    public RunSchema.Builder s3Urls(Object s3Urls) {
+      this.instance.s3Urls = JsonNullable.<Object>of(s3Urls);
+      return this;
+    }
+    public RunSchema.Builder s3Urls(JsonNullable<Object> s3Urls) {
+      this.instance.s3Urls = s3Urls;
+      return this;
+    }
+    public RunSchema.Builder traceId(UUID traceId) {
+      this.instance.traceId = traceId;
+      return this;
+    }
+    public RunSchema.Builder dottedOrder(String dottedOrder) {
+      this.instance.dottedOrder = dottedOrder;
+      return this;
+    }
+    public RunSchema.Builder id(UUID id) {
+      this.instance.id = id;
+      return this;
+    }
+    public RunSchema.Builder status(String status) {
+      this.instance.status = status;
+      return this;
+    }
+    public RunSchema.Builder childRunIds(List<UUID> childRunIds) {
+      this.instance.childRunIds = JsonNullable.<List<UUID>>of(childRunIds);
+      return this;
+    }
+    public RunSchema.Builder childRunIds(JsonNullable<List<UUID>> childRunIds) {
+      this.instance.childRunIds = childRunIds;
+      return this;
+    }
+    public RunSchema.Builder directChildRunIds(List<UUID> directChildRunIds) {
+      this.instance.directChildRunIds = JsonNullable.<List<UUID>>of(directChildRunIds);
+      return this;
+    }
+    public RunSchema.Builder directChildRunIds(JsonNullable<List<UUID>> directChildRunIds) {
+      this.instance.directChildRunIds = directChildRunIds;
+      return this;
+    }
+    public RunSchema.Builder parentRunIds(List<UUID> parentRunIds) {
+      this.instance.parentRunIds = JsonNullable.<List<UUID>>of(parentRunIds);
+      return this;
+    }
+    public RunSchema.Builder parentRunIds(JsonNullable<List<UUID>> parentRunIds) {
+      this.instance.parentRunIds = parentRunIds;
+      return this;
+    }
+    public RunSchema.Builder feedbackStats(Map<String, Object> feedbackStats) {
+      this.instance.feedbackStats = JsonNullable.<Map<String, Object>>of(feedbackStats);
+      return this;
+    }
+    public RunSchema.Builder feedbackStats(JsonNullable<Map<String, Object>> feedbackStats) {
+      this.instance.feedbackStats = feedbackStats;
+      return this;
+    }
+    public RunSchema.Builder referenceExampleId(UUID referenceExampleId) {
+      this.instance.referenceExampleId = JsonNullable.<UUID>of(referenceExampleId);
+      return this;
+    }
+    public RunSchema.Builder referenceExampleId(JsonNullable<UUID> referenceExampleId) {
+      this.instance.referenceExampleId = referenceExampleId;
+      return this;
+    }
+    public RunSchema.Builder totalTokens(Integer totalTokens) {
+      this.instance.totalTokens = totalTokens;
+      return this;
+    }
+    public RunSchema.Builder promptTokens(Integer promptTokens) {
+      this.instance.promptTokens = promptTokens;
+      return this;
+    }
+    public RunSchema.Builder completionTokens(Integer completionTokens) {
+      this.instance.completionTokens = completionTokens;
+      return this;
+    }
+    public RunSchema.Builder promptTokenDetails(Map<String, Integer> promptTokenDetails) {
+      this.instance.promptTokenDetails = JsonNullable.<Map<String, Integer>>of(promptTokenDetails);
+      return this;
+    }
+    public RunSchema.Builder promptTokenDetails(JsonNullable<Map<String, Integer>> promptTokenDetails) {
+      this.instance.promptTokenDetails = promptTokenDetails;
+      return this;
+    }
+    public RunSchema.Builder completionTokenDetails(Map<String, Integer> completionTokenDetails) {
+      this.instance.completionTokenDetails = JsonNullable.<Map<String, Integer>>of(completionTokenDetails);
+      return this;
+    }
+    public RunSchema.Builder completionTokenDetails(JsonNullable<Map<String, Integer>> completionTokenDetails) {
+      this.instance.completionTokenDetails = completionTokenDetails;
+      return this;
+    }
+    public RunSchema.Builder totalCost(String totalCost) {
+      this.instance.totalCost = JsonNullable.<String>of(totalCost);
+      return this;
+    }
+    public RunSchema.Builder totalCost(JsonNullable<String> totalCost) {
+      this.instance.totalCost = totalCost;
+      return this;
+    }
+    public RunSchema.Builder promptCost(String promptCost) {
+      this.instance.promptCost = JsonNullable.<String>of(promptCost);
+      return this;
+    }
+    public RunSchema.Builder promptCost(JsonNullable<String> promptCost) {
+      this.instance.promptCost = promptCost;
+      return this;
+    }
+    public RunSchema.Builder completionCost(String completionCost) {
+      this.instance.completionCost = JsonNullable.<String>of(completionCost);
+      return this;
+    }
+    public RunSchema.Builder completionCost(JsonNullable<String> completionCost) {
+      this.instance.completionCost = completionCost;
+      return this;
+    }
+    public RunSchema.Builder promptCostDetails(Map<String, String> promptCostDetails) {
+      this.instance.promptCostDetails = JsonNullable.<Map<String, String>>of(promptCostDetails);
+      return this;
+    }
+    public RunSchema.Builder promptCostDetails(JsonNullable<Map<String, String>> promptCostDetails) {
+      this.instance.promptCostDetails = promptCostDetails;
+      return this;
+    }
+    public RunSchema.Builder completionCostDetails(Map<String, String> completionCostDetails) {
+      this.instance.completionCostDetails = JsonNullable.<Map<String, String>>of(completionCostDetails);
+      return this;
+    }
+    public RunSchema.Builder completionCostDetails(JsonNullable<Map<String, String>> completionCostDetails) {
+      this.instance.completionCostDetails = completionCostDetails;
+      return this;
+    }
+    public RunSchema.Builder priceModelId(UUID priceModelId) {
+      this.instance.priceModelId = JsonNullable.<UUID>of(priceModelId);
+      return this;
+    }
+    public RunSchema.Builder priceModelId(JsonNullable<UUID> priceModelId) {
+      this.instance.priceModelId = priceModelId;
+      return this;
+    }
+    public RunSchema.Builder firstTokenTime(OffsetDateTime firstTokenTime) {
+      this.instance.firstTokenTime = JsonNullable.<OffsetDateTime>of(firstTokenTime);
+      return this;
+    }
+    public RunSchema.Builder firstTokenTime(JsonNullable<OffsetDateTime> firstTokenTime) {
+      this.instance.firstTokenTime = firstTokenTime;
+      return this;
+    }
+    public RunSchema.Builder sessionId(UUID sessionId) {
+      this.instance.sessionId = sessionId;
+      return this;
+    }
+    public RunSchema.Builder appPath(String appPath) {
+      this.instance.appPath = appPath;
+      return this;
+    }
+    public RunSchema.Builder lastQueuedAt(OffsetDateTime lastQueuedAt) {
+      this.instance.lastQueuedAt = JsonNullable.<OffsetDateTime>of(lastQueuedAt);
+      return this;
+    }
+    public RunSchema.Builder lastQueuedAt(JsonNullable<OffsetDateTime> lastQueuedAt) {
+      this.instance.lastQueuedAt = lastQueuedAt;
+      return this;
+    }
+    public RunSchema.Builder inDataset(Boolean inDataset) {
+      this.instance.inDataset = JsonNullable.<Boolean>of(inDataset);
+      return this;
+    }
+    public RunSchema.Builder inDataset(JsonNullable<Boolean> inDataset) {
+      this.instance.inDataset = inDataset;
+      return this;
+    }
+    public RunSchema.Builder shareToken(UUID shareToken) {
+      this.instance.shareToken = JsonNullable.<UUID>of(shareToken);
+      return this;
+    }
+    public RunSchema.Builder shareToken(JsonNullable<UUID> shareToken) {
+      this.instance.shareToken = shareToken;
+      return this;
+    }
+    public RunSchema.Builder traceTier(TraceTier traceTier) {
+      this.instance.traceTier = JsonNullable.<TraceTier>of(traceTier);
+      return this;
+    }
+    public RunSchema.Builder traceTier(JsonNullable<TraceTier> traceTier) {
+      this.instance.traceTier = traceTier;
+      return this;
+    }
+    public RunSchema.Builder traceFirstReceivedAt(OffsetDateTime traceFirstReceivedAt) {
+      this.instance.traceFirstReceivedAt = JsonNullable.<OffsetDateTime>of(traceFirstReceivedAt);
+      return this;
+    }
+    public RunSchema.Builder traceFirstReceivedAt(JsonNullable<OffsetDateTime> traceFirstReceivedAt) {
+      this.instance.traceFirstReceivedAt = traceFirstReceivedAt;
+      return this;
+    }
+    public RunSchema.Builder ttlSeconds(Integer ttlSeconds) {
+      this.instance.ttlSeconds = JsonNullable.<Integer>of(ttlSeconds);
+      return this;
+    }
+    public RunSchema.Builder ttlSeconds(JsonNullable<Integer> ttlSeconds) {
+      this.instance.ttlSeconds = ttlSeconds;
+      return this;
+    }
+    public RunSchema.Builder traceUpgrade(Boolean traceUpgrade) {
+      this.instance.traceUpgrade = traceUpgrade;
+      return this;
+    }
+    public RunSchema.Builder referenceDatasetId(UUID referenceDatasetId) {
+      this.instance.referenceDatasetId = JsonNullable.<UUID>of(referenceDatasetId);
+      return this;
+    }
+    public RunSchema.Builder referenceDatasetId(JsonNullable<UUID> referenceDatasetId) {
+      this.instance.referenceDatasetId = referenceDatasetId;
+      return this;
+    }
+    public RunSchema.Builder threadId(String threadId) {
+      this.instance.threadId = JsonNullable.<String>of(threadId);
+      return this;
+    }
+    public RunSchema.Builder threadId(JsonNullable<String> threadId) {
+      this.instance.threadId = threadId;
+      return this;
+    }
+
+
+    /**
+    * returns a built RunSchema instance.
+    *
+    * The builder is not reusable.
+    */
+    public RunSchema build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field.
+  */
+  public static RunSchema.Builder builder() {
+    return new RunSchema.Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public RunSchema.Builder toBuilder() {
+    return new RunSchema.Builder()
+      .name(getName())
+      .inputs(getInputs())
+      .inputsPreview(getInputsPreview())
+      .runType(getRunType())
+      .startTime(getStartTime())
+      .endTime(getEndTime())
+      .extra(getExtra())
+      .error(getError())
+      .executionOrder(getExecutionOrder())
+      .serialized(getSerialized())
+      .outputs(getOutputs())
+      .outputsPreview(getOutputsPreview())
+      .parentRunId(getParentRunId())
+      .manifestId(getManifestId())
+      .manifestS3Id(getManifestS3Id())
+      .events(getEvents())
+      .tags(getTags())
+      .inputsS3Urls(getInputsS3Urls())
+      .outputsS3Urls(getOutputsS3Urls())
+      .s3Urls(getS3Urls())
+      .traceId(getTraceId())
+      .dottedOrder(getDottedOrder())
+      .id(getId())
+      .status(getStatus())
+      .childRunIds(getChildRunIds())
+      .directChildRunIds(getDirectChildRunIds())
+      .parentRunIds(getParentRunIds())
+      .feedbackStats(getFeedbackStats())
+      .referenceExampleId(getReferenceExampleId())
+      .totalTokens(getTotalTokens())
+      .promptTokens(getPromptTokens())
+      .completionTokens(getCompletionTokens())
+      .promptTokenDetails(getPromptTokenDetails())
+      .completionTokenDetails(getCompletionTokenDetails())
+      .totalCost(getTotalCost())
+      .promptCost(getPromptCost())
+      .completionCost(getCompletionCost())
+      .promptCostDetails(getPromptCostDetails())
+      .completionCostDetails(getCompletionCostDetails())
+      .priceModelId(getPriceModelId())
+      .firstTokenTime(getFirstTokenTime())
+      .sessionId(getSessionId())
+      .appPath(getAppPath())
+      .lastQueuedAt(getLastQueuedAt())
+      .inDataset(getInDataset())
+      .shareToken(getShareToken())
+      .traceTier(getTraceTier())
+      .traceFirstReceivedAt(getTraceFirstReceivedAt())
+      .ttlSeconds(getTtlSeconds())
+      .traceUpgrade(getTraceUpgrade())
+      .referenceDatasetId(getReferenceDatasetId())
+      .threadId(getThreadId());
+  }
+
 }
 

@@ -38,7 +38,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 @JsonPropertyOrder({
   HTTPValidationError.JSON_PROPERTY_DETAIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T18:06:49.500560+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class HTTPValidationError {
   public static final String JSON_PROPERTY_DETAIL = "detail";
   @javax.annotation.Nullable
@@ -163,5 +163,59 @@ public class HTTPValidationError {
 
     return joiner.toString();
   }
+
+    public static class Builder {
+
+    private HTTPValidationError instance;
+
+    public Builder() {
+      this(new HTTPValidationError());
+    }
+
+    protected Builder(HTTPValidationError instance) {
+      this.instance = instance;
+    }
+
+    public HTTPValidationError.Builder detail(List<ValidationError> detail) {
+      this.instance.detail = detail;
+      return this;
+    }
+
+
+    /**
+    * returns a built HTTPValidationError instance.
+    *
+    * The builder is not reusable.
+    */
+    public HTTPValidationError build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field.
+  */
+  public static HTTPValidationError.Builder builder() {
+    return new HTTPValidationError.Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public HTTPValidationError.Builder toBuilder() {
+    return new HTTPValidationError.Builder()
+      .detail(getDetail());
+  }
+
 }
 

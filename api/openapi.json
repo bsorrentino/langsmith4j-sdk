@@ -5,6 +5,589 @@
     "version": "0.1.0"
   },
   "paths": {
+    "/api/v1/runs/rules": {
+      "get": {
+        "tags": [
+          "run"
+        ],
+        "summary": "List Rules",
+        "description": "List all run rules.",
+        "operationId": "list_rules_api_v1_runs_rules_get",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "session_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Session Id"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "session",
+                    "dataset"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type"
+            }
+          },
+          {
+            "name": "name_contains",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Name Contains"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RunRulesSchema"
+                  },
+                  "title": "Response List Rules Api V1 Runs Rules Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Create Rule",
+        "description": "Create a new run rule.",
+        "operationId": "create_rule_api_v1_runs_rules_post",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunRulesCreateSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunRulesSchema"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runs/rules/{rule_id}": {
+      "patch": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Update Rule",
+        "description": "Update a run rule.",
+        "operationId": "update_rule_api_v1_runs_rules__rule_id__patch",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Rule Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunRulesCreateSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunRulesSchema"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Delete Rule",
+        "description": "Delete a run rule.",
+        "operationId": "delete_rule_api_v1_runs_rules__rule_id__delete",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Rule Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runs/rules/{rule_id}/logs": {
+      "get": {
+        "tags": [
+          "run"
+        ],
+        "summary": "List Rule Logs",
+        "description": "List logs for a particular rule",
+        "operationId": "list_rule_logs_api_v1_runs_rules__rule_id__logs_get",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Rule Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 1440,
+              "minimum": 100,
+              "default": 720,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "start_time",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start Time"
+            }
+          },
+          {
+            "name": "end_time",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RuleLogSchema"
+                  },
+                  "title": "Response List Rule Logs Api V1 Runs Rules  Rule Id  Logs Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runs/rules/{rule_id}/last_applied": {
+      "get": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Get Last Applied Rule",
+        "description": "Get the last applied rule.",
+        "operationId": "get_last_applied_rule_api_v1_runs_rules__rule_id__last_applied_get",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Rule Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuleLogSchema"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runs/rules/{rule_id}/trigger": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Trigger Rule",
+        "description": "Trigger a run rule manually.",
+        "operationId": "trigger_rule_api_v1_runs_rules__rule_id__trigger_post",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "rule_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Rule Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunRulesSchema"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runs/rules/trigger": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Trigger Rules",
+        "description": "Trigger an array of run rules manually.",
+        "operationId": "trigger_rules_api_v1_runs_rules_trigger_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TriggerRulesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ]
+      }
+    },
     "/api/v1/runs/{run_id}": {
       "get": {
         "tags": [
@@ -164,10 +747,986 @@
           }
         }
       }
+    },
+    "/api/v1/runs/{run_id}/share": {
+      "get": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Read Run Share State",
+        "description": "Get the state of sharing of a run.",
+        "operationId": "read_run_share_state_api_v1_runs__run_id__share_get",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/RunShareSchema"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Read Run Share State Api V1 Runs  Run Id  Share Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Share Run",
+        "description": "Share a run.",
+        "operationId": "share_run_api_v1_runs__run_id__share_put",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunShareSchema"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Unshare Run",
+        "description": "Unshare a run.",
+        "operationId": "unshare_run_api_v1_runs__run_id__share_delete",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runs/query": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Query Runs",
+        "operationId": "query_runs_api_v1_runs_query_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BodyParamsForRunSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListRunsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/runs/generate-query": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Generate Query For Runs",
+        "description": "Get runs filter expression query for a given natural language query.",
+        "operationId": "generate_query_for_runs_api_v1_runs_generate_query_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestBodyForRunsGenerateQuery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseBodyForRunsGenerateQuery"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/runs/stats": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Stats Runs",
+        "description": "Get all runs by query in body payload.",
+        "operationId": "stats_runs_api_v1_runs_stats_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunStatsQueryParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/RunStats"
+                    },
+                    {
+                      "additionalProperties": {
+                        "$ref": "#/components/schemas/RunStats"
+                      },
+                      "type": "object"
+                    }
+                  ],
+                  "title": "Response Stats Runs Api V1 Runs Stats Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/runs/group": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Group Runs",
+        "description": "Get runs grouped by an expression",
+        "operationId": "group_runs_api_v1_runs_group_post",
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accept",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Accept"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunGroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runs/group/stats": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Stats Group Runs",
+        "description": "Get stats for the grouped runs.",
+        "operationId": "stats_group_runs_api_v1_runs_group_stats_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunGroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunGroupStats"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/runs/delete": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Delete Runs",
+        "description": "Delete specific runs by trace IDs or metadata key-value pairs.",
+        "operationId": "delete_runs_api_v1_runs_delete_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_delete_runs_api_v1_runs_delete_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          },
+          {
+            "Tenant ID": []
+          },
+          {
+            "Bearer Auth": []
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
+      "BodyParamsForRunSchema": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "trace": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace"
+          },
+          "parent_run": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Run"
+          },
+          "run_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RunTypeEnum"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "session": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session"
+          },
+          "reference_example": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Example"
+          },
+          "execution_order": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 1,
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Execution Order"
+          },
+          "start_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Time"
+          },
+          "end_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Time"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query"
+          },
+          "filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter"
+          },
+          "trace_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Filter"
+          },
+          "tree_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tree Filter"
+          },
+          "is_root": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Root"
+          },
+          "data_source_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RunsFilterDataSourceTypeEnum"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "skip_pagination": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skip Pagination"
+          },
+          "search_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Search Filter"
+          },
+          "use_experimental_search": {
+            "type": "boolean",
+            "title": "Use Experimental Search",
+            "default": false
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 100,
+            "minimum": 1,
+            "title": "Limit",
+            "default": 100
+          },
+          "select": {
+            "items": {
+              "$ref": "#/components/schemas/RunSelect"
+            },
+            "type": "array",
+            "title": "Select",
+            "default": [
+              "id",
+              "name",
+              "run_type",
+              "start_time",
+              "end_time",
+              "status",
+              "error",
+              "extra",
+              "events",
+              "inputs",
+              "outputs",
+              "parent_run_id",
+              "manifest_id",
+              "manifest_s3_id",
+              "manifest",
+              "session_id",
+              "serialized",
+              "reference_example_id",
+              "reference_dataset_id",
+              "total_tokens",
+              "prompt_tokens",
+              "prompt_token_details",
+              "completion_tokens",
+              "completion_token_details",
+              "total_cost",
+              "prompt_cost",
+              "prompt_cost_details",
+              "completion_cost",
+              "completion_cost_details",
+              "price_model_id",
+              "first_token_time",
+              "trace_id",
+              "dotted_order",
+              "last_queued_at",
+              "feedback_stats",
+              "parent_run_ids",
+              "tags",
+              "in_dataset",
+              "app_path",
+              "share_token",
+              "trace_tier",
+              "trace_first_received_at",
+              "ttl_seconds",
+              "trace_upgrade",
+              "thread_id"
+            ]
+          },
+          "order": {
+            "$ref": "#/components/schemas/RunDateOrder",
+            "default": "desc"
+          },
+          "skip_prev_cursor": {
+            "type": "boolean",
+            "title": "Skip Prev Cursor",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "BodyParamsForRunSchema",
+        "description": "Query params for run endpoints."
+      },
+      "Body_delete_runs_api_v1_runs_delete_post": {
+        "properties": {
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id"
+          },
+          "trace_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Ids"
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "title": "Body_delete_runs_api_v1_runs_delete_post"
+      },
+      "CodeEvaluatorTopLevel": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "CodeEvaluatorTopLevel"
+      },
+      "EvaluatorStructuredOutput": {
+        "properties": {
+          "hub_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hub Ref"
+          },
+          "prompt": {
+            "anyOf": [
+              {
+                "items": {
+                  "prefixItems": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "type": "array",
+                  "maxItems": 2,
+                  "minItems": 2
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt"
+          },
+          "template_format": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Template Format"
+          },
+          "schema": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Schema"
+          },
+          "variable_mapping": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variable Mapping"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          }
+        },
+        "type": "object",
+        "title": "EvaluatorStructuredOutput",
+        "description": "Evaluator structured output schema."
+      },
+      "EvaluatorTopLevel": {
+        "properties": {
+          "structured": {
+            "$ref": "#/components/schemas/EvaluatorStructuredOutput"
+          }
+        },
+        "type": "object",
+        "required": [
+          "structured"
+        ],
+        "title": "EvaluatorTopLevel"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -180,6 +1739,1270 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "ListRunsResponse": {
+        "properties": {
+          "runs": {
+            "items": {
+              "$ref": "#/components/schemas/RunSchema"
+            },
+            "type": "array",
+            "title": "Runs"
+          },
+          "cursors": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Cursors"
+          },
+          "search_cursors": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {},
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Search Cursors"
+          },
+          "parsed_query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parsed Query"
+          }
+        },
+        "type": "object",
+        "required": [
+          "runs",
+          "cursors"
+        ],
+        "title": "ListRunsResponse"
+      },
+      "PagerdutySeverity": {
+        "type": "string",
+        "enum": [
+          "critical",
+          "warning",
+          "error",
+          "info"
+        ],
+        "title": "PagerdutySeverity",
+        "description": "Enum for severity."
+      },
+      "RequestBodyForRunsGenerateQuery": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "feedback_keys": {
+            "items": {
+              "$ref": "#/components/schemas/RunsGenerateQueryFeedbackKeys"
+            },
+            "type": "array",
+            "title": "Feedback Keys"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "RequestBodyForRunsGenerateQuery"
+      },
+      "ResponseBodyForRunsGenerateQuery": {
+        "properties": {
+          "filter": {
+            "type": "string",
+            "title": "Filter"
+          },
+          "feedback_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "propertyNames": {
+              "$ref": "#/components/schemas/RunsGenerateQueryFeedbackKeys"
+            },
+            "type": "object",
+            "title": "Feedback Urls"
+          }
+        },
+        "type": "object",
+        "required": [
+          "filter",
+          "feedback_urls"
+        ],
+        "title": "ResponseBodyForRunsGenerateQuery"
+      },
+      "RuleLogActionOutcome": {
+        "type": "string",
+        "enum": [
+          "success",
+          "skipped",
+          "error"
+        ],
+        "title": "RuleLogActionOutcome"
+      },
+      "RuleLogActionResponse": {
+        "properties": {
+          "outcome": {
+            "$ref": "#/components/schemas/RuleLogActionOutcome"
+          },
+          "payload": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "outcome"
+        ],
+        "title": "RuleLogActionResponse"
+      },
+      "RuleLogSchema": {
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Rule Id"
+          },
+          "run_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Run Id"
+          },
+          "run_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Name"
+          },
+          "run_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Type"
+          },
+          "run_session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Session Id"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Time"
+          },
+          "end_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "End Time"
+          },
+          "application_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Application Time"
+          },
+          "add_to_annotation_queue": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RuleLogActionResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "add_to_dataset": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RuleLogActionResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evaluators": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RuleLogActionResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "alerts": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RuleLogActionResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "webhooks": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RuleLogActionResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "rule_id",
+          "run_id",
+          "start_time",
+          "end_time"
+        ],
+        "title": "RuleLogSchema",
+        "description": "Run rules log schema."
+      },
+      "RunDateOrder": {
+        "type": "string",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "title": "RunDateOrder",
+        "description": "Enum for run start date order."
+      },
+      "RunGroupBy": {
+        "type": "string",
+        "enum": [
+          "conversation"
+        ],
+        "title": "RunGroupBy"
+      },
+      "RunGroupRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "group_by": {
+            "$ref": "#/components/schemas/RunGroupBy"
+          },
+          "filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter"
+          },
+          "start_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Time"
+          },
+          "end_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Time"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "Offset",
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 100,
+            "minimum": 1,
+            "title": "Limit",
+            "default": 10
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "group_by"
+        ],
+        "title": "RunGroupRequest"
+      },
+      "RunGroupStats": {
+        "properties": {
+          "run_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Count"
+          },
+          "latency_p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency P50"
+          },
+          "latency_p99": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency P99"
+          },
+          "first_token_p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Token P50"
+          },
+          "first_token_p99": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Token P99"
+          },
+          "total_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Tokens"
+          },
+          "prompt_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Tokens"
+          },
+          "completion_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Tokens"
+          },
+          "median_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Tokens"
+          },
+          "completion_tokens_p50": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Tokens P50"
+          },
+          "prompt_tokens_p50": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Tokens P50"
+          },
+          "tokens_p99": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tokens P99"
+          },
+          "completion_tokens_p99": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Tokens P99"
+          },
+          "prompt_tokens_p99": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Tokens P99"
+          },
+          "last_run_start_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Run Start Time"
+          },
+          "feedback_stats": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feedback Stats"
+          },
+          "run_facets": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Facets"
+          },
+          "error_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Rate"
+          },
+          "streaming_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Streaming Rate"
+          },
+          "total_cost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost"
+          },
+          "prompt_cost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Cost"
+          },
+          "completion_cost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Cost"
+          },
+          "cost_p50": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost P50"
+          },
+          "cost_p99": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost P99"
+          },
+          "group_count": {
+            "type": "integer",
+            "title": "Group Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "group_count"
+        ],
+        "title": "RunGroupStats"
+      },
+      "RunRulesAlertType": {
+        "type": "string",
+        "enum": [
+          "pagerduty"
+        ],
+        "title": "RunRulesAlertType",
+        "description": "Enum for alert types."
+      },
+      "RunRulesCreateSchema": {
+        "properties": {
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id"
+          },
+          "is_enabled": {
+            "type": "boolean",
+            "title": "Is Enabled",
+            "default": true
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "sampling_rate": {
+            "type": "number",
+            "title": "Sampling Rate"
+          },
+          "filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter"
+          },
+          "trace_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Filter"
+          },
+          "tree_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tree Filter"
+          },
+          "backfill_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Backfill From"
+          },
+          "use_corrections_dataset": {
+            "type": "boolean",
+            "title": "Use Corrections Dataset",
+            "default": false
+          },
+          "num_few_shot_examples": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Num Few Shot Examples"
+          },
+          "extend_only": {
+            "type": "boolean",
+            "title": "Extend Only",
+            "default": false
+          },
+          "transient": {
+            "type": "boolean",
+            "title": "Transient",
+            "default": false
+          },
+          "add_to_annotation_queue_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Add To Annotation Queue Id"
+          },
+          "add_to_dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Add To Dataset Id"
+          },
+          "add_to_dataset_prefer_correction": {
+            "type": "boolean",
+            "title": "Add To Dataset Prefer Correction",
+            "default": false
+          },
+          "evaluators": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/EvaluatorTopLevel"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluators"
+          },
+          "code_evaluators": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/CodeEvaluatorTopLevel"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code Evaluators"
+          },
+          "alerts": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/RunRulesPagerdutyAlertSchema"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alerts"
+          },
+          "webhooks": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/RunRulesWebhookSchema"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhooks"
+          },
+          "evaluator_version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluator Version"
+          },
+          "create_alignment_queue": {
+            "type": "boolean",
+            "title": "Create Alignment Queue",
+            "default": false
+          },
+          "include_extended_stats": {
+            "type": "boolean",
+            "title": "Include Extended Stats",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "display_name",
+          "sampling_rate"
+        ],
+        "title": "RunRulesCreateSchema"
+      },
+      "RunRulesPagerdutyAlertSchema": {
+        "properties": {
+          "type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RunRulesAlertType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": "pagerduty"
+          },
+          "routing_key": {
+            "type": "string",
+            "title": "Routing Key"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "severity": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PagerdutySeverity"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": "warning"
+          }
+        },
+        "type": "object",
+        "required": [
+          "routing_key"
+        ],
+        "title": "RunRulesPagerdutyAlertSchema"
+      },
+      "RunRulesSchema": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "tenant_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Tenant Id"
+          },
+          "is_enabled": {
+            "type": "boolean",
+            "title": "Is Enabled",
+            "default": true
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id"
+          },
+          "session_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Name"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "dataset_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Name"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "sampling_rate": {
+            "type": "number",
+            "title": "Sampling Rate"
+          },
+          "filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter"
+          },
+          "trace_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Filter"
+          },
+          "tree_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tree Filter"
+          },
+          "add_to_annotation_queue_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Add To Annotation Queue Id"
+          },
+          "add_to_annotation_queue_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Add To Annotation Queue Name"
+          },
+          "add_to_dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Add To Dataset Id"
+          },
+          "add_to_dataset_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Add To Dataset Name"
+          },
+          "add_to_dataset_prefer_correction": {
+            "type": "boolean",
+            "title": "Add To Dataset Prefer Correction",
+            "default": false
+          },
+          "corrections_dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Corrections Dataset Id"
+          },
+          "use_corrections_dataset": {
+            "type": "boolean",
+            "title": "Use Corrections Dataset",
+            "default": false
+          },
+          "num_few_shot_examples": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Num Few Shot Examples"
+          },
+          "evaluators": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/EvaluatorTopLevel"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluators"
+          },
+          "code_evaluators": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/CodeEvaluatorTopLevel"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code Evaluators"
+          },
+          "alerts": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/RunRulesPagerdutyAlertSchema"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alerts"
+          },
+          "webhooks": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/RunRulesWebhookSchema"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhooks"
+          },
+          "extend_only": {
+            "type": "boolean",
+            "title": "Extend Only",
+            "default": false
+          },
+          "include_extended_stats": {
+            "type": "boolean",
+            "title": "Include Extended Stats",
+            "default": false
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "backfill_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Backfill From"
+          },
+          "transient": {
+            "type": "boolean",
+            "title": "Transient",
+            "default": false
+          },
+          "evaluator_version": {
+            "type": "integer",
+            "title": "Evaluator Version"
+          },
+          "evaluator_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluator Id"
+          },
+          "alignment_annotation_queue_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alignment Annotation Queue Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "tenant_id",
+          "display_name",
+          "sampling_rate",
+          "webhooks",
+          "created_at",
+          "updated_at",
+          "evaluator_version"
+        ],
+        "title": "RunRulesSchema",
+        "description": "Run rules schema."
+      },
+      "RunRulesWebhookSchema": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "headers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "RunRulesWebhookSchema"
       },
       "RunSchema": {
         "properties": {
@@ -724,6 +3547,706 @@
         "title": "RunSchema",
         "description": "Run schema."
       },
+      "RunSelect": {
+        "type": "string",
+        "enum": [
+          "id",
+          "name",
+          "run_type",
+          "start_time",
+          "end_time",
+          "status",
+          "error",
+          "extra",
+          "events",
+          "inputs",
+          "inputs_preview",
+          "inputs_s3_urls",
+          "inputs_or_signed_url",
+          "outputs",
+          "outputs_preview",
+          "outputs_s3_urls",
+          "outputs_or_signed_url",
+          "s3_urls",
+          "error_or_signed_url",
+          "events_or_signed_url",
+          "extra_or_signed_url",
+          "serialized_or_signed_url",
+          "parent_run_id",
+          "manifest_id",
+          "manifest_s3_id",
+          "manifest",
+          "session_id",
+          "serialized",
+          "reference_example_id",
+          "reference_dataset_id",
+          "total_tokens",
+          "prompt_tokens",
+          "prompt_token_details",
+          "completion_tokens",
+          "completion_token_details",
+          "total_cost",
+          "prompt_cost",
+          "prompt_cost_details",
+          "completion_cost",
+          "completion_cost_details",
+          "price_model_id",
+          "first_token_time",
+          "trace_id",
+          "dotted_order",
+          "last_queued_at",
+          "feedback_stats",
+          "child_run_ids",
+          "parent_run_ids",
+          "tags",
+          "in_dataset",
+          "app_path",
+          "share_token",
+          "trace_tier",
+          "trace_first_received_at",
+          "ttl_seconds",
+          "trace_upgrade",
+          "thread_id"
+        ],
+        "title": "RunSelect",
+        "description": "Enum for available run columns."
+      },
+      "RunShareSchema": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Run Id"
+          },
+          "share_token": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Share Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "run_id",
+          "share_token"
+        ],
+        "title": "RunShareSchema"
+      },
+      "RunStats": {
+        "properties": {
+          "run_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Count"
+          },
+          "latency_p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency P50"
+          },
+          "latency_p99": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency P99"
+          },
+          "first_token_p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Token P50"
+          },
+          "first_token_p99": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Token P99"
+          },
+          "total_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Tokens"
+          },
+          "prompt_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Tokens"
+          },
+          "completion_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Tokens"
+          },
+          "median_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Tokens"
+          },
+          "completion_tokens_p50": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Tokens P50"
+          },
+          "prompt_tokens_p50": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Tokens P50"
+          },
+          "tokens_p99": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tokens P99"
+          },
+          "completion_tokens_p99": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Tokens P99"
+          },
+          "prompt_tokens_p99": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Tokens P99"
+          },
+          "last_run_start_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Run Start Time"
+          },
+          "feedback_stats": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feedback Stats"
+          },
+          "run_facets": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Facets"
+          },
+          "error_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Rate"
+          },
+          "streaming_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Streaming Rate"
+          },
+          "total_cost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Cost"
+          },
+          "prompt_cost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt Cost"
+          },
+          "completion_cost": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Cost"
+          },
+          "cost_p50": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost P50"
+          },
+          "cost_p99": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cost P99"
+          }
+        },
+        "type": "object",
+        "title": "RunStats"
+      },
+      "RunStatsGroupBy": {
+        "properties": {
+          "attribute": {
+            "type": "string",
+            "enum": [
+              "name",
+              "run_type",
+              "tag",
+              "metadata"
+            ],
+            "title": "Attribute"
+          },
+          "path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Path"
+          },
+          "max_groups": {
+            "type": "integer",
+            "title": "Max Groups",
+            "default": 5
+          }
+        },
+        "type": "object",
+        "required": [
+          "attribute"
+        ],
+        "title": "RunStatsGroupBy",
+        "description": "Group by param for run stats."
+      },
+      "RunStatsQueryParams": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "trace": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace"
+          },
+          "parent_run": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Run"
+          },
+          "run_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RunTypeEnum"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "session": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session"
+          },
+          "reference_example": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Example"
+          },
+          "execution_order": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 1,
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Execution Order"
+          },
+          "start_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Time"
+          },
+          "end_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Time"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query"
+          },
+          "filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filter"
+          },
+          "trace_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Filter"
+          },
+          "tree_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tree Filter"
+          },
+          "is_root": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Root"
+          },
+          "data_source_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RunsFilterDataSourceTypeEnum"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "skip_pagination": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skip Pagination"
+          },
+          "search_filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Search Filter"
+          },
+          "use_experimental_search": {
+            "type": "boolean",
+            "title": "Use Experimental Search",
+            "default": false
+          },
+          "group_by": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RunStatsGroupBy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "groups": {
+            "anyOf": [
+              {
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Groups"
+          },
+          "select": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/RunStatsSelect"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Select"
+          }
+        },
+        "type": "object",
+        "title": "RunStatsQueryParams",
+        "description": "Query params for run stats."
+      },
+      "RunStatsSelect": {
+        "type": "string",
+        "enum": [
+          "run_count",
+          "latency_p50",
+          "latency_p99",
+          "latency_avg",
+          "first_token_p50",
+          "first_token_p99",
+          "total_tokens",
+          "prompt_tokens",
+          "completion_tokens",
+          "median_tokens",
+          "completion_tokens_p50",
+          "prompt_tokens_p50",
+          "tokens_p99",
+          "completion_tokens_p99",
+          "prompt_tokens_p99",
+          "last_run_start_time",
+          "feedback_stats",
+          "run_facets",
+          "error_rate",
+          "streaming_rate",
+          "total_cost",
+          "prompt_cost",
+          "completion_cost",
+          "cost_p50",
+          "cost_p99",
+          "session_feedback_stats",
+          "all_run_stats",
+          "all_token_stats"
+        ],
+        "title": "RunStatsSelect",
+        "description": "Metrics you can select from run stats endpoint."
+      },
       "RunTypeEnum": {
         "type": "string",
         "enum": [
@@ -738,6 +4261,31 @@
         "title": "RunTypeEnum",
         "description": "Enum for run types."
       },
+      "RunsFilterDataSourceTypeEnum": {
+        "type": "string",
+        "enum": [
+          "current",
+          "historical",
+          "lite",
+          "root_lite",
+          "runs_feedbacks_rmt_wide"
+        ],
+        "title": "RunsFilterDataSourceTypeEnum",
+        "description": "Enum for run data source types."
+      },
+      "RunsGenerateQueryFeedbackKeys": {
+        "type": "string",
+        "enum": [
+          "user_score",
+          "user_edited",
+          "user_removed",
+          "user_opened_run",
+          "user_selected_run",
+          "results_size",
+          "valid_filter"
+        ],
+        "title": "RunsGenerateQueryFeedbackKeys"
+      },
       "TraceTier": {
         "type": "string",
         "enum": [
@@ -745,6 +4293,39 @@
           "shortlived"
         ],
         "title": "TraceTier"
+      },
+      "TriggerRulesRequest": {
+        "properties": {
+          "rule_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rule Ids"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          }
+        },
+        "type": "object",
+        "title": "TriggerRulesRequest"
       },
       "ValidationError": {
         "properties": {

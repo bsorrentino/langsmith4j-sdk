@@ -40,7 +40,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
   ValidationError.JSON_PROPERTY_MSG,
   ValidationError.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T18:06:49.500560+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class ValidationError {
   public static final String JSON_PROPERTY_LOC = "loc";
   @javax.annotation.Nonnull
@@ -235,5 +235,69 @@ public class ValidationError {
 
     return joiner.toString();
   }
+
+    public static class Builder {
+
+    private ValidationError instance;
+
+    public Builder() {
+      this(new ValidationError());
+    }
+
+    protected Builder(ValidationError instance) {
+      this.instance = instance;
+    }
+
+    public ValidationError.Builder loc(List<ValidationErrorLocInner> loc) {
+      this.instance.loc = loc;
+      return this;
+    }
+    public ValidationError.Builder msg(String msg) {
+      this.instance.msg = msg;
+      return this;
+    }
+    public ValidationError.Builder type(String type) {
+      this.instance.type = type;
+      return this;
+    }
+
+
+    /**
+    * returns a built ValidationError instance.
+    *
+    * The builder is not reusable.
+    */
+    public ValidationError build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field.
+  */
+  public static ValidationError.Builder builder() {
+    return new ValidationError.Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public ValidationError.Builder toBuilder() {
+    return new ValidationError.Builder()
+      .loc(getLoc())
+      .msg(getMsg())
+      .type(getType());
+  }
+
 }
 

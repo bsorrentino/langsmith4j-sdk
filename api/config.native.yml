@@ -19,6 +19,9 @@ generatorName: java
 library: native
 inputSpec: api/openapi.json
 
+# Whether to generate builders for models
+generateBuilders: true
+
 # Select the complementary documentation annotation library. (Default: none)
 #     none - Do not annotate Model and Api with complementary annotations.
 #     swagger1 - Annotate Model and Api using the Swagger Annotations 1.x library.

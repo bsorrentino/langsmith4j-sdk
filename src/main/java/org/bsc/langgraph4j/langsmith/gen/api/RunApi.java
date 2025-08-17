@@ -18,9 +18,23 @@ import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
 import org.bsc.langgraph4j.langsmith.gen.Pair;
 
+import org.bsc.langgraph4j.langsmith.gen.model.BodyDeleteRunsApiV1RunsDeletePost;
+import org.bsc.langgraph4j.langsmith.gen.model.BodyParamsForRunSchema;
 import org.bsc.langgraph4j.langsmith.gen.model.HTTPValidationError;
+import org.bsc.langgraph4j.langsmith.gen.model.ListRunsResponse;
 import java.time.OffsetDateTime;
+import org.bsc.langgraph4j.langsmith.gen.model.RequestBodyForRunsGenerateQuery;
+import org.bsc.langgraph4j.langsmith.gen.model.ResponseBodyForRunsGenerateQuery;
+import org.bsc.langgraph4j.langsmith.gen.model.ResponseStatsRunsApiV1RunsStatsPost;
+import org.bsc.langgraph4j.langsmith.gen.model.RuleLogSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunGroupRequest;
+import org.bsc.langgraph4j.langsmith.gen.model.RunGroupStats;
+import org.bsc.langgraph4j.langsmith.gen.model.RunRulesCreateSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunRulesSchema;
 import org.bsc.langgraph4j.langsmith.gen.model.RunSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunShareSchema;
+import org.bsc.langgraph4j.langsmith.gen.model.RunStatsQueryParams;
+import org.bsc.langgraph4j.langsmith.gen.model.TriggerRulesRequest;
 import java.util.UUID;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -50,7 +64,7 @@ import java.util.function.Consumer;
 
 import java.util.concurrent.CompletableFuture;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T18:06:49.500560+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class RunApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -84,6 +98,933 @@ public class RunApi {
       body = "[no body]";
     }
     return operationId + " call failed with: " + statusCode + " - " + body;
+  }
+
+  /**
+   * Create Rule
+   * Create a new run rule.
+   * @param runRulesCreateSchema  (required)
+   * @return CompletableFuture&lt;RunRulesSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<RunRulesSchema> createRuleApiV1RunsRulesPost(@javax.annotation.Nonnull RunRulesCreateSchema runRulesCreateSchema) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = createRuleApiV1RunsRulesPostRequestBuilder(runRulesCreateSchema);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("createRuleApiV1RunsRulesPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunRulesSchema>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Create Rule
+   * Create a new run rule.
+   * @param runRulesCreateSchema  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;RunRulesSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<RunRulesSchema>> createRuleApiV1RunsRulesPostWithHttpInfo(@javax.annotation.Nonnull RunRulesCreateSchema runRulesCreateSchema) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = createRuleApiV1RunsRulesPostRequestBuilder(runRulesCreateSchema);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("createRuleApiV1RunsRulesPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<RunRulesSchema>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunRulesSchema>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder createRuleApiV1RunsRulesPostRequestBuilder(@javax.annotation.Nonnull RunRulesCreateSchema runRulesCreateSchema) throws ApiException {
+    // verify the required parameter 'runRulesCreateSchema' is set
+    if (runRulesCreateSchema == null) {
+      throw new ApiException(400, "Missing the required parameter 'runRulesCreateSchema' when calling createRuleApiV1RunsRulesPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(runRulesCreateSchema);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete Rule
+   * Delete a run rule.
+   * @param ruleId  (required)
+   * @return CompletableFuture&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<Object> deleteRuleApiV1RunsRulesRuleIdDelete(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = deleteRuleApiV1RunsRulesRuleIdDeleteRequestBuilder(ruleId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteRuleApiV1RunsRulesRuleIdDelete", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Delete Rule
+   * Delete a run rule.
+   * @param ruleId  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;Object&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<Object>> deleteRuleApiV1RunsRulesRuleIdDeleteWithHttpInfo(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = deleteRuleApiV1RunsRulesRuleIdDeleteRequestBuilder(ruleId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteRuleApiV1RunsRulesRuleIdDelete", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Object>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteRuleApiV1RunsRulesRuleIdDeleteRequestBuilder(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    // verify the required parameter 'ruleId' is set
+    if (ruleId == null) {
+      throw new ApiException(400, "Missing the required parameter 'ruleId' when calling deleteRuleApiV1RunsRulesRuleIdDelete");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules/{rule_id}"
+        .replace("{rule_id}", ApiClient.urlEncode(ruleId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete Runs
+   * Delete specific runs by trace IDs or metadata key-value pairs.
+   * @param bodyDeleteRunsApiV1RunsDeletePost  (optional)
+   * @return CompletableFuture&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<Object> deleteRunsApiV1RunsDeletePost(@javax.annotation.Nullable BodyDeleteRunsApiV1RunsDeletePost bodyDeleteRunsApiV1RunsDeletePost) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = deleteRunsApiV1RunsDeletePostRequestBuilder(bodyDeleteRunsApiV1RunsDeletePost);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteRunsApiV1RunsDeletePost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Delete Runs
+   * Delete specific runs by trace IDs or metadata key-value pairs.
+   * @param bodyDeleteRunsApiV1RunsDeletePost  (optional)
+   * @return CompletableFuture&lt;ApiResponse&lt;Object&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<Object>> deleteRunsApiV1RunsDeletePostWithHttpInfo(@javax.annotation.Nullable BodyDeleteRunsApiV1RunsDeletePost bodyDeleteRunsApiV1RunsDeletePost) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = deleteRunsApiV1RunsDeletePostRequestBuilder(bodyDeleteRunsApiV1RunsDeletePost);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteRunsApiV1RunsDeletePost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Object>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteRunsApiV1RunsDeletePostRequestBuilder(@javax.annotation.Nullable BodyDeleteRunsApiV1RunsDeletePost bodyDeleteRunsApiV1RunsDeletePost) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/delete";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(bodyDeleteRunsApiV1RunsDeletePost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Generate Query For Runs
+   * Get runs filter expression query for a given natural language query.
+   * @param requestBodyForRunsGenerateQuery  (required)
+   * @return CompletableFuture&lt;ResponseBodyForRunsGenerateQuery&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ResponseBodyForRunsGenerateQuery> generateQueryForRunsApiV1RunsGenerateQueryPost(@javax.annotation.Nonnull RequestBodyForRunsGenerateQuery requestBodyForRunsGenerateQuery) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = generateQueryForRunsApiV1RunsGenerateQueryPostRequestBuilder(requestBodyForRunsGenerateQuery);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("generateQueryForRunsApiV1RunsGenerateQueryPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<ResponseBodyForRunsGenerateQuery>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Generate Query For Runs
+   * Get runs filter expression query for a given natural language query.
+   * @param requestBodyForRunsGenerateQuery  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;ResponseBodyForRunsGenerateQuery&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<ResponseBodyForRunsGenerateQuery>> generateQueryForRunsApiV1RunsGenerateQueryPostWithHttpInfo(@javax.annotation.Nonnull RequestBodyForRunsGenerateQuery requestBodyForRunsGenerateQuery) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = generateQueryForRunsApiV1RunsGenerateQueryPostRequestBuilder(requestBodyForRunsGenerateQuery);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("generateQueryForRunsApiV1RunsGenerateQueryPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ResponseBodyForRunsGenerateQuery>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<ResponseBodyForRunsGenerateQuery>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder generateQueryForRunsApiV1RunsGenerateQueryPostRequestBuilder(@javax.annotation.Nonnull RequestBodyForRunsGenerateQuery requestBodyForRunsGenerateQuery) throws ApiException {
+    // verify the required parameter 'requestBodyForRunsGenerateQuery' is set
+    if (requestBodyForRunsGenerateQuery == null) {
+      throw new ApiException(400, "Missing the required parameter 'requestBodyForRunsGenerateQuery' when calling generateQueryForRunsApiV1RunsGenerateQueryPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/generate-query";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(requestBodyForRunsGenerateQuery);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Last Applied Rule
+   * Get the last applied rule.
+   * @param ruleId  (required)
+   * @return CompletableFuture&lt;RuleLogSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<RuleLogSchema> getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGet(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGetRequestBuilder(ruleId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RuleLogSchema>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Get Last Applied Rule
+   * Get the last applied rule.
+   * @param ruleId  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;RuleLogSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<RuleLogSchema>> getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGetWithHttpInfo(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGetRequestBuilder(ruleId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<RuleLogSchema>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RuleLogSchema>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGetRequestBuilder(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    // verify the required parameter 'ruleId' is set
+    if (ruleId == null) {
+      throw new ApiException(400, "Missing the required parameter 'ruleId' when calling getLastAppliedRuleApiV1RunsRulesRuleIdLastAppliedGet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules/{rule_id}/last_applied"
+        .replace("{rule_id}", ApiClient.urlEncode(ruleId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Group Runs
+   * Get runs grouped by an expression
+   * @param runGroupRequest  (required)
+   * @param accept  (optional)
+   * @return CompletableFuture&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<Object> groupRunsApiV1RunsGroupPost(@javax.annotation.Nonnull RunGroupRequest runGroupRequest, @javax.annotation.Nullable String accept) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = groupRunsApiV1RunsGroupPostRequestBuilder(runGroupRequest, accept);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("groupRunsApiV1RunsGroupPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Group Runs
+   * Get runs grouped by an expression
+   * @param runGroupRequest  (required)
+   * @param accept  (optional)
+   * @return CompletableFuture&lt;ApiResponse&lt;Object&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<Object>> groupRunsApiV1RunsGroupPostWithHttpInfo(@javax.annotation.Nonnull RunGroupRequest runGroupRequest, @javax.annotation.Nullable String accept) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = groupRunsApiV1RunsGroupPostRequestBuilder(runGroupRequest, accept);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("groupRunsApiV1RunsGroupPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Object>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder groupRunsApiV1RunsGroupPostRequestBuilder(@javax.annotation.Nonnull RunGroupRequest runGroupRequest, @javax.annotation.Nullable String accept) throws ApiException {
+    // verify the required parameter 'runGroupRequest' is set
+    if (runGroupRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'runGroupRequest' when calling groupRunsApiV1RunsGroupPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/group";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (accept != null) {
+      localVarRequestBuilder.header("accept", accept.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(runGroupRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List Rule Logs
+   * List logs for a particular rule
+   * @param ruleId  (required)
+   * @param limit  (optional, default to 720)
+   * @param offset  (optional, default to 0)
+   * @param startTime  (optional)
+   * @param endTime  (optional)
+   * @return CompletableFuture&lt;List&lt;RuleLogSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<List<RuleLogSchema>> listRuleLogsApiV1RunsRulesRuleIdLogsGet(@javax.annotation.Nonnull UUID ruleId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = listRuleLogsApiV1RunsRulesRuleIdLogsGetRequestBuilder(ruleId, limit, offset, startTime, endTime);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listRuleLogsApiV1RunsRulesRuleIdLogsGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<List<RuleLogSchema>>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * List Rule Logs
+   * List logs for a particular rule
+   * @param ruleId  (required)
+   * @param limit  (optional, default to 720)
+   * @param offset  (optional, default to 0)
+   * @param startTime  (optional)
+   * @param endTime  (optional)
+   * @return CompletableFuture&lt;ApiResponse&lt;List&lt;RuleLogSchema&gt;&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<List<RuleLogSchema>>> listRuleLogsApiV1RunsRulesRuleIdLogsGetWithHttpInfo(@javax.annotation.Nonnull UUID ruleId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = listRuleLogsApiV1RunsRulesRuleIdLogsGetRequestBuilder(ruleId, limit, offset, startTime, endTime);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listRuleLogsApiV1RunsRulesRuleIdLogsGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<List<RuleLogSchema>>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<List<RuleLogSchema>>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder listRuleLogsApiV1RunsRulesRuleIdLogsGetRequestBuilder(@javax.annotation.Nonnull UUID ruleId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable OffsetDateTime startTime, @javax.annotation.Nullable OffsetDateTime endTime) throws ApiException {
+    // verify the required parameter 'ruleId' is set
+    if (ruleId == null) {
+      throw new ApiException(400, "Missing the required parameter 'ruleId' when calling listRuleLogsApiV1RunsRulesRuleIdLogsGet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules/{rule_id}/logs"
+        .replace("{rule_id}", ApiClient.urlEncode(ruleId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "offset";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("offset", offset));
+    localVarQueryParameterBaseName = "start_time";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("start_time", startTime));
+    localVarQueryParameterBaseName = "end_time";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("end_time", endTime));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List Rules
+   * List all run rules.
+   * @param datasetId  (optional)
+   * @param sessionId  (optional)
+   * @param type  (optional)
+   * @param nameContains  (optional)
+   * @param id  (optional)
+   * @return CompletableFuture&lt;List&lt;RunRulesSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<List<RunRulesSchema>> listRulesApiV1RunsRulesGet(@javax.annotation.Nullable UUID datasetId, @javax.annotation.Nullable UUID sessionId, @javax.annotation.Nullable String type, @javax.annotation.Nullable String nameContains, @javax.annotation.Nullable List<UUID> id) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = listRulesApiV1RunsRulesGetRequestBuilder(datasetId, sessionId, type, nameContains, id);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listRulesApiV1RunsRulesGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<List<RunRulesSchema>>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * List Rules
+   * List all run rules.
+   * @param datasetId  (optional)
+   * @param sessionId  (optional)
+   * @param type  (optional)
+   * @param nameContains  (optional)
+   * @param id  (optional)
+   * @return CompletableFuture&lt;ApiResponse&lt;List&lt;RunRulesSchema&gt;&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<List<RunRulesSchema>>> listRulesApiV1RunsRulesGetWithHttpInfo(@javax.annotation.Nullable UUID datasetId, @javax.annotation.Nullable UUID sessionId, @javax.annotation.Nullable String type, @javax.annotation.Nullable String nameContains, @javax.annotation.Nullable List<UUID> id) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = listRulesApiV1RunsRulesGetRequestBuilder(datasetId, sessionId, type, nameContains, id);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listRulesApiV1RunsRulesGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<List<RunRulesSchema>>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<List<RunRulesSchema>>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder listRulesApiV1RunsRulesGetRequestBuilder(@javax.annotation.Nullable UUID datasetId, @javax.annotation.Nullable UUID sessionId, @javax.annotation.Nullable String type, @javax.annotation.Nullable String nameContains, @javax.annotation.Nullable List<UUID> id) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "dataset_id";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("dataset_id", datasetId));
+    localVarQueryParameterBaseName = "session_id";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("session_id", sessionId));
+    localVarQueryParameterBaseName = "type";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("type", type));
+    localVarQueryParameterBaseName = "name_contains";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("name_contains", nameContains));
+    localVarQueryParameterBaseName = "id";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("multi", "id", id));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Query Runs
+   * 
+   * @param bodyParamsForRunSchema  (required)
+   * @return CompletableFuture&lt;ListRunsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ListRunsResponse> queryRunsApiV1RunsQueryPost(@javax.annotation.Nonnull BodyParamsForRunSchema bodyParamsForRunSchema) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = queryRunsApiV1RunsQueryPostRequestBuilder(bodyParamsForRunSchema);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("queryRunsApiV1RunsQueryPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<ListRunsResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Query Runs
+   * 
+   * @param bodyParamsForRunSchema  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;ListRunsResponse&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<ListRunsResponse>> queryRunsApiV1RunsQueryPostWithHttpInfo(@javax.annotation.Nonnull BodyParamsForRunSchema bodyParamsForRunSchema) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = queryRunsApiV1RunsQueryPostRequestBuilder(bodyParamsForRunSchema);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("queryRunsApiV1RunsQueryPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ListRunsResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<ListRunsResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder queryRunsApiV1RunsQueryPostRequestBuilder(@javax.annotation.Nonnull BodyParamsForRunSchema bodyParamsForRunSchema) throws ApiException {
+    // verify the required parameter 'bodyParamsForRunSchema' is set
+    if (bodyParamsForRunSchema == null) {
+      throw new ApiException(400, "Missing the required parameter 'bodyParamsForRunSchema' when calling queryRunsApiV1RunsQueryPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/query";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(bodyParamsForRunSchema);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -200,6 +1141,785 @@ public class RunApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Read Run Share State
+   * Get the state of sharing of a run.
+   * @param runId  (required)
+   * @return CompletableFuture&lt;RunShareSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<RunShareSchema> readRunShareStateApiV1RunsRunIdShareGet(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = readRunShareStateApiV1RunsRunIdShareGetRequestBuilder(runId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("readRunShareStateApiV1RunsRunIdShareGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunShareSchema>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Read Run Share State
+   * Get the state of sharing of a run.
+   * @param runId  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;RunShareSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<RunShareSchema>> readRunShareStateApiV1RunsRunIdShareGetWithHttpInfo(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = readRunShareStateApiV1RunsRunIdShareGetRequestBuilder(runId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("readRunShareStateApiV1RunsRunIdShareGet", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<RunShareSchema>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunShareSchema>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder readRunShareStateApiV1RunsRunIdShareGetRequestBuilder(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    // verify the required parameter 'runId' is set
+    if (runId == null) {
+      throw new ApiException(400, "Missing the required parameter 'runId' when calling readRunShareStateApiV1RunsRunIdShareGet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/{run_id}/share"
+        .replace("{run_id}", ApiClient.urlEncode(runId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Share Run
+   * Share a run.
+   * @param runId  (required)
+   * @return CompletableFuture&lt;RunShareSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<RunShareSchema> shareRunApiV1RunsRunIdSharePut(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = shareRunApiV1RunsRunIdSharePutRequestBuilder(runId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("shareRunApiV1RunsRunIdSharePut", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunShareSchema>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Share Run
+   * Share a run.
+   * @param runId  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;RunShareSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<RunShareSchema>> shareRunApiV1RunsRunIdSharePutWithHttpInfo(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = shareRunApiV1RunsRunIdSharePutRequestBuilder(runId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("shareRunApiV1RunsRunIdSharePut", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<RunShareSchema>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunShareSchema>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder shareRunApiV1RunsRunIdSharePutRequestBuilder(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    // verify the required parameter 'runId' is set
+    if (runId == null) {
+      throw new ApiException(400, "Missing the required parameter 'runId' when calling shareRunApiV1RunsRunIdSharePut");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/{run_id}/share"
+        .replace("{run_id}", ApiClient.urlEncode(runId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Stats Group Runs
+   * Get stats for the grouped runs.
+   * @param runGroupRequest  (required)
+   * @return CompletableFuture&lt;RunGroupStats&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<RunGroupStats> statsGroupRunsApiV1RunsGroupStatsPost(@javax.annotation.Nonnull RunGroupRequest runGroupRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = statsGroupRunsApiV1RunsGroupStatsPostRequestBuilder(runGroupRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("statsGroupRunsApiV1RunsGroupStatsPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunGroupStats>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Stats Group Runs
+   * Get stats for the grouped runs.
+   * @param runGroupRequest  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;RunGroupStats&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<RunGroupStats>> statsGroupRunsApiV1RunsGroupStatsPostWithHttpInfo(@javax.annotation.Nonnull RunGroupRequest runGroupRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = statsGroupRunsApiV1RunsGroupStatsPostRequestBuilder(runGroupRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("statsGroupRunsApiV1RunsGroupStatsPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<RunGroupStats>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunGroupStats>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder statsGroupRunsApiV1RunsGroupStatsPostRequestBuilder(@javax.annotation.Nonnull RunGroupRequest runGroupRequest) throws ApiException {
+    // verify the required parameter 'runGroupRequest' is set
+    if (runGroupRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'runGroupRequest' when calling statsGroupRunsApiV1RunsGroupStatsPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/group/stats";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(runGroupRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Stats Runs
+   * Get all runs by query in body payload.
+   * @param runStatsQueryParams  (required)
+   * @return CompletableFuture&lt;ResponseStatsRunsApiV1RunsStatsPost&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ResponseStatsRunsApiV1RunsStatsPost> statsRunsApiV1RunsStatsPost(@javax.annotation.Nonnull RunStatsQueryParams runStatsQueryParams) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = statsRunsApiV1RunsStatsPostRequestBuilder(runStatsQueryParams);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("statsRunsApiV1RunsStatsPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<ResponseStatsRunsApiV1RunsStatsPost>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Stats Runs
+   * Get all runs by query in body payload.
+   * @param runStatsQueryParams  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;ResponseStatsRunsApiV1RunsStatsPost&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<ResponseStatsRunsApiV1RunsStatsPost>> statsRunsApiV1RunsStatsPostWithHttpInfo(@javax.annotation.Nonnull RunStatsQueryParams runStatsQueryParams) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = statsRunsApiV1RunsStatsPostRequestBuilder(runStatsQueryParams);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("statsRunsApiV1RunsStatsPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ResponseStatsRunsApiV1RunsStatsPost>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<ResponseStatsRunsApiV1RunsStatsPost>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder statsRunsApiV1RunsStatsPostRequestBuilder(@javax.annotation.Nonnull RunStatsQueryParams runStatsQueryParams) throws ApiException {
+    // verify the required parameter 'runStatsQueryParams' is set
+    if (runStatsQueryParams == null) {
+      throw new ApiException(400, "Missing the required parameter 'runStatsQueryParams' when calling statsRunsApiV1RunsStatsPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/stats";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(runStatsQueryParams);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Trigger Rule
+   * Trigger a run rule manually.
+   * @param ruleId  (required)
+   * @return CompletableFuture&lt;RunRulesSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<RunRulesSchema> triggerRuleApiV1RunsRulesRuleIdTriggerPost(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = triggerRuleApiV1RunsRulesRuleIdTriggerPostRequestBuilder(ruleId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("triggerRuleApiV1RunsRulesRuleIdTriggerPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunRulesSchema>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Trigger Rule
+   * Trigger a run rule manually.
+   * @param ruleId  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;RunRulesSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<RunRulesSchema>> triggerRuleApiV1RunsRulesRuleIdTriggerPostWithHttpInfo(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = triggerRuleApiV1RunsRulesRuleIdTriggerPostRequestBuilder(ruleId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("triggerRuleApiV1RunsRulesRuleIdTriggerPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<RunRulesSchema>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunRulesSchema>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder triggerRuleApiV1RunsRulesRuleIdTriggerPostRequestBuilder(@javax.annotation.Nonnull UUID ruleId) throws ApiException {
+    // verify the required parameter 'ruleId' is set
+    if (ruleId == null) {
+      throw new ApiException(400, "Missing the required parameter 'ruleId' when calling triggerRuleApiV1RunsRulesRuleIdTriggerPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules/{rule_id}/trigger"
+        .replace("{rule_id}", ApiClient.urlEncode(ruleId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Trigger Rules
+   * Trigger an array of run rules manually.
+   * @param triggerRulesRequest  (required)
+   * @return CompletableFuture&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<Object> triggerRulesApiV1RunsRulesTriggerPost(@javax.annotation.Nonnull TriggerRulesRequest triggerRulesRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = triggerRulesApiV1RunsRulesTriggerPostRequestBuilder(triggerRulesRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("triggerRulesApiV1RunsRulesTriggerPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Trigger Rules
+   * Trigger an array of run rules manually.
+   * @param triggerRulesRequest  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;Object&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<Object>> triggerRulesApiV1RunsRulesTriggerPostWithHttpInfo(@javax.annotation.Nonnull TriggerRulesRequest triggerRulesRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = triggerRulesApiV1RunsRulesTriggerPostRequestBuilder(triggerRulesRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("triggerRulesApiV1RunsRulesTriggerPost", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Object>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder triggerRulesApiV1RunsRulesTriggerPostRequestBuilder(@javax.annotation.Nonnull TriggerRulesRequest triggerRulesRequest) throws ApiException {
+    // verify the required parameter 'triggerRulesRequest' is set
+    if (triggerRulesRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'triggerRulesRequest' when calling triggerRulesApiV1RunsRulesTriggerPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules/trigger";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(triggerRulesRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Unshare Run
+   * Unshare a run.
+   * @param runId  (required)
+   * @return CompletableFuture&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<Object> unshareRunApiV1RunsRunIdShareDelete(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = unshareRunApiV1RunsRunIdShareDeleteRequestBuilder(runId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("unshareRunApiV1RunsRunIdShareDelete", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Unshare Run
+   * Unshare a run.
+   * @param runId  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;Object&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<Object>> unshareRunApiV1RunsRunIdShareDeleteWithHttpInfo(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = unshareRunApiV1RunsRunIdShareDeleteRequestBuilder(runId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("unshareRunApiV1RunsRunIdShareDelete", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Object>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder unshareRunApiV1RunsRunIdShareDeleteRequestBuilder(@javax.annotation.Nonnull UUID runId) throws ApiException {
+    // verify the required parameter 'runId' is set
+    if (runId == null) {
+      throw new ApiException(400, "Missing the required parameter 'runId' when calling unshareRunApiV1RunsRunIdShareDelete");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/{run_id}/share"
+        .replace("{run_id}", ApiClient.urlEncode(runId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update Rule
+   * Update a run rule.
+   * @param ruleId  (required)
+   * @param runRulesCreateSchema  (required)
+   * @return CompletableFuture&lt;RunRulesSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<RunRulesSchema> updateRuleApiV1RunsRulesRuleIdPatch(@javax.annotation.Nonnull UUID ruleId, @javax.annotation.Nonnull RunRulesCreateSchema runRulesCreateSchema) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = updateRuleApiV1RunsRulesRuleIdPatchRequestBuilder(ruleId, runRulesCreateSchema);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("updateRuleApiV1RunsRulesRuleIdPatch", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunRulesSchema>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  /**
+   * Update Rule
+   * Update a run rule.
+   * @param ruleId  (required)
+   * @param runRulesCreateSchema  (required)
+   * @return CompletableFuture&lt;ApiResponse&lt;RunRulesSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public CompletableFuture<ApiResponse<RunRulesSchema>> updateRuleApiV1RunsRulesRuleIdPatchWithHttpInfo(@javax.annotation.Nonnull UUID ruleId, @javax.annotation.Nonnull RunRulesCreateSchema runRulesCreateSchema) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = updateRuleApiV1RunsRulesRuleIdPatchRequestBuilder(ruleId, runRulesCreateSchema);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("updateRuleApiV1RunsRulesRuleIdPatch", localVarResponse));
+            }
+            try {
+              String responseBody = localVarResponse.body();
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<RunRulesSchema>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      responseBody == null || responseBody.isBlank() ? null : memberVarObjectMapper.readValue(responseBody, new TypeReference<RunRulesSchema>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+        }
+      );
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
+  }
+
+  private HttpRequest.Builder updateRuleApiV1RunsRulesRuleIdPatchRequestBuilder(@javax.annotation.Nonnull UUID ruleId, @javax.annotation.Nonnull RunRulesCreateSchema runRulesCreateSchema) throws ApiException {
+    // verify the required parameter 'ruleId' is set
+    if (ruleId == null) {
+      throw new ApiException(400, "Missing the required parameter 'ruleId' when calling updateRuleApiV1RunsRulesRuleIdPatch");
+    }
+    // verify the required parameter 'runRulesCreateSchema' is set
+    if (runRulesCreateSchema == null) {
+      throw new ApiException(400, "Missing the required parameter 'runRulesCreateSchema' when calling updateRuleApiV1RunsRulesRuleIdPatch");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/runs/rules/{rule_id}"
+        .replace("{rule_id}", ApiClient.urlEncode(ruleId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(runRulesCreateSchema);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
