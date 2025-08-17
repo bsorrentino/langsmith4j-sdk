@@ -46,7 +46,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
   BodyDeleteRunsApiV1RunsDeletePost.JSON_PROPERTY_TRACE_IDS,
   BodyDeleteRunsApiV1RunsDeletePost.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:27:07.599378+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class BodyDeleteRunsApiV1RunsDeletePost {
   public static final String JSON_PROPERTY_SESSION_ID = "session_id";
   private JsonNullable<UUID> sessionId = JsonNullable.<UUID>undefined();

@@ -9,9 +9,13 @@ const { default: schema } = await import("./api/openapi.json", {
 var newSchema =  { ...schema,
     paths: Object.fromEntries(Object.entries(schema.paths).filter(([name]) => {
        //console.log( "NAME", name )
-        return (name.startsWith("/api/v1/runs") )
-              
+        return (
+          name.startsWith("/api/v1/runs") ||
+          name.startsWith("/runs")
+        )
+
     })),
+    /*
     components: {
         schemas: 
             Object.fromEntries(Object.entries(schema.components.schemas).filter(([name]) => {
@@ -54,6 +58,7 @@ var newSchema =  { ...schema,
             })),
         
     }
+    */        
  }
 
 

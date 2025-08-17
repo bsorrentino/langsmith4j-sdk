@@ -43,7 +43,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
   TriggerRulesRequest.JSON_PROPERTY_RULE_IDS,
   TriggerRulesRequest.JSON_PROPERTY_DATASET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:27:07.599378+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class TriggerRulesRequest {
   public static final String JSON_PROPERTY_RULE_IDS = "rule_ids";
   private JsonNullable<List<UUID>> ruleIds = JsonNullable.<List<UUID>>undefined();

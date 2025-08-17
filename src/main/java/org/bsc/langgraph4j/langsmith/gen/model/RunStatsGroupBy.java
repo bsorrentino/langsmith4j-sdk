@@ -41,7 +41,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
   RunStatsGroupBy.JSON_PROPERTY_PATH,
   RunStatsGroupBy.JSON_PROPERTY_MAX_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:27:07.599378+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class RunStatsGroupBy {
   /**
    * Gets or Sets attribute

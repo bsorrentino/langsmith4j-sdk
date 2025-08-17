@@ -31,7 +31,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:27:07.599378+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 @JsonDeserialize(using=ResponseStatsRunsApiV1RunsStatsPost.ResponseStatsRunsApiV1RunsStatsPostDeserializer.class)
 @JsonSerialize(using = ResponseStatsRunsApiV1RunsStatsPost.ResponseStatsRunsApiV1RunsStatsPostSerializer.class)
 public class ResponseStatsRunsApiV1RunsStatsPost extends AbstractOpenApiSchema {

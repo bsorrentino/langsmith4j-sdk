@@ -80,7 +80,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
   RunRulesSchema.JSON_PROPERTY_EVALUATOR_ID,
   RunRulesSchema.JSON_PROPERTY_ALIGNMENT_ANNOTATION_QUEUE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:27:07.599378+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class RunRulesSchema {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

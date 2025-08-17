@@ -66,7 +66,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
   RunStats.JSON_PROPERTY_COST_P50,
   RunStats.JSON_PROPERTY_COST_P99
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:27:07.599378+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class RunStats {
   public static final String JSON_PROPERTY_RUN_COUNT = "run_count";
   private JsonNullable<Integer> runCount = JsonNullable.<Integer>undefined();

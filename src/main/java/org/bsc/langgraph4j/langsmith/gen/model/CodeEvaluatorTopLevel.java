@@ -35,7 +35,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 @JsonPropertyOrder({
   CodeEvaluatorTopLevel.JSON_PROPERTY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:14:57.775316+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-17T23:27:07.599378+02:00[Europe/Rome]", comments = "Generator version: 7.14.0")
 public class CodeEvaluatorTopLevel {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull

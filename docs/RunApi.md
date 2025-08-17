@@ -60,6 +60,7 @@ Create a new run rule.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -68,6 +69,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunRulesCreateSchema runRulesCreateSchema = new RunRulesCreateSchema(); // RunRulesCreateSchema | 
@@ -99,7 +116,7 @@ CompletableFuture<[**RunRulesSchema**](RunRulesSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -128,6 +145,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -136,6 +154,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunRulesCreateSchema runRulesCreateSchema = new RunRulesCreateSchema(); // RunRulesCreateSchema | 
@@ -176,7 +210,7 @@ CompletableFuture<ApiResponse<[**RunRulesSchema**](RunRulesSchema.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -205,6 +239,7 @@ Delete a run rule.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -213,6 +248,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -244,7 +295,7 @@ CompletableFuture<**Object**>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -273,6 +324,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -281,6 +333,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -321,7 +389,7 @@ CompletableFuture<ApiResponse<**Object**>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -350,6 +418,7 @@ Delete specific runs by trace IDs or metadata key-value pairs.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -358,6 +427,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         BodyDeleteRunsApiV1RunsDeletePost bodyDeleteRunsApiV1RunsDeletePost = new BodyDeleteRunsApiV1RunsDeletePost(); // BodyDeleteRunsApiV1RunsDeletePost | 
@@ -389,7 +474,7 @@ CompletableFuture<**Object**>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -418,6 +503,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -426,6 +512,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         BodyDeleteRunsApiV1RunsDeletePost bodyDeleteRunsApiV1RunsDeletePost = new BodyDeleteRunsApiV1RunsDeletePost(); // BodyDeleteRunsApiV1RunsDeletePost | 
@@ -466,7 +568,7 @@ CompletableFuture<ApiResponse<**Object**>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -495,6 +597,7 @@ Get runs filter expression query for a given natural language query.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -503,6 +606,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RequestBodyForRunsGenerateQuery requestBodyForRunsGenerateQuery = new RequestBodyForRunsGenerateQuery(); // RequestBodyForRunsGenerateQuery | 
@@ -534,7 +653,7 @@ CompletableFuture<[**ResponseBodyForRunsGenerateQuery**](ResponseBodyForRunsGene
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -563,6 +682,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -571,6 +691,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RequestBodyForRunsGenerateQuery requestBodyForRunsGenerateQuery = new RequestBodyForRunsGenerateQuery(); // RequestBodyForRunsGenerateQuery | 
@@ -611,7 +747,7 @@ CompletableFuture<ApiResponse<[**ResponseBodyForRunsGenerateQuery**](ResponseBod
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -640,6 +776,7 @@ Get the last applied rule.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -648,6 +785,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -679,7 +832,7 @@ CompletableFuture<[**RuleLogSchema**](RuleLogSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -708,6 +861,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -716,6 +870,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -756,7 +926,7 @@ CompletableFuture<ApiResponse<[**RuleLogSchema**](RuleLogSchema.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -785,6 +955,7 @@ Get runs grouped by an expression
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -793,6 +964,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunGroupRequest runGroupRequest = new RunGroupRequest(); // RunGroupRequest | 
@@ -826,7 +1013,7 @@ CompletableFuture<**Object**>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -855,6 +1042,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -863,6 +1051,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunGroupRequest runGroupRequest = new RunGroupRequest(); // RunGroupRequest | 
@@ -905,7 +1109,7 @@ CompletableFuture<ApiResponse<**Object**>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -934,6 +1138,7 @@ List logs for a particular rule
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -942,6 +1147,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -981,7 +1202,7 @@ CompletableFuture<[**List&lt;RuleLogSchema&gt;**](RuleLogSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1010,6 +1231,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1018,6 +1240,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -1066,7 +1304,7 @@ CompletableFuture<ApiResponse<[**List&lt;RuleLogSchema&gt;**](RuleLogSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1095,6 +1333,7 @@ List all run rules.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1103,6 +1342,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID datasetId = UUID.randomUUID(); // UUID | 
@@ -1142,7 +1397,7 @@ CompletableFuture<[**List&lt;RunRulesSchema&gt;**](RunRulesSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1171,6 +1426,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1179,6 +1435,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID datasetId = UUID.randomUUID(); // UUID | 
@@ -1227,7 +1499,7 @@ CompletableFuture<ApiResponse<[**List&lt;RunRulesSchema&gt;**](RunRulesSchema.md
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1254,6 +1526,7 @@ Query Runs
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1262,6 +1535,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         BodyParamsForRunSchema bodyParamsForRunSchema = new BodyParamsForRunSchema(); // BodyParamsForRunSchema | 
@@ -1293,7 +1582,7 @@ CompletableFuture<[**ListRunsResponse**](ListRunsResponse.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1320,6 +1609,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1328,6 +1618,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         BodyParamsForRunSchema bodyParamsForRunSchema = new BodyParamsForRunSchema(); // BodyParamsForRunSchema | 
@@ -1368,7 +1674,7 @@ CompletableFuture<ApiResponse<[**ListRunsResponse**](ListRunsResponse.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1397,6 +1703,7 @@ Get a specific run.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1405,6 +1712,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -1444,7 +1767,7 @@ CompletableFuture<[**RunSchema**](RunSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1473,6 +1796,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1481,6 +1805,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -1529,7 +1869,7 @@ CompletableFuture<ApiResponse<[**RunSchema**](RunSchema.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1558,6 +1898,7 @@ Get the state of sharing of a run.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1566,6 +1907,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -1597,7 +1954,7 @@ CompletableFuture<[**RunShareSchema**](RunShareSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1626,6 +1983,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1634,6 +1992,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -1674,7 +2048,7 @@ CompletableFuture<ApiResponse<[**RunShareSchema**](RunShareSchema.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1703,6 +2077,7 @@ Share a run.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1711,6 +2086,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -1742,7 +2133,7 @@ CompletableFuture<[**RunShareSchema**](RunShareSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1771,6 +2162,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1779,6 +2171,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -1819,7 +2227,7 @@ CompletableFuture<ApiResponse<[**RunShareSchema**](RunShareSchema.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1848,6 +2256,7 @@ Get stats for the grouped runs.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1856,6 +2265,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunGroupRequest runGroupRequest = new RunGroupRequest(); // RunGroupRequest | 
@@ -1887,7 +2312,7 @@ CompletableFuture<[**RunGroupStats**](RunGroupStats.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1916,6 +2341,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -1924,6 +2350,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunGroupRequest runGroupRequest = new RunGroupRequest(); // RunGroupRequest | 
@@ -1964,7 +2406,7 @@ CompletableFuture<ApiResponse<[**RunGroupStats**](RunGroupStats.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -1993,6 +2435,7 @@ Get all runs by query in body payload.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2001,6 +2444,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunStatsQueryParams runStatsQueryParams = new RunStatsQueryParams(); // RunStatsQueryParams | 
@@ -2032,7 +2491,7 @@ CompletableFuture<[**ResponseStatsRunsApiV1RunsStatsPost**](ResponseStatsRunsApi
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2061,6 +2520,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2069,6 +2529,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         RunStatsQueryParams runStatsQueryParams = new RunStatsQueryParams(); // RunStatsQueryParams | 
@@ -2109,7 +2585,7 @@ CompletableFuture<ApiResponse<[**ResponseStatsRunsApiV1RunsStatsPost**](Response
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2138,6 +2614,7 @@ Trigger a run rule manually.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2146,6 +2623,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -2177,7 +2670,7 @@ CompletableFuture<[**RunRulesSchema**](RunRulesSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2206,6 +2699,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2214,6 +2708,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -2254,7 +2764,7 @@ CompletableFuture<ApiResponse<[**RunRulesSchema**](RunRulesSchema.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2283,6 +2793,7 @@ Trigger an array of run rules manually.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2291,6 +2802,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         TriggerRulesRequest triggerRulesRequest = new TriggerRulesRequest(); // TriggerRulesRequest | 
@@ -2322,7 +2849,7 @@ CompletableFuture<**Object**>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2351,6 +2878,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2359,6 +2887,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         TriggerRulesRequest triggerRulesRequest = new TriggerRulesRequest(); // TriggerRulesRequest | 
@@ -2399,7 +2943,7 @@ CompletableFuture<ApiResponse<**Object**>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2428,6 +2972,7 @@ Unshare a run.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2436,6 +2981,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -2467,7 +3028,7 @@ CompletableFuture<**Object**>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2496,6 +3057,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2504,6 +3066,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -2544,7 +3122,7 @@ CompletableFuture<ApiResponse<**Object**>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2573,6 +3151,7 @@ Update a run rule.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2581,6 +3160,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -2614,7 +3209,7 @@ CompletableFuture<[**RunRulesSchema**](RunRulesSchema.md)>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2643,6 +3238,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2651,6 +3247,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID ruleId = UUID.randomUUID(); // UUID | 
@@ -2693,7 +3305,7 @@ CompletableFuture<ApiResponse<[**RunRulesSchema**](RunRulesSchema.md)>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2722,6 +3334,7 @@ Update a run.
 import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2730,6 +3343,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -2761,7 +3390,7 @@ CompletableFuture<**Object**>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
@@ -2790,6 +3419,7 @@ import org.bsc.langgraph4j.langsmith.gen.ApiClient;
 import org.bsc.langgraph4j.langsmith.gen.ApiException;
 import org.bsc.langgraph4j.langsmith.gen.ApiResponse;
 import org.bsc.langgraph4j.langsmith.gen.Configuration;
+import org.bsc.langgraph4j.langsmith.gen.auth.*;
 import org.bsc.langgraph4j.langsmith.gen.models.*;
 import org.bsc.langgraph4j.langsmith.gen.api.RunApi;
 import java.util.concurrent.CompletableFuture;
@@ -2798,6 +3428,22 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
+        
+        // Configure API key authorization: Tenant ID
+        ApiKeyAuth Tenant ID = (ApiKeyAuth) defaultClient.getAuthentication("Tenant ID");
+        Tenant ID.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //Tenant ID.setApiKeyPrefix("Token");
+
+        // Configure API key authorization: API Key
+        ApiKeyAuth API Key = (ApiKeyAuth) defaultClient.getAuthentication("API Key");
+        API Key.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //API Key.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: Bearer Auth
+        HttpBearerAuth Bearer Auth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer Auth");
+        Bearer Auth.setBearerToken("BEARER TOKEN");
 
         RunApi apiInstance = new RunApi(defaultClient);
         UUID runId = UUID.randomUUID(); // UUID | 
@@ -2838,7 +3484,7 @@ CompletableFuture<ApiResponse<**Object**>>
 
 ### Authorization
 
-No authorization required
+[Tenant ID](../README.md#Tenant ID), [API Key](../README.md#API Key), [Bearer Auth](../README.md#Bearer Auth)
 
 ### HTTP request headers
 
