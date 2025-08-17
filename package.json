@@ -6,8 +6,9 @@
 
   "scripts": {
     "gen:retrofit2": "openapi-generator generate -o target -c api/config.retrofit2.yml --dry-run --enable-post-process-file",
-    "gen:native": "openapi-generator generate -o target -c api/config.native.yml --enable-post-process-file",
-    "dowload-openapi": "download-openapi.sh"
+    "gen:native": "openapi-generator generate -o target/gen -c api/config.native.yml --enable-post-process-file",
+    "dowload-openapi": "download-openapi.sh",
+    "config-help:java": "openapi-generator config-help --generator-name java -f markdown -o api/CONFIG-JAVA.md"
   },
   "keywords": [],
   "author": "bsorrentino <bartolomeo.sorrentino@gmail.com> (http://soulsoftware-bsc.blogspot.it/)",
